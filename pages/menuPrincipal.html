@@ -8,13 +8,26 @@
     />
   </head>
   <link rel="stylesheet" href="../css/menuPrincipal.css">
+  
+  
   <body>
+    <nav class="navbar" style="background-color: #0099DD;">
+        <div class="container-fluid">
+            
+          <a class="navbar-brand" href="../pages/menuPrincipal.html">
+            <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top"> 
+        </a>
+            <h6> Bienvenido <strong>Eduardo</strong></h5>
+            <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+            </div>
+      </nav>
+      <br>
    <div class="container">
     <div class="row"></div>
 
     <div class="row">
-        <div class="col-4" >
-            <a id="ventas"  href="../index.html" >
+        <div class="col-4 contenedorOpciones" >
+            <a id="ventas"  href="../pages/ventas.html" >
                 <div  class="card">
                     <div class="icon">
                         <img class="imgIcon" src="../public/icons/ventasIcon.png" alt="">
@@ -26,8 +39,8 @@
                 </div>
             </a>
         </div>
-        <div class="col-4">
-            <a href="../index.html">
+        <div class="col-4 contenedorOpciones">
+            <a href="../pages/inventario.html">
                 <div class="card">
                     <div class="icon">
                         <img class="inventarioIcon" src="../public/icons/inventarioIcon.png" alt="">
@@ -39,8 +52,8 @@
                 </div>
             </a>
         </div>
-        <div class="col-4">
-           <a href="../index.html">
+        <div class="col-4 contenedorOpciones">
+           <a href="../pages/caja.html">
             <div class="card">
                 <div class="icon">
                     <img class="cajasIcon" src="../public/icons/cajasIcon.png" alt="">
@@ -55,33 +68,33 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-4" >
-            <a id="ventas"  href="../index.html" >
+        <div + class="col-4 contenedorOpciones"  >
+            <a id="ventas"  href="../pages/usuarios.html" >
                 <div  class="card">
                     <div class="icon">
-                        <img class="imgIcon" src="../public/icons/ventasIcon.png" alt="">
+                        <img class="usuariosIcon" src="../public/icons/usuarisIcon.png" alt="">
                     </div>
-                    <strong> Ventas
+                    <strong> Usuarios
                     </strong>
                   
-                    <span>Ir a Ventas</span>
+                    <span>Ir a Usuarios</span>
                 </div>
             </a>
         </div>
-        <div class="col-4">
-            <a href="../index.html">
+        <div class="col-4 contenedorOpciones">
+            <a href="../pages/reportes.html">
                 <div class="card">
                     <div class="icon">
-                        <img class="inventarioIcon" src="../public/icons/inventarioIcon.png" alt="">
+                        <img class="reportesIcon" src="../public/icons/reportesIcon.png" alt="">
                     </div>
-                    <strong> Inventario
+                    <strong> Reportes
                     </strong>
                     
-                    <span>Ir a Inventario</span>
+                    <span>Ir a Reportes</span>
                 </div>
             </a>
         </div>
-        <div class="col-4">
+        <!-- <div class="col-4 contenedorOpciones">
            <a href="../index.html">
             <div class="card">
                 <div class="icon">
@@ -93,8 +106,9 @@
                 <span>Ir a Caja</span>
             </div>
            </a>
-        </div>
+        </div> -->
     </div>
+    
 
 
 
@@ -104,5 +118,6 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  </body>
+    
+</body>
 </html>

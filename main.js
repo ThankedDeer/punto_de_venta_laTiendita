@@ -5,6 +5,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
 
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -48,3 +49,5 @@ app.on('window-all-closed', () => {
 
 // Habilita la recarga en vivo para todos los archivos dentro del directorio de tu proyecto
 require('electron-reload')(__dirname);
+
+app.commandLine.appendSwitch('no-sandbox');
