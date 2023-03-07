@@ -79,7 +79,7 @@ app.commandLine.appendSwitch('no-sandbox');
 //   protocol.registerSchemesAsPrivileged([
 //     { scheme: 'app', privileges: { secure: true, standard: true } }
 //   ]);
-//   mainWindow = new BrowserWindow({ width: 800, height: 600 });
+//   mainWindow = new BrowserWindow({ width: 800, height: 600 });+
 //   mainWindow.loadURL('app://./index.html');
 //   // Resto del código de creación de ventana
 // }).catch((error) => {
