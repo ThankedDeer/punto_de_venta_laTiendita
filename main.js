@@ -5,6 +5,7 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS']=true
 
 const createWindow = () => {
   // Create the browser window.
@@ -12,10 +13,17 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      
-    }
-  })
+      preload: path.join(__dirname, "preload.js"),
+     
+    },
+  });
+  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.on('devtools-opened', () => {
+    setImmediate(() => {
+        // do whatever you want to do after dev tool completely opened here
+        mainWindow.focus();
+    });
+});
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
@@ -51,3 +59,15 @@ app.on('window-all-closed', () => {
 require('electron-reload')(__dirname);
 
 app.commandLine.appendSwitch('no-sandbox');
+
+
+
+
+app.whenReady().then(() => {
+  protocol.registerSchemesAsPrivileged([
+    { scheme: 'app', privileges: { secure: true, standard: true } }
+  ]);
+  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow.loadURL('app://./index.html');
+  // Resto del código de creación de ventana
+});
