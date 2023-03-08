@@ -17,6 +17,9 @@ const createWindow = () => {
      
     },
   });
+
+
+  //quitar despues de conectar todo 
   mainWindow.webContents.openDevTools();
   mainWindow.webContents.on('devtools-opened', () => {
     setImmediate(() => {
@@ -63,11 +66,22 @@ app.commandLine.appendSwitch('no-sandbox');
 
 
 
-app.whenReady().then(() => {
-  protocol.registerSchemesAsPrivileged([
-    { scheme: 'app', privileges: { secure: true, standard: true } }
-  ]);
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
-  mainWindow.loadURL('app://./index.html');
-  // Resto del código de creación de ventana
-});
+// app.whenReady().then(() => {
+//   protocol.registerSchemesAsPrivileged([
+//     { scheme: 'app', privileges: { secure: true, standard: true } }
+//   ]);
+//   mainWindow = new BrowserWindow({ width: 800, height: 600 });
+//   mainWindow.loadURL('app://./index.html');
+//   // Resto del código de creación de ventana
+// });
+
+// app.whenReady().then(() => {
+//   protocol.registerSchemesAsPrivileged([
+//     { scheme: 'app', privileges: { secure: true, standard: true } }
+//   ]);
+//   mainWindow = new BrowserWindow({ width: 800, height: 600 });+
+//   mainWindow.loadURL('app://./index.html');
+//   // Resto del código de creación de ventana
+// }).catch((error) => {
+//   console.error(error);
+// });

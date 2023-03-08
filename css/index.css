@@ -1,86 +1,98 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: url(../img/bg.jpeg) no-repeat center top;
-    background-size: cover;
-    font-family: sans-serif;
-    height: 100vh;
-  }
-  
-  .login-box {
-    width: 320px;
-    height: 420px;
-    background: #000;
-    color: #fff;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 70px 30px;
-  }
-  
-  .login-box .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left: calc(50% - 50px);
-  }
-  
-  .login-box h1 {
-    margin: 0;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 22px;
-  }
-  
-  .login-box label {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    display: block;
-  }
-  
-  .login-box input {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .login-box input[type="text"], .login-box input[type="password"] {
-    border: none;
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    color: #fff;
-    font-size: 16px;
-  }
-  
-  .login-box input[type="submit"] {
-    border: none;
-    outline: none;
-    height: 40px;
-    background: #b80f22;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 20px;
-  }
-  
-  .login-box input[type="submit"]:hover {
-    cursor: pointer;
-    background: #ffc107;
-    color: #000;
-  }
-  
-  .login-box a {
-    text-decoration: none;
-    font-size: 12px;
-    line-height: 20px;
-    color: darkgrey;
-  }
-  
-  .login-box a:hover {
-    color: #fff;
-  }
+body{
+  font-family: 'PT Sans' !important;  
+  margin: auto;
+  text-align: center;
+  background-image: url(../public/icons/login.avif);
+}
+
+/* Login form */
+.login-form, .contenedor {
+  width: 300px;
+  margin: 0 auto;
+}
+.login-form h1 {
+  text-align: center;
+  color:midnightblue ;
+  font-size: 28px;
+  padding: 70px 0 10px 0;
+}
+.login-form input[type="password"],
+.login-form input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ced4da;
+  margin-bottom: 10px;
+  box-sizing:border-box;
+}
+
+/* Estilos boton LOGIN*/
+.btn-login{
+  width: 100%;
+  padding: 15px;
+  background-color: #0099DD;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: large;
+  color: #ffffff;
+  transition: transform 0.2s ease-out;
+}
+.btn-login:hover,.btn-login:active{
+  color:#fff;
+  background-color:#026E81;
+  border-color: black;
+  transform: scale(0.95);
+}
+.btn-login:focus{
+  box-shadow:0 0 0 3px rgba(121,82,179,0.25)
+}
+
+
+/* Estilos de link para realizar el LOGOUT*/
+.a-logout:link, .a-logout:visited {
+  background-color: red;
+  color: black;
+  border: 2px solid black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 200px;
+}
+
+.a-logout:hover, .a-logout:active {
+  background-color: red;
+  color: black ;
+  font-size: 15px;
+}
+
+
+
+/* form User Registration */
+.register-form{
+  width: 400px;
+  margin: 0 auto;
+  padding: 0px 20px 60px 20px;
+  margin-top: 35px;
+  font-family: "PT Sans";  
+  text-align: left !important;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+
+.register-form h1 {
+  text-align: left;
+  color:midnightblue ;
+  font-size: 22px;
+  padding: 70px 0 10px 0;
+}
+.register-form input[type="password"],
+.register-form input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ced4da;
+  margin-bottom: 10px;
+  box-sizing:border-box;
+}

@@ -83,7 +83,7 @@
     width: 100%;
     height: 56px;
     padding: 0 16px;
-    background: #703eff;
+    background: #0099DD;
     color: #f9f9f9;
     border: 0;
     font-family: inherit;
@@ -114,3 +114,34 @@
   .toggle.showing {
     background-image: url("hide.svg");
   }
+  
+.jumbotron {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
+  margin: 16px;
+}
+
+.global-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-rest {
+  background: linear-gradient(to right, #283A52, #4E5E7E, #7684AA);
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+}
+
+.bg2 {
+  background-image: url(img-1.jpg);
+  background-position: center center;
+}

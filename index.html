@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>La Tiendita</title>
     <link
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
-      <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/index.css" />
   </head>
+  
   <body>
-    <br>
-    <div class="login-box">
-      <img src="img/logo.png" class="avatar" alt="Avatar Image">
-      <h1>Login</h1>
+    <br><br><br><br>
+    <div class="register-form" id="login-form"><br>
+      <h2 style="text-align: center;">Inicio de Sesion</h2><br>
       <form>
-        <!-- USERNAME INPUT -->
-        <label for="username">Usuario</label>
-        <input type="text" placeholder="...">
-        <!-- PASSWORD INPUT -->
-        <label for="password">Password</label>
-        <input type="password" placeholder="...">
-        <input type="submit" value="Log In">
+          <input type="text" name="user" id="user" placeholder="Usuario" >
+          <input type="password" name="pass" id="pass" placeholder="Contraseña" ><br><br>
+          <input type="submit" class="btn-login" value="Iniciar Sesion" id="Iniciar" >
       </form>
-      
+      <p id="error-message"></p>
+  </div><br>
+
+
     <!-- Your app content here -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../laTiendita/js/login.js"></script>
   </body>
-</html>
+</htm>
