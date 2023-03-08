@@ -3,6 +3,8 @@ body{
   margin: auto;
   text-align: center;
   background-image: url(../public/icons/login.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Login form */
