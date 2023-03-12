@@ -15,7 +15,7 @@
     <br><br><br><br>
     <div class="register-form" id="login-form"><br>
       <h2 style="text-align: center;">Inicio de Sesion</h2><br>
-      <form>
+      <form id="login" >
           <input type="text" name="user" id="user" placeholder="Usuario" >
           <input type="password" name="pass" id="pass" placeholder="Contraseña" ><br><br>
           <input type="submit" class="btn-login" value="Iniciar Sesion" id="Iniciar" >
@@ -31,3 +31,33 @@
     <script src="../laTiendita/js/login.js"></script>
   </body>
 </htm>
+
+
+<script>
+    document.getElementById("login").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe automáticamente
+    
+
+      var campos = ["user", "pass"]; // Array con los identificadores de los campos
+
+    for (var i = 0; i < campos.length; i++) {
+      
+      var campo = document.getElementById(campos[i]); // Obtener el campo por su identificador
+
+      if (campo.value.trim() === "") {
+
+//         Swal.fire({
+//         title: 'Error!',
+//         text: 'Completa todos los campos',
+//         icon: 'error',
+//         confirmButtonText: 'Aceptar'
+// })
+        return false; 
+      }
+    }
+
+    
+    // Redirige al usuario a otra página
+    window.location.href = "pages/menuPrincipal.html";
+  });
+</script>
