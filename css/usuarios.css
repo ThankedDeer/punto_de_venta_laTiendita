@@ -35,3 +35,35 @@ body {
 .card p {
     margin-bottom: 20px;
 }
+
+
+
+  .btn-primary{
+    background-image: url('../imagenes/agregar.png');
+    background-position: center center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    padding: 10px 20px;
+    border-radius: 100px;
+    border-color: #0099DD;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transition: transform 0.2s ease-out;
+    background-color:#0099DD ;
+}
+.btn-primary:active {
+    transform: scale(0.95);
+  }
+
+  .btn-sendmessage{
+    background-color: #0099DD;
+    border-radius:5px;
+    height: 40px;
+    border-color: #0099DD;
+  }
