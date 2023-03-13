@@ -6,7 +6,7 @@ loginForm.addEventListener('submit', (event) => {
 	const password = document.getElementById('pass').value;
 
 	// Realice la solicitud POST al endpoint '/api/login' con los datos de inicio de sesión proporcionados por el usuario
-	axios('/api/login', {
+	fetch('/api/login', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
