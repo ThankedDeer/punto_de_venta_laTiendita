@@ -67,3 +67,30 @@ body {
     height: 40px;
     border-color: #0099DD;
   }
+  .botonEliminar{
+    background-color: red;
+    color: white;
+    height: 40px;
+    width: 150px;
+    border: red;
+    border-radius: 5px;
+    transition: transform 0.2s ease-out;
+  }
+
+  .botonEliminar:active{
+    transform: scale(0.95);
+  }
+
+  .botonPermisos{
+    background-color: rgb(5, 179, 5);
+    color: white;
+    height: 40px;
+    width: 150px;
+    border: rgb(5, 179, 5);
+    border-radius: 5px;
+    transition: transform 0.2s ease-out;
+  }
+
+  .botonPermisos:active{
+    transform: scale(0.95);
+  }

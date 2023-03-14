@@ -1,25 +1,43 @@
 const items = document.getElementById('items');
 const templateCard = document.getElementById('template-card');
 const fragment = document.createDocumentFragment();
-const axios = require('axios');
 
-  axios.get('https://backtiendita-production.up.railway.app/api/vendedores')
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
+data = []
 
-
-const pintarCards = () => {
-    data.forEach(vendedores => {
-        templateCard.querySelector('h1').textContent = vendedores.Nom_Vendedor
-
-        const clone = template.cloneNode(true)
-        fragment.appendChild(clone)
-    });
-
-    items.appendChild(fragment)
+document.addEventListener('DOMContentLoaded', () => {
+  fetchData()
+})
+const fetchData = async () => {
+  try {
+    const res = await fetch('https://backtiendita-production.up.railway.app/api/vendedores')
+    const data = await res.json()
+    pintarCards(data)
+  }catch (error) {
+    console.log(error)
+  }
 }
-//Mostrar alerta--------------------------------------------------------------------------
+
+const pintarCards = data => {
+  const fragment = document.createDocumentFragment();
+  data.forEach(vendedor => {
+    const templateCard = document.querySelector('#template-card').content
+    templateCard.querySelector('h5').textContent = vendedor.Nom_Vendedor
+
+    const clone = templateCard.cloneNode(true)
+    fragment.appendChild(clone)
+  })
+  const items = document.querySelector('#items');
+  items.appendChild(fragment);
+}
+
+//Actualizar rol-------------------------------------------------------------
+
+const checkbox = document.getElementById('checkbox');
+
+checkbox.addEventListener('change', () => {
+  actualizarRol(userId, checkbox.checked);
+});
+
+function actualizarRol(userId, esAdministrador) {
+  // código para actualizar el rol del usuario en la base de datos o en la fuente de datos correspondiente
+}
