@@ -10,9 +10,11 @@ const axios = require('axios');
     .catch(error => {
       console.error(error);
     });
+
+
 const pintarCards = () => {
     data.forEach(vendedores => {
-        templateCard.querySelector('h1').textContent = vendedores.nombre
+        templateCard.querySelector('h1').textContent = vendedores.Nom_Vendedor
 
         const clone = template.cloneNode(true)
         fragment.appendChild(clone)
