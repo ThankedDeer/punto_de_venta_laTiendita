@@ -36,7 +36,10 @@ body {
     margin-bottom: 20px;
 }
 
-
+#checkbox{
+  display: flex;
+  margin: 50px;
+}
 
   .btn-primary{
     background-image: url('../imagenes/agregar.png');

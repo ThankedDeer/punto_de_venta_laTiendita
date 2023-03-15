@@ -20,6 +20,7 @@ const buscarProducto = () => {
     .then((response) => {
       const producto = response.data[0];
       console.log(producto);
+      console.time(producto)
       producto.cantidad = 1;
       const encontrado = carrito.find((p) => p.Codigo === producto.Codigo);
       if (encontrado) {
@@ -63,7 +64,7 @@ const buscarProducto = () => {
 
 
 function pintarCarrito() {
-    
+   
   document.getElementById("items").innerHTML = "";
   carrito.forEach((producto) => {
     templateCarrito.querySelector("th").textContent = producto.Codigo;
@@ -72,8 +73,11 @@ function pintarCarrito() {
       producto.Nom_Producto;
     templateCarrito.querySelectorAll("td")[1].textContent =
       producto.cantidad;
-    templateCarrito.querySelector("span").textContent =
+      templateCarrito.querySelectorAll("span")[0].textContent =
+      producto.Precio_Venta;
+    templateCarrito.querySelectorAll("span")[1].textContent =
       producto.Precio_Venta * producto.cantidad;
+
 
     //botones
     templateCarrito.querySelector(".btn-info").dataset.id = 1;
@@ -116,7 +120,7 @@ const pintarFooter = () => {
   );
 
   templateFooter.querySelectorAll("td")[0].textContent = nCantidad;
-  templateFooter.querySelector("span").textContent = nPrecio;
+  templateFooter.querySelectorAll("span")[1].textContent = nPrecio;
 
   const clone = templateFooter.cloneNode(true);
   fragment.appendChild(clone);
