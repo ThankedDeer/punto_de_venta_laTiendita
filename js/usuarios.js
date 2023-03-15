@@ -7,6 +7,9 @@ data = []
 document.addEventListener('DOMContentLoaded', () => {
   fetchData()
 })
+//items.addEventListener('click', e => {
+  //   cambiarRol(e)
+//})
 const fetchData = async () => {
   try {
     const res = await fetch('https://backtiendita-production.up.railway.app/api/vendedores')
@@ -22,9 +25,11 @@ const pintarCards = data => {
   data.forEach(vendedor => {
     const templateCard = document.querySelector('#template-card').content
     templateCard.querySelector('h5').textContent = vendedor.Nom_Vendedor
-
+    templateCard.querySelector('.botonPermisos').dataset.id = vendedor.idVendedor
     const clone = templateCard.cloneNode(true)
     fragment.appendChild(clone)
+    
+
   })
   const items = document.querySelector('#items');
   items.appendChild(fragment);
@@ -32,12 +37,6 @@ const pintarCards = data => {
 
 //Actualizar rol-------------------------------------------------------------
 
-const checkbox = document.getElementById('checkbox');
-
-checkbox.addEventListener('change', () => {
-  actualizarRol(userId, checkbox.checked);
-});
-
-function actualizarRol(userId, esAdministrador) {
-  // código para actualizar el rol del usuario en la base de datos o en la fuente de datos correspondiente
-}
+//const cambiarRol = e => {
+  //console.log(e.target)
+//}
