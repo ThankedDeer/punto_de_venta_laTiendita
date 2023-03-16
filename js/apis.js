@@ -1,47 +1,31 @@
 const express = require ("express");
 const { verify } = require("jsonwebtoken");
 const jwt = require("jsonwebtoken");
-
+const bcrypt = require("bcrypt");
+const cors = require('cors');
 const app = express();
 
-app.post("/api/login",(req,res)=>{
-    const user = {
-        id: 1,
-        nombre : "Yael",
-        password : "achisfuga"
-    }
-    jwt.sign ({user: user}, 'secretkey', {expiresIn: '32s'},  (err, token)=>{
-        res.json({
-            token
-        });
-    });
-});
-
-
-
-app.post("/api/posts", verifyToken, (req,res)=>{
-
-    jwt.verify(req.token, 'secretkey',(error, authData )=>{
-        if(error){
-            res.sendStatus(403);
-        }else{
-            res.json({
-                mensaje:"Post fue creado",
-                authData
-            })
+app.post("/api/signin", async (req, res, next) => {
+    const reqData={};
+    var username = re.body.username;
+    var password = re.body.password;
+    
+    database.query('select * from vendedor where username=? and password=sha1(?)',[username,password],(err,rows,field)=>{
+        console.log(rows);
+        if(!err){
+            const hash=crypto.createHash('sha1').update(password).digest('hex');
+            if(rows.leghth == 1 && rows[0].username == username && rows[0].password == hash){
+                const user = rows[0];
+                jwt.sign({id: user.id}, config.secret,{expiresIn:"24h"},(err,token)=>{
+                    resp.json({token: token})
+                });
+            }
+            else{
+                resp.sendStatus(403);
+            }
+        }
+        else{
+            resp.sendStatus(503)
         }
     });
 });
-
-//Autorizacion con Token
-function verifyToken(req, res, next){
-    const bearerHeader = req.headers['authorization'];
-
-    if(typeof bearerHeader !== 'undefined'){
-        const bearerToken = bearerHeader.split(" ")[1];
-        req.token = bearerToken;
-        next();
-    }else{
-        res.sendStatus(403)
-    }
-}
