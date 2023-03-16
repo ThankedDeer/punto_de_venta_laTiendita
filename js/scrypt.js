@@ -5,25 +5,34 @@ const fragment = document.createDocumentFragment();
 const templateCarrito = document.getElementById("templateLista").content;
 
 const buscarProducto = () => {
+
   c = document.getElementById("buscarProducto").value;
+   
+  
   if (c.length == 0) {
-    Swal.fire({
-      title: "Alerta",
-      text: "ingresa un codigo de producto  ",
-      icon: "warning",
-      confirmButtonText: "Cerrar",
-    });
+
+      Swal.fire({
+        title: "Alerta",
+        text: "ingresa un codigo de producto  ",
+        icon: "warning",
+        confirmButtonText: "Cerrar",
+      });
     return;
   }
+
+  
   axios
     .get("https://backtiendita-production.up.railway.app/api/producto/" + c)
     .then((response) => {
+
       const producto = response.data[0];
       console.log(producto);
-      console.time(producto)
       producto.cantidad = 1;
+
       const encontrado = carrito.find((p) => p.Codigo === producto.Codigo);
       if (encontrado) {
+
+
         if (encontrado.Stock != 1) {
           encontrado.cantidad += producto.cantidad;
           encontrado.Stock = encontrado.Stock - 1;
@@ -133,3 +142,15 @@ const pintarFooter = () => {
     pintarFooter()
   })
 };
+
+
+
+carrito.addEventListener('click',e => {
+  btnAccion()
+
+})
+
+
+const  btnAccion = (   ) => {
+
+}
