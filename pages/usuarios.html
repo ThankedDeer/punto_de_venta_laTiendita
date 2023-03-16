@@ -7,11 +7,13 @@
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
   </head>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   <link rel="stylesheet" href="../css/usuarios.css">
   <script src="../js/usuarios.js"></script>
   
   
   <body>
+  
     <nav class="navbar" style="background-color: #0099DD;">
         <div class="container-fluid">
             
@@ -28,14 +30,18 @@
       </div>
 
       <template id="template-card">
-        <div class="card">
-          <img src="../imagenes/usuario.png" alt="" class="card-img-top">
-          <div class="card-body">
-            <h1>Nombre</h1>
+        <div class="col-12 mb-2 col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <img src="../imagenes/usuarios.png">
+              <h5>Nombre</h5>
+              <button  type="button" class="botonPermisos" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap">Editar Permisos</button><br><br>
+              <button class="botonEliminar">Eliminar Usuario</button>
+            </div>
           </div>
         </div>
       </template>
-
+          <!--Modal----------------------------------------------------->
       <button  type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"></button>
       
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -59,7 +65,36 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn-sendmessage">Agregar usuario</button>
+              <button onclick="mostrarAlerta()" type="button" class="btn-sendmessage">Agregar usuario</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Modal 2 ------------------------------------------------------------------>
+      
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo usuario</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="checkbox" class="modal-body">
+              
+                <div id="check" class="mb-3" style="display: flexbox;">
+                  <label for="recipient-name" class="col-form-label">Admin:</label>
+                  <input type="checkbox" id="checkbox" name="checkbox">
+                </div>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Vendedor:</label>
+                  <input type="checkbox" id="checkbox" name="checkbox">
+                </div>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button onclick="mostrarAlerta()" type="button" class="btn-sendmessage">Agregar usuario</button>
             </div>
           </div>
         </div>
