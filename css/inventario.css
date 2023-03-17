@@ -1,0 +1,44 @@
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+h2{
+    font-size: x-large;
+    text-align: center;
+}
+
+input{
+    border-color: rgb(10, 13, 69);
+    border-width: 1px;
+    border-style: solid;
+    
+}
+
+.fila {
+    display: flex;
+    flex-basis: 100%;
+}
+
+.columna {
+    width: 18%; /* Ajusta este valor según la cantidad de columnas que tengas */
+    padding: 2px;
+    background-color: #ffffff;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.columna1{
+    background-color: #bbc5c0;
+}
+
+.columna2 {
+    background-color: #ffffff;
+}
+
+.columna3 {
+    background-color: #eeeeee;
+}

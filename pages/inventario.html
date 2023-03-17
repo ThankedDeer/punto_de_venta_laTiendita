@@ -1,38 +1,85 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>La Tiendita</title>
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-  </head>
-  <link rel="stylesheet" href="../css/menuPrincipal.css">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Tiendita</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/inventario.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../js/inventario.js"></script>
+</head>
+
+<body onload="mostrarProducto()">
+  <nav class="navbar" style="background-color: #0099DD;">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="../pages/menuPrincipal.html">
+        <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
+      </a>
+      <h6> Bienvenido a <strong>La Tiendita</strong></h5>
   
-  <body>
-    <nav class="navbar" style="background-color: #0099DD;">
-        <div class="container-fluid">
-            
-          <a class="navbar-brand" href="../pages/menuPrincipal.html">
-            <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top"> 
-        </a>
-            <h6> Bienvenido <strong>Eduardo</strong></h5>
-            <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
-            </div>
-      </nav>
-    
     </div>
-    
+  </nav>
+  <br>
 
+  <form>
+    <select id="seleccionarProducto" onload="cargarProducto()">
+      <option></option>
+    </select>
+  </form>
 
+  <br>
 
-   </div>
+  <div class="contenedor">
+    <div class="columna columna1" id="Codigo">
+      <h2>Codigo</h2>
+      <input type="text" placeholder="" disabled>
+    </div>
 
-    <!-- Your app content here -->
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <div class="columna columna1" id="Nombre">
+      <h2>Nombre</h2>
+      <input type="text" placeholder="" disabled>
+    </div>
+
+    <div class="columna columna1" id="Precio_Compra">
+      <h2>Precio Compra</h2>
+      <input type="text" placeholder="" disabled>
+    </div>
+
+    <div class="columna columna1" id="Precio_Venta">
+      <h2>Precio Venta</h2>
+      <input type="text" placeholder="" disabled>
+    </div>
+
+    <div class="columna columna1" id="Stock">
+      <h2>Stock</h2>
+      <input type="text" placeholder="" disabled>
+    </div>
+
+    <div class="columna columna1" id="Categoria">
+      <h2>Categoria</h2>
+      <input type="text" placeholder="" disabled>
+    </div>
+
+    <div class="columna columna1" id="Proveedor">
+      <h2>Proveedor</h2>
+      <input type="text" placeholder="" disabled>
+    </div>
+  </div>
+
+  <br>
+
+  <button type="button" onclick="desbloquearCampos()">Editar</button>
+  <button type="button" onclick="cancelar()">Cancelar</button>
+  <button type="button" onclick="guardarCambios()">Guardar</button>
+</body>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-</body>
 </html>

@@ -16,12 +16,12 @@ const gActuales = () => {
         actuales = response.data[0].Ganancias
         console.log(actuales);
 
-        document.getElementById('gActuales').innerHTML = actuales
+        document.getElementById('gActuales').innerHTML = "$" + actuales
 
 
     })
     .catch((error) => {
-       console.log(error); 
+      console.log(error); 
     });
 }
 
@@ -33,7 +33,7 @@ const gAproximadas = () => {
         aproximadas = response.data[0].Ganacias
           console.log(aproximadas);
   
-          document.getElementById('gAproximadas').innerHTML = aproximadas
+          document.getElementById('gAproximadas').innerHTML = "$" + aproximadas
   
   
       })
@@ -46,10 +46,16 @@ const gAproximadas = () => {
     axios
       .get("https://backtiendita-production.up.railway.app/api/productos")
       .then((response) => {
-        inventario = response.data.length
-        console.log(inventario);
+        inventario = response.data
+        total = 0
+        inventario.forEach(element => {
+          
+          this.total = element.Stock + this.total
+          
+        });
+        
   
-          document.getElementById('pInventarios').innerHTML = inventario
+          document.getElementById('pInventarios').innerHTML = this.total
   
   
       })
@@ -67,10 +73,7 @@ const gAproximadas = () => {
       .then((response) => {
         inversiones = response.data[0].Invercion
           console.log(inversiones);
-  
-          document.getElementById('Inversión').innerHTML = inversiones
-  
-  
+          document.getElementById('Inversión').innerHTML = "$" +inversiones
       })
       .catch((error) => {
          console.log(error); 
