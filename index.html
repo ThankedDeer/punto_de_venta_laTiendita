@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="./js/apis.js" />
   </head>
   
   <b>
@@ -17,7 +18,7 @@
       <form>
           <input type="text" name="user" id="user" placeholder="Usuario" required>
           <input type="password" name="pass" id="pass" placeholder="Contraseña" required><br><br>
-          <input type="submit" class="btn-login" value="Iniciar Sesion" onclick="logear()">
+          <input type="submit" class="btn-login" value="Iniciar Sesion" onclick="login()">
       </form>
   </div><br>
 
@@ -30,22 +31,5 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <script>
-      function login(){
-          credenciales ={};
-          credenciales.email = document.getElementById("email").value;
-          credenciales.password = document.getElementById("password").value;
-          axios.post("http://localhost:3000/api/signin", credenciales)
-          .then((response) => {
-              console.log(response.data.token);
-              sessionStorage.setItem("tToken", response.data.token);
-              window.location.href="./segundapagina.html";
-          }).catch((error) => {
-              alert("error");
-              console.log(error);
-          });
-      }
-  </script>
   </body>
 </htm>
