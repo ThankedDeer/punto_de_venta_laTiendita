@@ -6,21 +6,19 @@
     <title>La Tiendita</title>
     <link
       rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <script src="../laTiendita/js/login.js"></script>
-    <script src="../laTiendita/js/apis.js"></script>
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="./js/apis.js" />
   </head>
   
   <b>
     <br><br><br><br>
     <div class="register-form" id="login-form"><br>
-      <h2 style="text-align: center;">Inicio de Sesion</h2><br>
+      <h2 style="text-align: center;">Inicio de Sesión</h2><br>
       <form>
           <input type="text" name="user" id="user" placeholder="Usuario" required>
           <input type="password" name="pass" id="pass" placeholder="Contraseña" required><br><br>
-          <input type="submit" class="btn-login" value="Iniciar Sesion">
+          <input type="submit" class="btn-login" value="Iniciar Sesion" onclick="login()">
       </form>
   </div><br>
 
@@ -31,5 +29,7 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </htm>

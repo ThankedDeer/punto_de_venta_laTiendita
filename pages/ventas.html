@@ -30,7 +30,7 @@
     <div class="col-3"></div>
     <div class="col-6">
       <div class="input-group mb-3">
-        <input id="buscarProducto" type="text" class="form-control" placeholder="Ingrese el codigo de producto">
+        <input id="buscarProducto" type="text" class="form-control" placeholder="Ingrese el código de producto">
         <button onclick="buscarProducto()" type="button" class="btn btn-dark">Agregar</button>
       </div>
       <br>
@@ -42,6 +42,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Acción</th>
+            <th scope="col">Precio Unitario</th>
             <th scope="col">Total</th>
           </tr>
         </thead>
@@ -73,6 +74,7 @@
           </button>
       </td>
       <td>$ <span>500</span></td>
+      <td>$ <span>500</span></td>
     </tr>
   </template>
 
@@ -85,6 +87,7 @@
             vaciar todo
         </button>
     </td>
+    <td class="font-weight-bold"> <span></span></td>
     <td class="font-weight-bold">$ <span>5000</span></td>
 </template>
 
