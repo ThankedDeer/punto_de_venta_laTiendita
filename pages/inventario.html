@@ -16,7 +16,7 @@
   <script src="../js/inventario.js"></script>
 </head>
 
-<body onload="mostrarProducto()">
+<body>
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -30,7 +30,7 @@
   <br>
 
   <form>
-    <select id="seleccionarProducto" onload="cargarProducto()">
+    <select id="seleccionarProducto" onchange="mostrarProducto()">
       <option></option>
     </select>
   </form>
@@ -38,39 +38,39 @@
   <br>
 
   <div class="contenedor">
-    <div class="columna columna1" id="Codigo">
+    <div class="columna columna1" >
       <h2>Codigo</h2>
-      <input type="text" placeholder="" disabled>
+      <input id="Codigo" type="text" placeholder="" disabled>
     </div>
 
-    <div class="columna columna1" id="Nombre">
+    <div class="columna columna1" >
       <h2>Nombre</h2>
-      <input type="text" placeholder="" disabled>
+      <input id="Nombre" type="text" placeholder="" disabled>
     </div>
 
-    <div class="columna columna1" id="Precio_Compra">
+    <div class="columna columna1" >
       <h2>Precio Compra</h2>
-      <input type="text" placeholder="" disabled>
+      <input id="Precio_Compra" type="text" placeholder="" disabled>
     </div>
 
-    <div class="columna columna1" id="Precio_Venta">
+    <div class="columna columna1">
       <h2>Precio Venta</h2>
-      <input type="text" placeholder="" disabled>
+      <input  id="Precio_Venta" type="text" placeholder="" disabled>
     </div>
 
-    <div class="columna columna1" id="Stock">
+    <div class="columna columna1">
       <h2>Stock</h2>
-      <input type="text" placeholder="" disabled>
+      <input  id="Stock" type="text" placeholder="" disabled>
     </div>
 
-    <div class="columna columna1" id="Categoria">
+    <div class="columna columna1" >
       <h2>Categoria</h2>
-      <input type="text" placeholder="" disabled>
+      <input id="Categoria" type="text" placeholder="" disabled>
     </div>
 
-    <div class="columna columna1" id="Proveedor">
+    <div class="columna columna1" >
       <h2>Proveedor</h2>
-      <input type="text" placeholder="" disabled>
+      <input id="Proveedor" type="text" placeholder="" disabled>
     </div>
   </div>
 

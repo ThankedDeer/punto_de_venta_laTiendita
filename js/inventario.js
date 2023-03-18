@@ -1,46 +1,59 @@
 window.addEventListener('load', function() {
-  mostrarProducto();
+  
   cargarProducto();
-  desbloquearCampos();
-  bloquearCampos();
-  cancelar();
-  guardarCambios();
+ 
 });
 
 
+produtos2 = []
 
 
 function mostrarProducto() {
-  const seleccionarProducto = document.getElementById('seleccionarProducto');
-  const seleccionado = seleccionarProducto.options[seleccionarProducto.selectedIndex].value;
-  axios.get(`https://backtiendita-production.up.railway.app/api/productos/${seleccionado}`)
-  .then((response) => {
-    const producto = response.data;
+  const seleccionarProducto = document.getElementById('seleccionarProducto').value;
+  axios
+    .get("https://backtiendita-production.up.railway.app/api/producto/" + seleccionarProducto )
+    .then((response) => {
+
+      producto = response.data[0]
+    console.log(producto);
     document.getElementById('Codigo').value = producto.Codigo;
-    document.getElementById('Nombre').value = producto.Nombre;
+    document.getElementById('Nombre').value = producto.Nom_Producto;
     document.getElementById('Precio_Compra').value = producto.Precio_Compra;
     document.getElementById('Precio_Venta').value = producto.Precio_Venta;
     document.getElementById('Stock').value = producto.Stock;
-    document.getElementById('Categoria').value = producto.Categoria;
-    document.getElementById('Proveedor').value = producto.Proveedor;
-    bloquearCampos();
-    cargarProducto();
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+    document.getElementById('Categoria').value = producto.idCategoria;
+    document.getElementById('Proveedor').value = producto.idProveedor;
+
+
+
+    
+})
+    .catch((error) => {
+      console.log(error);
+     
+    });
+
+ 
 }
+
+
 
 function cargarProducto() {
   const seleccionarProducto = document.getElementById('seleccionarProducto');
   seleccionarProducto.innerHTML = '<option value="">Seleccione un producto</option>'; // Cambiar opción por defecto
   axios.get('https://backtiendita-production.up.railway.app/api/productos/')
     .then((response) => {
+
+      this.produtos2 = response.data
+      console.log(produtos2);
+      
       response.data.forEach((producto) => {
+        
         const opt = document.createElement('option');
         opt.value = producto.Codigo;
-        opt.innerHTML = producto.Nombre;
+        opt.innerHTML = producto.Nom_Producto;
         seleccionarProducto.appendChild(opt);
+        
       });
     })
     .catch((error) => {
@@ -76,5 +89,6 @@ function guardarCambios() {
     Stock: document.getElementById('Stock').value,
     Categoria: document.getElementById('Categoria').value,
     Proveedor: document.getElementById('Proveedor').value,
+    
   }
 }
