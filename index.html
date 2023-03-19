@@ -8,17 +8,16 @@
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="./js/apis.js" />
   </head>
   
-  <b>
+  <body onload="login()">
     <br><br><br><br>
     <div class="register-form" id="login-form"><br>
       <h2 style="text-align: center;">Inicio de Sesión</h2><br>
       <form>
           <input type="text" name="user" id="user" placeholder="Usuario" required>
           <input type="password" name="pass" id="pass" placeholder="Contraseña" required><br><br>
-          <input type="submit" class="btn-login" value="Iniciar Sesion" onclick="login()">
+          <input type="submit" class="btn-login" id="logeo"value="Iniciar Sesion" onclick="login()">
       </form>
   </div><br>
 
@@ -29,7 +28,27 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  </body>
+
+  </body >
+  <script>
+    function login(){
+      credenciales ={};
+      credenciales.username = document.getElementById("user").value;
+      credenciales.password = document.getElementById("pass").value;
+      axios.post("https://backtiendita-production.up.railway.app/api/usuarios", credenciales)
+      .then((response) => {
+          console.log(response.data.token);
+          sessionStorage.setItem("tToken", response.data.token);
+          window.location.href="./pages/menuPrincipal.html";
+      }).catch((error) => {
+          alert("error");
+          console.log(error);
+      });
+    }
+    const logear = document.querySelector('.btn-login');
+    logear.addEventListener('click', login);
+  
+  </script>
+  
 </htm>
