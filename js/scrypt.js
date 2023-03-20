@@ -1,8 +1,8 @@
-const carrito = {};
+let carrito = {};
 
 const items = document.getElementById("items");
 const fragment = document.createDocumentFragment();
-const templateCarrito = document.getElementById("templateLista").content;
+const templateCarrito = document.getElementById("templateProductos").content;
 
 items.addEventListener("click", (e) => {
   btnAccion(e);
@@ -101,6 +101,8 @@ function pintarCarrito() {
 //pintar footer
 const footer = document.getElementById("footer");
 const templateFooter = document.getElementById("template-footer").content;
+
+
 const pintarFooter = () => {
   footer.innerHTML = "";
   if (Object.keys(carrito).length === 0) {
@@ -125,9 +127,10 @@ const pintarFooter = () => {
 
   const btnVaciar = document.getElementById("vaciar-carrito");
   btnVaciar.addEventListener("click", () => {
-    carrito = [];
+    carrito = {};
     pintarCarrito();
     pintarFooter();
+    
   });
 };
 
