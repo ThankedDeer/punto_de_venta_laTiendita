@@ -2,7 +2,7 @@ let carrito = {};
 
 const items = document.getElementById("items");
 const fragment = document.createDocumentFragment();
-const templateCarrito = document.getElementById("templateProductos").content;
+const templateCarrito = document.getElementById("templateLista").content;
 
 items.addEventListener("click", (e) => {
   btnAccion(e);
