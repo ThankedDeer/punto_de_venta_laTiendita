@@ -1,7 +1,7 @@
 function login(){
         credenciales ={};
-        credenciales.email = document.getElementById("email").value;
-        credenciales.password = document.getElementById("password").value;
+        credenciales.username = document.getElementById("user").value;
+        credenciales.password = document.getElementById("pass").value;
         axios.post("https://backtiendita-production.up.railway.app/api/usuarios", credenciales)
         .then((response) => {
             console.log(response.data.token);
@@ -12,3 +12,5 @@ function login(){
             console.log(error);
         });
     }
+    const loginBtn = document.getElementById('logear');
+    loginBtn.addEventListener('click', login);
