@@ -35,7 +35,17 @@ body {
 .card p {
     margin-bottom: 20px;
 }
+.mb-3{
+  display: flex;
+  margin-left: 30px;
+  
+}
+#checkbox{
+  display: flex;
+  margin-left:10px;
 
+  
+}
 
 
   .btn-primary{
