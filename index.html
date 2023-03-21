@@ -8,16 +8,17 @@
       rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/index.css" />
+
   </head>
   
-  <body onload="login()">
+  <body>
     <br><br><br><br>
     <div class="register-form" id="login-form"><br>
       <h2 style="text-align: center;">Inicio de Sesión</h2><br>
-      <form>
-          <input type="text" name="user" id="user" placeholder="Usuario" required>
-          <input type="password" name="pass" id="pass" placeholder="Contraseña" required><br><br>
-          <input type="submit" class="btn-login" id="logeo"value="Iniciar Sesion" onclick="login()">
+      <form method="post">
+          <input type="text" name="user" id="Nom_Vendedor" placeholder="Usuario" required>
+          <input type="password" name="pass" id="Contraseña" placeholder="Contraseña" required><br><br>
+          <input type="submit" class="btn-login" id="btn-login" value="Iniciar Sesion" onclick="login()">
       </form>
   </div><br>
 
@@ -28,27 +29,24 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
   </body >
   <script>
-    function login(){
-      credenciales ={};
-      credenciales.username = document.getElementById("user").value;
-      credenciales.password = document.getElementById("pass").value;
-      axios.post("https://backtiendita-production.up.railway.app/api/usuarios", credenciales)
-      .then((response) => {
-          console.log(response.data.token);
-          sessionStorage.setItem("tToken", response.data.token);
-          window.location.href="./pages/menuPrincipal.html";
-      }).catch((error) => {
-          alert("error");
-          console.log(error);
-      });
+    function login() {
+      const user = document.getElementById('Nom_Vendedor').value;
+      const pass = document.getElementById('Contraseña').value;
+
+      // Hacer una petición HTTP con Axios para verificar las credenciales del usuario
+      axios.post("https://backtiendita-production.up.railway.app/api/usuarios", { user, pass })
+        .then(response => {
+          // Si las credenciales son correctas, redirigir al usuario a la página principal
+          window.location.href = './pages/menuPrincipal.html';
+        })
+        .catch(error => {
+          // Si las credenciales son incorrectas, mostrar un mensaje de error
+          alert('Usuario o contraseña incorrectos');
+        });
     }
-    const logear = document.querySelector('.btn-login');
-    logear.addEventListener('click', login);
-  
   </script>
-  
-</htm>
+</html>

@@ -15,10 +15,6 @@ const productos = () => {
       console.log(response.data);
       let lista = response.data
       mostrarProductos(lista)
-
-     
-     
-    
     })
     .catch((error) =>{
       log.error(error);
