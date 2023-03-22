@@ -1,80 +1,44 @@
-window.addEventListener('load', function() {
-  mostrarProducto();
-  cargarProducto();
-  desbloquearCampos();
-  bloquearCampos();
-  cancelar();
-  guardarCambios();
+const tablaProductos = document.getElementById("tablaProductos");
+const fragment = document.createDocumentFragment();
+const templateProductos = document.getElementById("templateProductos").content
+
+window.addEventListener("load", function () {
+  productos();
 });
 
 
 
-
-function mostrarProducto() {
-  const seleccionarProducto = document.getElementById('seleccionarProducto');
-  const seleccionado = seleccionarProducto.options[seleccionarProducto.selectedIndex].value;
-  axios.get(`https://backtiendita-production.up.railway.app/api/productos/${seleccionado}`)
-  .then((response) => {
-    const producto = response.data;
-    document.getElementById('Codigo').value = producto.Codigo;
-    document.getElementById('Nombre').value = producto.Nombre;
-    document.getElementById('Precio_Compra').value = producto.Precio_Compra;
-    document.getElementById('Precio_Venta').value = producto.Precio_Venta;
-    document.getElementById('Stock').value = producto.Stock;
-    document.getElementById('Categoria').value = producto.Categoria;
-    document.getElementById('Proveedor').value = producto.Proveedor;
-    bloquearCampos();
-    cargarProducto();
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-}
-
-function cargarProducto() {
-  const seleccionarProducto = document.getElementById('seleccionarProducto');
-  seleccionarProducto.innerHTML = '<option value="">Seleccione un producto</option>'; // Cambiar opción por defecto
-  axios.get('https://backtiendita-production.up.railway.app/api/productos/')
+const productos = () => {
+  axios
+    .get("https://backtiendita-production-9419.up.railway.app/api/productos")
     .then((response) => {
-      response.data.forEach((producto) => {
-        const opt = document.createElement('option');
-        opt.value = producto.Codigo;
-        opt.innerHTML = producto.Nombre;
-        seleccionarProducto.appendChild(opt);
-      });
+      console.log(response.data);
+      let lista = response.data
+      mostrarProductos(lista)
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) =>{
+      log.error(error);
+    })
+
+};
+
+
+
+const mostrarProductos = (lista) =>{
+  Object.values(lista).forEach((producto) => {
+    templateProductos.querySelector("th").textContent = producto.Codigo
+    templateProductos.querySelectorAll('td')[0].textContent = producto.Nom_Producto
+    templateProductos.querySelectorAll('td')[1].textContent = producto.Precio_Compra
+    templateProductos.querySelectorAll('td')[2].textContent = producto.Precio_Venta
+    templateProductos.querySelectorAll('td')[3].textContent = producto.Stock
+    templateProductos.querySelectorAll('td')[4].textContent = producto.idCategoria
+    templateProductos.querySelectorAll('td')[5].textContent = producto.idProveedor
+    const clone  = templateProductos.cloneNode(true);
+    fragment.appendChild(clone);
+  })
+  tablaProductos.appendChild(fragment);
+
 }
 
-function desbloquearCampos() {
-  document.querySelectorAll('input[type="text"]').forEach((campo) => {
-    campo.removeAttribute('disabled');
-  });
-}
 
-function bloquearCampos() {
-  document.querySelectorAll('input[type="text"]').forEach((campo) => {
-    campo.setAttribute('disabled', true);
-  });
-}
 
-function cancelar() {
-  mostrarProducto();
-  bloquearCampos();
-}
-
-function guardarCambios() {
-  const seleccionarProducto = document.getElementById('seleccionarProducto');
-  const seleccionado = seleccionarProducto.options[seleccionarProducto.selectedIndex].value;
-  const producto = {
-    Codigo: document.getElementById('Codigo').value,
-    Nombre: document.getElementById('Nombre').value,
-    Precio_Compra: document.getElementById('Precio_Compra').value,
-    Precio_Venta: document.getElementById('Precio_Venta').value,
-    Stock: document.getElementById('Stock').value,
-    Categoria: document.getElementById('Categoria').value,
-    Proveedor: document.getElementById('Proveedor').value,
-  }
-}

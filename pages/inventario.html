@@ -3,20 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La Tiendita</title>
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/inventario.css" />
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="../js/inventario.js"></script>
+
 </head>
 
-<body onload="mostrarProducto()">
+<body>
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -24,62 +22,230 @@
         <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
       </a>
       <h6> Bienvenido a <strong>La Tiendita</strong></h5>
-  
     </div>
   </nav>
   <br>
 
-  <form>
-    <select id="seleccionarProducto" onload="cargarProducto()">
-      <option></option>
-    </select>
-  </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark botones " data-bs-toggle="modal" data-bs-target="#nuevoProducto">
+              <img class="agregar" src="../public/icons/agregar.png" alt="">
+             <h6>Nuevo Producto</h6>
+            </button>
 
-  <br>
+            <!-- Modal -->
+            <div class="modal fade" id="nuevoProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Producto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#actualizarProducto">
+              <img class="agregar" src="../public/icons/actualizarIcon.png" alt="">
+             <h6>Actualizar Producto</h6>
+            </button>
 
-  <div class="contenedor">
-    <div class="columna columna1" id="Codigo">
-      <h2>Codigo</h2>
-      <input type="text" placeholder="" disabled>
-    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="actualizarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Producto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                      <option selected>Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#eliminarProducto">
+              <img class="agregar" src="../public/icons/eliminarIcon.png" alt="">
+              <h6>Eliminar Producto</h6>
+            </button>
 
-    <div class="columna columna1" id="Nombre">
-      <h2>Nombre</h2>
-      <input type="text" placeholder="" disabled>
-    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="eliminarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Producto</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#nuevaCategoria">
+              <img class="agregar" src="../public/icons/agregar.png" alt="">
+              <h6>Nueva Categoríal</h6>
+            </button>
 
-    <div class="columna columna1" id="Precio_Compra">
-      <h2>Precio Compra</h2>
-      <input type="text" placeholder="" disabled>
-    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="nuevaCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Categoría</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#actualizarCategoria">
+              <img class="agregar" src="../public/icons/actualizarIcon.png" alt="">
+              <h6>Actualizar Categoría</h6>
+            </button>
 
-    <div class="columna columna1" id="Precio_Venta">
-      <h2>Precio Venta</h2>
-      <input type="text" placeholder="" disabled>
-    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="actualizarCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Categoría</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#eliminarCategoría">
+              <img class="agregar" src="../public/icons/eliminarIcon.png" alt="">
+              <h6>Eliminar Categoría</h6>
+            </button>
 
-    <div class="columna columna1" id="Stock">
-      <h2>Stock</h2>
-      <input type="text" placeholder="" disabled>
-    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="eliminarCategoría" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Categoría</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="columna columna1" id="Categoria">
-      <h2>Categoria</h2>
-      <input type="text" placeholder="" disabled>
-    </div>
+      </div>
+      <div class="col-6">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr class="table-dark titulosDeTabla">
+                <th class="titulo" scope="col">Codigo</th>
+                <th class="titulo" scope="col">Nombre</th>
+                <th class="titulo" scope="col">Precio Compra</th>
+                <th class="titulo" scope="col">Precio Venta</th>
+                <th class="titulo" scope="col">Stock</th>
+                <th class="titulo" scope="col">Categoria</th>
+                <th class="titulo" scope="col">Proveedor</th>
+              </tr>
+            </thead>
+            <tbody id="tablaProductos">
 
-    <div class="columna columna1" id="Proveedor">
-      <h2>Proveedor</h2>
-      <input type="text" placeholder="" disabled>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 
-  <br>
 
-  <button type="button" onclick="desbloquearCampos()">Editar</button>
-  <button type="button" onclick="cancelar()">Cancelar</button>
-  <button type="button" onclick="guardarCambios()">Guardar</button>
+
+  <template id="templateProductos">
+    <tr class="producto">
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </template>
+
+
+
+
 </body>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../js/inventario.js"></script>
+
 </html>
