@@ -10,15 +10,11 @@ window.addEventListener("load", function () {
 
 const productos = () => {
   axios
-    .get("https://backtiendita-production.up.railway.app/api/productos")
+    .get("https://backtiendita-production-9419.up.railway.app/api/productos")
     .then((response) => {
       console.log(response.data);
       let lista = response.data
       mostrarProductos(lista)
-
-     
-     
-    
     })
     .catch((error) =>{
       log.error(error);
