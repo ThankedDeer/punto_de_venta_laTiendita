@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
 
 const gActuales = () => {
   axios
-    .get("backtiendita-production-9419.up.railway.app/api/Actuales")
+    .get("https://backtiendita-production-9419.up.railway.app/api/Actuales")
     .then((response) => {
         actuales = response.data[0].Ganancias
         console.log(actuales);
