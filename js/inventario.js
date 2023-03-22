@@ -41,4 +41,24 @@ const mostrarProductos = (lista) =>{
 }
 
 
+const selectCategoria = () => {
+  document.getElementById('selectCategoria').innerHTML = "";
+  axios.get('http://backtiendita-production-9419.up.railway.app/api/categorias')
+  .then((response)=>{
+    response.data.forEach((categoria)=>{
+        opt= document.createElement('option');
+        opt.value=categoria.idCategoria;
+        opt.innerHTML=categoria.Nom_Categoria;
+        document.getElementById('selectCategoria').appendChild(opt);
+    });
+})
+.catch((error)=>{
+    console.log(error);
+})}
+
+const selectProveedor = () => {
+  document.getElementById('selectProveedor').innerHTML="";
+  axios.get('')
+}
+
 
