@@ -18,7 +18,7 @@
       <form method="post">
           <input type="text" name="user" id="Nom_Vendedor" placeholder="Usuario" required>
           <input type="password" name="pass" id="Contraseña" placeholder="Contraseña" required><br><br>
-          <input type="submit" class="btn-login" id="btn-login" value="Iniciar Sesion" onclick="login()">
+          <input type="submit" class="btn-login" id="btn-login" value="Iniciar Sesion">
       </form>
   </div><br>
 
@@ -32,21 +32,4 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
   </body >
-  <script>
-    function login() {
-      const user = document.getElementById('Nom_Vendedor').value;
-      const pass = document.getElementById('Contraseña').value;
-
-      // Hacer una petición HTTP con Axios para verificar las credenciales del usuario
-      axios.post("https://backtiendita-production.up.railway.app/api/usuarios", { user, pass })
-        .then(response => {
-          // Si las credenciales son correctas, redirigir al usuario a la página principal
-          window.location.href = './pages/menuPrincipal.html';
-        })
-        .catch(error => {
-          // Si las credenciales son incorrectas, mostrar un mensaje de error
-          alert('Usuario o contraseña incorrectos');
-        });
-    }
-  </script>
 </html>
