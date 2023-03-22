@@ -1,9 +1,7 @@
-const PDFDocmuent = require('pdfkit')
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
 
-const doc = new PDFDocmuent()
-doc.pipe(fs.createWriteStream('Reportes.pdf'))
+const doc = new PDFDocument();
+doc.pipe(fs.createWriteStream('output.pdf'));
 
-doc.fontSize(25)
-    .text('hola pinches pendejos')
-
-doc.end()
+doc.end();
