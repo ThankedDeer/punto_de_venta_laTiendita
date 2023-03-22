@@ -38,3 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
 const addCarrito = e => {
   console.log(e.target)
 }
+
+const button1 = document.querySelector('button[data-id="1"]');
+const button2 = document.querySelector('button[data-id="2"]');
+const button3 = document.querySelector('button[data-id="3"]');
+
+button1.addEventListener('click', function() {
+  window.alert("Funciona el boton1")
+});
+
+button2.addEventListener('click', function() {
+  window.alert("Funciona el boton2")
+});
+
+button3.addEventListener('click', function() {
+  window.alert("Funciona el boton3")
+});
