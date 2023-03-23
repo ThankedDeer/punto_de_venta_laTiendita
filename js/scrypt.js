@@ -17,6 +17,7 @@ const buscarProducto = () => {
       icon: "warning",
       confirmButtonText: "Cerrar",
     });
+    
     return;
   }
   axios
@@ -24,6 +25,8 @@ const buscarProducto = () => {
     .then((response) => {
       const productoEncontrado = response.data[0];
       setCarrito(productoEncontrado);
+      document.getElementById("buscarProducto").value = ""
+     
     })
     .catch((error) => {
       Swal.fire({
@@ -32,6 +35,7 @@ const buscarProducto = () => {
         icon: "error",
         confirmButtonText: "Cerrar",
       });
+      document.getElementById("buscarProducto").value = ""
     });
 };
 
@@ -46,7 +50,7 @@ const setCarrito = (objeto) => {
   };
 
   if (carrito.hasOwnProperty(producto.Codigo)) {
-    if (carrito[producto.Codigo].Stock == 0) {
+    if (carrito[producto.Codigo].Stock == 1) {
       Swal.fire({
         title: "Alerta",
         text: "Ya no hay mas producto en inventario",
@@ -65,8 +69,10 @@ const setCarrito = (objeto) => {
   }
 
   carrito[producto.Codigo] = { ...producto };
+  console.log(carrito);
   pintarCarrito();
   pintarFooter();
+  
 };
 
 function pintarCarrito() {
@@ -137,7 +143,7 @@ const pintarFooter = () => {
 const btnAccion = (e) => {
   if (e.target.classList.contains("btn-info")) {
     const producto = carrito[e.target.dataset.id];
-    if (producto.Stock == 0) {
+    if (producto.Stock == 1) {
       Swal.fire({
         title: "Alerta",
         text: "Ya no hay mas producto en inventario",
@@ -156,6 +162,7 @@ const btnAccion = (e) => {
   if (e.target.classList.contains("btn-danger")) {
     const producto = carrito[e.target.dataset.id];
     producto.cantidad--;
+    producto.Stock++;
     if (producto.cantidad === 0) {
       delete carrito[e.target.dataset.id];
     } else {
