@@ -7,7 +7,7 @@ function login(){
     console.log( credenciales)
 
     axios
-    .get("https://backtiendita-production-9419.up.railway.app/api/login/" + credenciales)
+    .post("https://backtiendita-production-9419.up.railway.app/api/login/" + credenciales)
     .then((response) => {
         console.log(response);
       
