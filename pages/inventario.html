@@ -74,7 +74,7 @@
                       <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                     </div>
                     <br>
-                    <div>
+                    <div >
                       Categoria
                       <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
                       <option selected value=""></option>
@@ -104,55 +104,60 @@
 
             <!-- Modal -->
             <div class="modal fade" id="actualizarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Producto</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="Actualizar Codigo">Codigo</span>
+                    <span class="input-group-text" id="actualizarCodigo">Codigo</span>
                     <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="Actuaqlizar Nombre">Nombre</span>
+                    <span class="input-group-text" id="actualizarNombre">Nombre</span>
                     <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="Actualizar Precio Compra">Precio Compra</span>
+                    <span class="input-group-text" id="actualizarPrecioCompra">Precio Compra</span>
                     <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="Actualizar Precio Venta">Precio Venta</span>
+                    <span class="input-group-text" id="actualizarPrecioVenta">Precio Venta</span>
                     <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="Actualizar Stock">Stock</span>
+                    <span class="input-group-text" id="actualizarStock">Stock</span>
                     <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
-                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                    <option selected>Categoria</option>
-                    <option value="">One</option>
+                  <div >
+                    Categoria
+                    <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
+                    <option selected value=""></option>
                   </select>
-                  <br>
-                  <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                    <option selected>Proveedor</option>
-                    <option value="">One</option>
-                  </select>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Actualizar</button>
                   </div>
+                  <br>
+                    Proveedor
+                  <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example">
+                    <option selected value=""></option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Crear</button>
                 </div>
               </div>
             </div>
           </div>
+          </div>
+          
           <div class="col-4">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#eliminarProducto">
