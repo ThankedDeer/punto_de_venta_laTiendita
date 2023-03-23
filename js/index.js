@@ -6,13 +6,13 @@ function login(){
 
     console.log( credenciales)
 
-    axios.post('https://backtiendita-production-9419.up.railway.app/api/login',credenciales)
-    .then((response)=>{
+    axios
+    .get("https://backtiendita-production-9419.up.railway.app/api/login/" + credenciales)
+    .then((response) => {
         console.log(response);
-       
+      
     })
-    .catch((error)=>{
+    .catch((error) => {
         console.log(error);
-        console.log("lalo");
     });
 }
