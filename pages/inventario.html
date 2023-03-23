@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body onload="selectCategoria();">
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -24,17 +24,19 @@
       <h6> Bienvenido a <strong>La Tiendita</strong></h5>
     </div>
   </nav>
+
   <br>
 
   <div class="container">
     <div class="row">
       <div class="col-6">
         <div class="row">
+
           <div class="col-4">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-dark botones " data-bs-toggle="modal" data-bs-target="#nuevoProducto">
               <img class="agregar" src="../public/icons/agregar.png" alt="">
-             <h6>Nuevo Producto</h6>
+              <h6>Nuevo Producto</h6>
             </button>
 
             <!-- Modal -->
@@ -47,48 +49,115 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    ...
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="crearCodigo">Codigo</span>
+                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="crearNombre">Nombre</span>
+                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="crearPrecioCompra">Precio Compra</span>
+                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="crearPrecioVenta">Precio Venta</span>
+                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="crearStock">Stock</span>
+                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
+                    <br>
+                    <div >
+                      Categoria
+                      <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
+                      <option selected value=""></option>
+                    </select>
+                    </div>
+                    <br>
+                      Proveedor
+                    <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example">
+                      <option selected value=""></option>
+                    </select>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Crear</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="col-4">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#actualizarProducto">
               <img class="agregar" src="../public/icons/actualizarIcon.png" alt="">
-             <h6>Actualizar Producto</h6>
+              <h6>Actualizar Producto</h6>
             </button>
 
             <!-- Modal -->
             <div class="modal fade" id="actualizarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Producto</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="actualizarCodigo">Codigo</span>
+                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
-                  <div class="modal-body">
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="actualizarNombre">Nombre</span>
+                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="actualizarPrecioCompra">Precio Compra</span>
+                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="actualizarPrecioVenta">Precio Venta</span>
+                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="actualizarStock">Stock</span>
+                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                  </div>
+                  <br>
+                  <div >
+                    Categoria
+                    <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
+                    <option selected value=""></option>
+                  </select>
+                  </div>
+                  <br>
+                    Proveedor
+                  <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example">
+                    <option selected value=""></option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Crear</button>
                 </div>
               </div>
             </div>
           </div>
+          </div>
+          
           <div class="col-4">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#eliminarProducto">

@@ -41,4 +41,26 @@ const mostrarProductos = (lista) =>{
 }
 
 
+const selectCategoria = () => {
+  const selectCategorias = document.querySelectorAll('#selectCategoria');
+  selectCategorias.forEach((selectCategoria) => {
+    selectCategoria.innerHTML = " ";
+    axios.get('http://backtiendita-production-9419.up.railway.app/api/categorias')
+    .then((response)=>{
+      response.data.forEach((categoria)=>{
+        const opt = document.createElement('option');
+        opt.value = categoria.idCategoria;
+        opt.textContent = categoria.Nom_Categoria;
+        selectCategoria.appendChild(opt);
+      });
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  });
+}
+
+
+
+
 
