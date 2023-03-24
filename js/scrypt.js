@@ -21,7 +21,7 @@ const buscarProducto = () => {
     return;
   }
   axios
-    .get("https://backtiendita-production-9419.up.railway.app/api/producto/" + c)
+    .get("https://backtiendita-production.up.railway.app/api/producto/" + c)
     .then((response) => {
       const productoEncontrado = response.data[0];
       setCarrito(productoEncontrado);
