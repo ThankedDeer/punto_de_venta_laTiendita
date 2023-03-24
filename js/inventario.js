@@ -10,9 +10,8 @@ window.addEventListener("load", function () {
 
 const productos = () => {
   axios
-    .get("https://backtiendita-production-9419.up.railway.app/api/productos")
+    .get("https://backtiendita-production.up.railway.app/api/productos")
     .then((response) => {
-      console.log(response.data);
       let lista = response.data
       mostrarProductos(lista)
     })
@@ -45,7 +44,7 @@ const selectCategoria = () => {
   const selectCategorias = document.querySelectorAll('#selectCategoria');
   selectCategorias.forEach((selectCategoria) => {
     selectCategoria.innerHTML = " ";
-    axios.get('http://backtiendita-production-9419.up.railway.app/api/categorias')
+    axios.get('https://backtiendita-production.up.railway.app/api/categorias')
     .then((response)=>{
       response.data.forEach((categoria)=>{
         const opt = document.createElement('option');
@@ -55,6 +54,26 @@ const selectCategoria = () => {
       });
     })
     .catch((error)=>{
+      console.log(error);
+    });
+  });
+}
+
+
+const selectProveedor = () => {
+  const selectProveedor = document.querySelectorAll('#selectProveedor');
+  selectProveedor.forEach((selectProveedor) => {
+    selectProveedor.innerHTML = " ";
+    axios.get('https://backtiendita-production.up.railway.app/api/proveedores')
+    .then((response)=>{
+      response.data.forEach((proveedor) => {
+        const opt = document.createElement('option');
+        opt.value = proveedor.idProveedor;
+        opt.textContent = proveedor.Nom_Proveedor;
+        selectProveedor.appendChild(opt);
+      });
+    })
+    .catch((error) => {
       console.log(error);
     });
   });
