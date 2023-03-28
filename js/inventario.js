@@ -79,34 +79,34 @@ const selectProveedor = () => {
   });
 }
 
-// const nuevoProducto = () => {
-//   const nuevoProducto = document.getElementById("nuevoProducto");
-//   const codigo = document.getElementById("crearCodigo").value;
-//   const nombre = document.getElementById("crearNombre").value;
-//   const precioCompra = document.getElementById("crearPrecioCompra").value;
-//   const precioVenta = document.getElementById("crearPrecioVenta").value;
-//   const stock = document.getElementById("crearStock").value;
-//   const categoria = document.getElementById("selectCategoria").value;
-//   const proveedor = document.getElementById("selectProveedor").value;
+const nuevoProducto = () => {
+  const nuevoProducto = document.getElementById("nuevoProducto");
+  const codigo = document.getElementById("crearCodigo").value;
+  const nombre = document.getElementById("crearNombre").value;
+  const precioCompra = document.getElementById("crearPrecioCompra").value;
+  const precioVenta = document.getElementById("crearPrecioVenta").value;
+  const stock = document.getElementById("crearStock").value;
+  const categoria = document.getElementById("selectCategoria").value;
+  const proveedor = document.getElementById("selectProveedor").value;
   
-//   axios.post("https://backtiendita-production.up.railway.app/api/productos", {
-//     Codigo: codigo,
-//     Nom_Producto: nombre,
-//     Precio_Compra: precioCompra,
-//     Precio_Venta: precioVenta,
-//     Stock: stock,
-//     idCategoria: categoria,
-//     idProveedor: proveedor
-//   })
-//   .then(function (response) {
-//     console.log(response);
-//     alert("Producto creado exitosamente");
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//     alert("Hubo un error al crear el producto");
-//   });
-// };
+  axios.post("https://backtiendita-production.up.railway.app/api/productos", {
+    Codigo: codigo,
+    Nom_Producto: nombre,
+    Precio_Compra: precioCompra,
+    Precio_Venta: precioVenta,
+    Stock: stock,
+    idCategoria: categoria,
+    idProveedor: proveedor
+  })
+  .then(function (response) {
+    console.log(response);
+    alert("Producto creado exitosamente");
+  })
+  .catch(function (error) {
+    console.log(error);
+    alert("Hubo un error al crear el producto");
+  });
+};
 
 
 
