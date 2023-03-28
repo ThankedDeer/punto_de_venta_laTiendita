@@ -80,4 +80,11 @@ const gAproximadas = () => {
       });
   }
 
-
+  axios
+  .get("https://backtiendita-production.up.railway.app/api/invercion")
+  .then((response) => {
+   console.log(response.data);
+  })
+  .catch((error) => {
+     console.log(error); 
+  });
