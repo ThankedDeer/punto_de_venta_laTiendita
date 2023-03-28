@@ -14,7 +14,7 @@
 
 </head>
 
-<body onload="selectCategoria();">
+<body onload="selectCategoria(); selectProveedor();">
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -61,17 +61,17 @@
                     <br>
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="crearPrecioCompra">Precio Compra</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
                     </div>
                     <br>
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="crearPrecioVenta">Precio Venta</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
                     </div>
                     <br>
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="crearStock">Stock</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <input type="number" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                     </div>
                     <br>
                     <div >
@@ -88,7 +88,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Crear</button>
+                    <button type="button" class="btn btn-primary" onclick="nuevoProducto();">Crear</button>
                   </div>
                 </div>
               </div>
@@ -124,20 +124,20 @@
                   <br>
                   <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="actualizarPrecioCompra">Precio Compra</span>
-                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="actualizarPrecioVenta">Precio Venta</span>
-                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="actualizarStock">Stock</span>
-                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <input type="number" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
                   </div>
                   <br>
-                  <div >
+                  <div>
                     Categoria
                     <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
                     <option selected value=""></option>

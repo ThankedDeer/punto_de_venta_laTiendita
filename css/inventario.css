@@ -35,3 +35,20 @@ text-align: center;
   height: 180px;
   
 }
+
+.form-control{
+  background-color: white;  
+  border-color: black;
+}
+
+.input-group-text{
+  background-color: black;
+  border-color: white;
+  color: white;
+}
+
+.form-select{
+  background-color:rgb(210, 210, 210);  
+  border-color: white;
+  color: black;
+}

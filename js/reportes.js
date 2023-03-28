@@ -44,7 +44,7 @@ const documentDefinition = {
   }
 };
 
-const promise1 = axios.get('https://backtiendita-production.up.railway.app/api/productos')
+const promise1 = axios.get('http://192.168.43.192:3000/api/productos')
   .then((res1) => {
     let data1 = '';
     res1.data.forEach(proveedor => {
@@ -53,7 +53,7 @@ const promise1 = axios.get('https://backtiendita-production.up.railway.app/api/p
     documentDefinition.content[5].stack[1].text = data1; // Se agrega el resultado en el segundo objeto 'text' del primer objeto 'stack'
   });
 
-const promise2 = axios.get('https://backtiendita-production.up.railway.app/api/categorias')
+const promise2 = axios.get('http://192.168.43.192:3000/api/categorias')
   .then((res2) => {
     let data2 = '';
     res2.data.forEach(categoria => {

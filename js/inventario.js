@@ -10,9 +10,8 @@ window.addEventListener("load", function () {
 
 const productos = () => {
   axios
-    .get("https://backtiendita-production.up.railway.app/api/productos")
+    .get("http://192.168.43.192:3000/api/productos")
     .then((response) => {
-      console.log(response.data);
       let lista = response.data
       mostrarProductos(lista)
     })
@@ -45,7 +44,7 @@ const selectCategoria = () => {
   const selectCategorias = document.querySelectorAll('#selectCategoria');
   selectCategorias.forEach((selectCategoria) => {
     selectCategoria.innerHTML = " ";
-    axios.get('https://backtiendita-production.up.railway.app/api/categorias')
+    axios.get('http://192.168.43.192:3000/api/categorias')
     .then((response)=>{
       response.data.forEach((categoria)=>{
         const opt = document.createElement('option');
@@ -59,6 +58,57 @@ const selectCategoria = () => {
     });
   });
 }
+
+
+const selectProveedor = () => {
+  const selectProveedor = document.querySelectorAll('#selectProveedor');
+  selectProveedor.forEach((selectProveedor) => {
+    selectProveedor.innerHTML = " ";
+    axios.get('http://192.168.43.192:3000/api/proveedores')
+    .then((response)=>{
+      response.data.forEach((proveedor) => {
+        const opt = document.createElement('option');
+        opt.value = proveedor.idProveedor;
+        opt.textContent = proveedor.Nom_Proveedor;
+        selectProveedor.appendChild(opt);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  });
+}
+
+const nuevoProducto = () => {
+  const nuevoProducto = document.getElementById("nuevoProducto");
+  const codigo = document.getElementById("crearCodigo").value;
+  const nombre = document.getElementById("crearNombre").value;
+  const precioCompra = document.getElementById("crearPrecioCompra").value;
+  const precioVenta = document.getElementById("crearPrecioVenta").value;
+  const stock = document.getElementById("crearStock").value;
+  const categoria = document.getElementById("selectCategoria").value;
+  const proveedor = document.getElementById("selectProveedor").value;
+  
+  axios.post("http://192.168.43.192:3000/api/productos", {
+    Codigo: codigo,
+    Nom_Producto: nombre,
+    Precio_Compra: precioCompra,
+    Precio_Venta: precioVenta,
+    Stock: stock,
+    idCategoria: categoria,
+    idProveedor: proveedor
+  })
+  .then(function (response) {
+    console.log(response);
+    alert("Producto creado exitosamente");
+  })
+  .catch(function (error) {
+    console.log(error);
+    alert("Hubo un error al crear el producto");
+  });
+};
+
+
 
 
 
