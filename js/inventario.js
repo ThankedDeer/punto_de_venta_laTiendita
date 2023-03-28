@@ -10,7 +10,7 @@ window.addEventListener("load", function () {
 
 const productos = () => {
   axios
-    .get("https://backtiendita-production.up.railway.app/api/productos")
+    .get("http://192.168.43.192:3000/api/productos")
     .then((response) => {
       let lista = response.data
       mostrarProductos(lista)
@@ -44,7 +44,7 @@ const selectCategoria = () => {
   const selectCategorias = document.querySelectorAll('#selectCategoria');
   selectCategorias.forEach((selectCategoria) => {
     selectCategoria.innerHTML = " ";
-    axios.get('https://backtiendita-production.up.railway.app/api/categorias')
+    axios.get('http://192.168.43.192:3000/api/categorias')
     .then((response)=>{
       response.data.forEach((categoria)=>{
         const opt = document.createElement('option');
@@ -64,7 +64,7 @@ const selectProveedor = () => {
   const selectProveedor = document.querySelectorAll('#selectProveedor');
   selectProveedor.forEach((selectProveedor) => {
     selectProveedor.innerHTML = " ";
-    axios.get('https://backtiendita-production.up.railway.app/api/proveedores')
+    axios.get('http://192.168.43.192:3000/api/proveedores')
     .then((response)=>{
       response.data.forEach((proveedor) => {
         const opt = document.createElement('option');
@@ -89,7 +89,7 @@ const nuevoProducto = () => {
   const categoria = document.getElementById("selectCategoria").value;
   const proveedor = document.getElementById("selectProveedor").value;
   
-  axios.post("https://backtiendita-production.up.railway.app/api/productos", {
+  axios.post("http://192.168.43.192:3000/api/productos", {
     Codigo: codigo,
     Nom_Producto: nombre,
     Precio_Compra: precioCompra,
