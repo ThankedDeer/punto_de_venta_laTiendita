@@ -10,7 +10,7 @@ window.addEventListener("load", function () {
 
 const productos = () => {
   axios
-    .get("https://backtiendita-production-9419.up.railway.app/api/productos")
+    .get("https://backtiendita-production.up.railway.app/api/productos")
     .then((response) => {
       console.log(response.data);
       let lista = response.data
@@ -39,6 +39,28 @@ const mostrarProductos = (lista) =>{
   tablaProductos.appendChild(fragment);
 
 }
+
+
+const selectCategoria = () => {
+  const selectCategorias = document.querySelectorAll('#selectCategoria');
+  selectCategorias.forEach((selectCategoria) => {
+    selectCategoria.innerHTML = " ";
+    axios.get('https://backtiendita-production.up.railway.app/api/categorias')
+    .then((response)=>{
+      response.data.forEach((categoria)=>{
+        const opt = document.createElement('option');
+        opt.value = categoria.idCategoria;
+        opt.textContent = categoria.Nom_Categoria;
+        selectCategoria.appendChild(opt);
+      });
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  });
+}
+
+
 
 
 
