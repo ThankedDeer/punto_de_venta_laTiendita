@@ -27,7 +27,11 @@ const buscarProducto = () => {
     return;
   }
   axios
+<<<<<<< HEAD
+    .get("https://192.68.43.192/api/producto/" + c)
+=======
     .get("http://192.168.43.192:3000/api/producto/" + c)
+>>>>>>> b44224364812fb7fd3f920351118b8c74632f693
     .then((response) => {
       this.productoEncontrado = response.data[0];
 
@@ -149,7 +153,7 @@ const pintarFooter = () => {
 
   templateFooter.querySelectorAll("td")[0].textContent = nCantidad;
   templateFooter.querySelectorAll("span")[1].textContent =
-    parseFloat(nPrecio).toFixed(2);
+    parseFloat(nPrecio);
 
   const clone = templateFooter.cloneNode(true);
   fragment.appendChild(clone);
@@ -186,7 +190,7 @@ const btnAccion = (e) => {
     const producto = carrito[e.target.dataset.id];
     producto.cantidad--;
     producto.Stock++;
-    if (producto.cantidad === 0) {
+    if (producto.cantidad <= 0) {
       delete carrito[e.target.dataset.id];
     } else {
       carrito[e.target.dataset.id] = { ...producto };
@@ -244,7 +248,7 @@ const actualizarPrecio = (producto) => {
   const precio = parseFloat(producto.Precio_Venta);
   const total = cantidad * precio;
 
-  precioInput.value = total.toFixed(3);
+  precioInput.value = total;
 };
 
 const limpiarModal = () => {
