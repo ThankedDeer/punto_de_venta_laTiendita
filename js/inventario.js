@@ -7,17 +7,9 @@ window.addEventListener("load", function () {
 });
 
 
-<<<<<<< HEAD
-
-
-const productos = () => {
-  axios
-    .get("https://https://192.68.43.192/api/productos")
-=======
 const productos = () => {
   axios
     .get("http://localhost:3000/api/productos")
->>>>>>> b44224364812fb7fd3f920351118b8c74632f693
     .then((response) => {
       let lista = response.data
       mostrarProductos(lista)
