@@ -31,3 +31,12 @@
   .input-group:hover .label, .input:focus {
     color: #05060fc2;
   }
+
+  
+  .thtabla{
+    font-size: 1.6rem;
+  }
+  #trTabla{
+    font-size: 1.6rem;
+    text-align: center;
+  }
