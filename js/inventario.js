@@ -7,13 +7,18 @@ window.addEventListener("load", function () {
 });
 
 
+<<<<<<< HEAD
 
 
 const productos = () => {
   axios
     .get("https://https://192.68.43.192/api/productos")
+=======
+const productos = () => {
+  axios
+    .get("http://localhost:3000/api/productos")
+>>>>>>> b44224364812fb7fd3f920351118b8c74632f693
     .then((response) => {
-      console.log(response.data);
       let lista = response.data
       mostrarProductos(lista)
     })
@@ -46,12 +51,13 @@ const selectCategoria = () => {
   const selectCategorias = document.querySelectorAll('#selectCategoria');
   selectCategorias.forEach((selectCategoria) => {
     selectCategoria.innerHTML = " ";
-    axios.get('https://backtiendita-production.up.railway.app/api/categorias')
+    axios.get('http://localhost:3000/api/categorias')
     .then((response)=>{
       response.data.forEach((categoria)=>{
         const opt = document.createElement('option');
         opt.value = categoria.idCategoria;
         opt.textContent = categoria.Nom_Categoria;
+        opt.dataset.id = categoria.idCategoria; // Agregar data-id con el id de la categoria
         selectCategoria.appendChild(opt);
       });
     })
@@ -60,6 +66,69 @@ const selectCategoria = () => {
     });
   });
 }
+
+
+
+const selectProveedor = () => {
+  const selectProveedor = document.querySelectorAll('#selectProveedor');
+  selectProveedor.forEach((selectProveedor) => {
+    selectProveedor.innerHTML = " ";
+    axios.get('http://localhost:3000/api/proveedores')
+    .then((response)=>{
+      response.data.forEach((proveedor) => {
+        const opt = document.createElement('option');
+        opt.value = proveedor.idProveedor;
+        opt.textContent = proveedor.Nom_Proveedor;
+        opt.dataset.id = proveedor.idProveedor; // Agregar data-id con el id del proveedor
+        selectProveedor.appendChild(opt);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  });
+}
+
+
+const nuevoProducto = () => {
+  const codigo = document.getElementById("crearCodigo").value;
+  const nombre = document.getElementById("crearNombre").value;
+  const precioCompra = document.getElementById("crearPrecioCompra").value;
+  const precioVenta = document.getElementById("crearPrecioVenta").value;
+  const stock = document.getElementById("crearStock").value;
+  const proveedor = document.getElementById("selectProveedor").value;
+  const categoria = document.getElementById("selectCategoria").value;
+  
+  axios.post("http://localhost:3000/api/productos", {
+    Codigo: codigo,
+    Nom_Producto: nombre,
+    Precio_Compra: precioCompra,
+    Precio_Venta: precioVenta,
+    Stock: stock,
+    idProveedor: proveedor,
+    idCategoria: categoria
+  })
+  .then(function (response) {
+    alert("Producto creado exitosamente");
+    reiniciarInputs();
+  })
+  
+  .catch(function (error) {
+    console.log(error);
+    alert("Hubo un error al crear el producto. Verifica si el Codigo o Nombre del producto ya existen");
+  });
+};
+
+const reiniciarInputs = () => {
+  document.getElementById("crearCodigo").value = "";
+  document.getElementById("crearNombre").value = "";
+  document.getElementById("crearPrecioCompra").value = "";
+  document.getElementById("crearPrecioVenta").value = "";
+  document.getElementById("crearStock").value = "";
+  document.getElementById("selectProveedor").value = "";
+  document.getElementById("selectCategoria").value = "";
+};
+
 
 
 
