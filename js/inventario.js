@@ -8,9 +8,10 @@ window.addEventListener("load", function () {
 
 
 
+
 const productos = () => {
   axios
-    .get("https://backtiendita-production.up.railway.app/api/productos")
+    .get("https://https://192.68.43.192/api/productos")
     .then((response) => {
       console.log(response.data);
       let lista = response.data
