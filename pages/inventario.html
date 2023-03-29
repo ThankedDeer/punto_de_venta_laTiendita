@@ -204,11 +204,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    ...
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text">Nombre</span>
+                      <input type="text" id="newNameCategoria" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text">Descripcion</span>
+                      <input type="text" id="newDescripcionCategoria" class="form-control" placeholder="Opcional" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="nuevaCategoria();">Crear</button>
                   </div>
                 </div>
               </div>
@@ -316,5 +324,6 @@
 <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../js/inventario.js"></script>
+<script src="../js/categoria.js"></script>
 
 </html>

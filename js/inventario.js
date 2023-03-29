@@ -101,7 +101,12 @@ const nuevoProducto = () => {
     idCategoria: categoria
   })
   .then(function (response) {
-    alert("Producto creado exitosamente");
+    Swal.fire({
+      title: "Correcto",
+      text: "Producto creado correctamente",
+      icon: "success",
+      confirmButtonText: "Cerrar",
+    });
     reiniciarInputs();
   })
   
