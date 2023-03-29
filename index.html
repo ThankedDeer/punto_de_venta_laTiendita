@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>La Tiendita</title>
-    <link
-      rel="stylesheet"
-      href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/index.css" />
 
   </head>
-  
-  <body>
-    <br><br><br><br>
-    <div class="register-form" id="login-form"><br>
-      <h2 style="text-align: center;">Inicio de Sesión</h2><br>
-      <form method="post">
-          <input type="text" name="user" id="Nom_Vendedor" placeholder="Usuario" required>
-          <input type="password" name="pass" id="Contraseña" placeholder="Contraseña" required><br><br>
-          <input type="submit" class="btn-login" id="btn-login" value="Iniciar Sesion">
-      </form>
+
+
+<body>
+  <br><br><br><br>
+  <div class="register-form"><br>
+    <h2 style="text-align: center;">Inicio de Sesión</h2><br>
+    <input type="text" id="Nom_Vendedor" placeholder="Usuario" required>
+    <input type="password"  id="Contraseña" placeholder="Contraseña" required><br><br>
+    <button class="btn-login" onclick="login()">Iniciar sesión</button> 
   </div><br>
 
-  
-  <a href="./pages/menuPrincipal.html" target="_blank">Segunda Pagina</a>
+  <a href="pages/menuPrincipal.html">segunapagina</a>
 
-    <!-- Your app content here -->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <!-- Script de Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+
+  <!-- Scripts adicionales -->
+  <script src="js/index.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
 
   </body >
 </html>
