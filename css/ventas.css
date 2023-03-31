@@ -40,3 +40,21 @@
     font-size: 1.6rem;
     text-align: center;
   }
+  .footersize{
+    text-align: center;
+    font-size: 1.6rem;
+  }
+  #buscarProducto{
+    font-size: 1.5rem;
+  }
+
+  .btn-success{
+    font-size: 2.5rem;
+  }
+
+  html, body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
