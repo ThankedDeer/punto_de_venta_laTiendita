@@ -9,7 +9,7 @@ const nuevaCategoria = () => {
   .then(function (response) {
     Swal.fire({
       title: "Correcto",
-      text: "Producto creado correctamente",
+      text: "Categoria creada correctamente",
       icon: "success",
       confirmButtonText: "Cerrar",
     });
@@ -18,6 +18,6 @@ const nuevaCategoria = () => {
   
   .catch(function (error) {
     console.log(error);
-    alert("Hubo un error al crear el producto. Verifica si el Codigo o Nombre del producto ya existen");
+    alert("Hubo un error al crear la categoria. Verifica si el Nombre de la categoria ya existen");
   });
 };
