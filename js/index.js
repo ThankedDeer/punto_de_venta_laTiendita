@@ -1,15 +1,17 @@
-function login(){
+function Login(){
     console.log("empieza funcion")
-    credenciales = {};
-    credenciales.Nom_Vendedor = document.getElementById("Nom_Vendedor").value;
-    credenciales.Contraseña = document.getElementById("Contraseña").value;
+    const credenciales = {
+        Nom_Vendedor: document.getElementById("user").value,
+        Contraseña: document.getElementById("pass").value
+    };
 
     console.log(credenciales)
 
     axios
-    .post("http://192.168.43.192:3000/api/api/login/"+ credenciales)
+    .post("http://localhost:3000/api/login",credenciales)
     .then((response) => {
-        console.log(response);
+        console.log(response.data.token);
+        sessionStorage.setItem("tToken", response.data.token);
         window.location.href = "./pages/menuPrincipal.html"; // Redirigir a otra página
     })
     .catch((error) => {

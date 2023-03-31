@@ -27,9 +27,13 @@ const buscarProducto = () => {
     return;
   }
   axios
+<<<<<<< HEAD
 
     .get("http://localhost:3000/api/producto/" + c)
 
+=======
+    .get("https://192.68.43.192/api/producto/" + c)
+>>>>>>> 50b1c4a94c76d5cb32374cbd973e636012244153
     .then((response) => {
       this.productoEncontrado = response.data[0];
 
