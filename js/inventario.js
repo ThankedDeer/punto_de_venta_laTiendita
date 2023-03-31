@@ -10,7 +10,7 @@ window.addEventListener("load", function () {
 
 const productos = () => {
   axios
-    .get("http://192.168.43.192:3000/api/productos")
+    .get("http://localhost:3000/api/productos")
     .then((response) => {
       let lista = response.data
       mostrarProductos(lista)
@@ -30,8 +30,9 @@ const mostrarProductos = (lista) =>{
     templateProductos.querySelectorAll('td')[1].textContent = producto.Precio_Compra
     templateProductos.querySelectorAll('td')[2].textContent = producto.Precio_Venta
     templateProductos.querySelectorAll('td')[3].textContent = producto.Stock
-    templateProductos.querySelectorAll('td')[4].textContent = producto.idCategoria
-    templateProductos.querySelectorAll('td')[5].textContent = producto.idProveedor
+    templateProductos.querySelectorAll('td')[4].textContent = producto.Unidad
+    templateProductos.querySelectorAll('td')[5].textContent = producto.idCategoria
+    templateProductos.querySelectorAll('td')[6].textContent = producto.idProveedor
     const clone  = templateProductos.cloneNode(true);
     fragment.appendChild(clone);
   })
@@ -44,12 +45,19 @@ const selectCategoria = () => {
   const selectCategorias = document.querySelectorAll('#selectCategoria');
   selectCategorias.forEach((selectCategoria) => {
     selectCategoria.innerHTML = " ";
-    axios.get('http://192.168.43.192:3000/api/categorias')
+    
+    // Agregar opción "Categoria"
+    const defaultOption = document.createElement('option');
+    defaultOption.textContent = "Seleccione una categoria";
+    selectCategoria.appendChild(defaultOption);
+
+    axios.get('http://localhost:3000/api/categorias')
     .then((response)=>{
       response.data.forEach((categoria)=>{
         const opt = document.createElement('option');
         opt.value = categoria.idCategoria;
         opt.textContent = categoria.Nom_Categoria;
+        opt.dataset.id = categoria.idCategoria; // Agregar data-id con el id de la categoria
         selectCategoria.appendChild(opt);
       });
     })
@@ -60,16 +68,24 @@ const selectCategoria = () => {
 }
 
 
+
+
 const selectProveedor = () => {
-  const selectProveedor = document.querySelectorAll('#selectProveedor');
-  selectProveedor.forEach((selectProveedor) => {
+  const selectProveedores = document.querySelectorAll('#selectProveedor');
+  selectProveedores.forEach((selectProveedor) => {
     selectProveedor.innerHTML = " ";
-    axios.get('http://192.168.43.192:3000/api/proveedores')
+    // Agregamos la opción por defecto
+    const defaultOpt = document.createElement('option');
+    defaultOpt.value = "";
+    defaultOpt.textContent = "Seleccione un proveedor";
+    selectProveedor.appendChild(defaultOpt);
+    axios.get('http://localhost:3000/api/proveedores')
     .then((response)=>{
       response.data.forEach((proveedor) => {
         const opt = document.createElement('option');
         opt.value = proveedor.idProveedor;
         opt.textContent = proveedor.Nom_Proveedor;
+        opt.dataset.id = proveedor.idProveedor; // Agregar data-id con el id del proveedor
         selectProveedor.appendChild(opt);
       });
     })
@@ -79,34 +95,49 @@ const selectProveedor = () => {
   });
 }
 
+
+
 const nuevoProducto = () => {
-  const nuevoProducto = document.getElementById("nuevoProducto");
   const codigo = document.getElementById("crearCodigo").value;
   const nombre = document.getElementById("crearNombre").value;
   const precioCompra = document.getElementById("crearPrecioCompra").value;
   const precioVenta = document.getElementById("crearPrecioVenta").value;
+  const unidad = document.getElementById("crearUnidad").value;
   const stock = document.getElementById("crearStock").value;
-  const categoria = document.getElementById("selectCategoria").value;
   const proveedor = document.getElementById("selectProveedor").value;
+  const categoria = document.getElementById("selectCategoria").value;
   
-  axios.post("http://192.168.43.192:3000/api/productos", {
+  axios.post("http://localhost:3000/api/productos", {
     Codigo: codigo,
     Nom_Producto: nombre,
     Precio_Compra: precioCompra,
     Precio_Venta: precioVenta,
+    Unidad: unidad,
     Stock: stock,
-    idCategoria: categoria,
-    idProveedor: proveedor
+    idProveedor: proveedor,
+    idCategoria: categoria
   })
   .then(function (response) {
+    Swal.fire({
+      title: "Correcto",
+      text: "Producto creado correctamente",
+      icon: "success",
+      confirmButtonText: "Cerrar",
+    });
     console.log(response);
-    alert("Producto creado exitosamente");
   })
+  
   .catch(function (error) {
     console.log(error);
-    alert("Hubo un error al crear el producto");
-  });
+    Swal.fire({
+      title: "No se creo el producto",
+      text: "Verifica si el producto ya existe",
+      icon: "warning",
+      confirmButtonText: "Cerrar",
+    });  });
 };
+
+
 
 
 

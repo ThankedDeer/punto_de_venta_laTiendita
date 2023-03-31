@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -11,8 +11,8 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="../css/ventas.css">
-  
-  
+
+
 
 </head>
 
@@ -24,87 +24,96 @@
         <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
       </a>
       <h6> Bienvenido a <strong>La Tiendita</strong></h5>
-  
+
     </div>
   </nav>
   <br>
-  
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-      <div class="input-group mb-3">
-        <input id="buscarProducto" onchange="buscarProducto()" type="text" class="form-control" placeholder="Ingrese el código de producto">
-        
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-12	col-md-12	col-lg-2	col-xl-2	col-xxl-2">
+        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt maxime temporibus, minima eveniet fugit dolorum accusantium repellendus enim! Blanditiis tempora est quae fugiat cupiditate exercitationem ipsum velit, iste quia debitis. -->
       </div>
-      <br>
-      <h4>Lista de articulos</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"># Codigo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Acción</th>
-            <th scope="col">Precio Unitario</th>
-            <th scope="col">Total</th>
-          </tr>
-        </thead>
-        <tbody id="items"></tbody>
-        <tfoot>
-          <tr id="footer">
-            <th scope="row" colspan="5">Lista vacía - escanea para agregar!</th>
-          </tr>
-        </tfoot> 
-      </table>
-    </div>
+      <div class="col-sm-12	col-md-12	col-lg-8	col-xl-6 col-xxl-8">
+        <div class="input-group mb-3">
+          <input id="buscarProducto" onchange="buscarProducto()" type="text" class="form-control"
+            placeholder="Ingrese el código de producto">
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="modalBascula" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="productoNombre"></h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-        <div class="row">
-          <label class="label" id="precio"></label>
-          <div class="col-6">
-           <form id="formModal">
-            <div class="input-group">
-              <label class="label">Cantidad del producto</label>
-              <input  autocomplete="off"  id="cantidad" class="input" type="number">    
-            </div>
-           </form>
-          </div>
-          <div class="col-6">
-          <div class="input-group">
-            
-              <label class="label">Total</label>
-              <input readonly autocomplete="off" value="0" id="importe" class="input" type="number">    
-          </div>
-          </div>
-          
         </div>
-        
-    
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
+
+        <br>
+        <h4>Lista de articulos</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="thtabla" scope="col"># Codigo</th>
+              <th class="thtabla" scope="col">Nombre</th>
+              <th class="thtabla" scope="col">Cantidad</th>
+              <th class="thtabla" scope="col">Acción</th>
+              <th class="thtabla" scope="col">Precio Unitario</th>
+              <th class="thtabla" scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody id="items"></tbody>
+          <tfoot>
+            <tr id="footer">
+              <th scope="row" colspan="5">Lista vacía - escanea para agregar!</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="col-sm-12	col-md-12	col-lg-2	col-xl-2	col-xxl-2">
+        <button type="button" class="btn btn-success btn-lg">Finalizar compa</button>
+      </div>
+
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalBascula" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="productoNombre"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                <label class="label" id="precio"></label>
+                <div class="col-6">
+                  <form id="formModal">
+                    <div class="input-group">
+                      <label class="label">Cantidad del producto</label>
+                      <input maxlength="6" autocomplete="off" id="cantidad" class="input" type="text">
+                    </div>
+                  </form>
+                </div>
+                <div class="col-6">
+                  <div class="input-group">
+
+                    <label class="label">Total</label>
+                    <input readonly autocomplete="off" value="0" id="importe" class="input" type="number">
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-</div>
-    <div class="col-3"></div>
-  </div>
-</div>
 
 
 
@@ -131,42 +140,42 @@
 
 
 
-  <template id="templateLista">
-    <tr>
-      <th scope="row">id</th>
-      <td>Café</td>
-      <td>1</td>
-      <td>
+    <template id="templateLista">
+      <tr id="trTabla">
+        <th scope="row">id</th>
+        <td>Café</td>
+        <td>1</td>
+        <td>
           <button class="btn btn-info btn-sm">
-              +
+            +
           </button>
           <button class="btn btn-danger btn-sm">
-              -
+            -
           </button>
-      </td>
-      <td>$ <span>500</span></td>
-      <td>$ <span>500</span></td>
-    </tr>
-  </template>
+        </td>
+        <td>$ <span>500</span></td>
+        <td>$ <span>500</span></td>
+      </tr>
+    </template>
 
 
-  <template id="template-footer">
-    <th scope="row" colspan="2">Total productos</th>
-    <td>10</td>
-    <td>
+    <template id="template-footer">
+      <th class="footersize" scope="row" colspan="2">Total productos</th>
+      <td class="footersize">10</td>
+      <td class="footersize">
         <button class="btn btn-danger btn-sm" id="vaciar-carrito">
-            vaciar todo
+          vaciar todo
         </button>
-    </td>
-    <td class="font-weight-bold"> <span></span></td>
-    <td class="font-weight-bold">$ <span>5000</span></td>
-</template>
+      </td>
+      <td class="font-weight-bold footersize"> <span></span></td>
+      <td class="font-weight-bold footersize">$ <span>5000</span></td>
+    </template>
 
 
 </body>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../js/scrypt.js"></script>
+<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../js/scrypt.js"></script>
 
 </html>

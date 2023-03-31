@@ -14,7 +14,7 @@
 
 </head>
 
-<body onload="selectCategoria(); selectProveedor();">
+<body onload="selectCategoria(); selectProveedor(); obtenerCategorias(); obtenerProveedores();">
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -50,44 +50,50 @@
                   </div>
                   <div class="modal-body">
                     <div class="input-group flex-nowrap">
-                      <span class="input-group-text" id="crearCodigo">Codigo</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <span class="input-group-text">Codigo</span>
+                      <input type="text" id="crearCodigo" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping">
                     </div>
                     <br>
                     <div class="input-group flex-nowrap">
-                      <span class="input-group-text" id="crearNombre">Nombre</span>
-                      <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <span class="input-group-text">Nombre</span>
+                      <input type="text" id="crearNombre" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping">
                     </div>
                     <br>
                     <div class="input-group flex-nowrap">
-                      <span class="input-group-text" id="crearPrecioCompra">Precio Compra</span>
-                      <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <span class="input-group-text">Precio Compra</span>
+                      <input type="number" id="crearPrecioCompra" min="0" class="form-control" placeholder="$" aria-label="" aria-describedby="addon-wrapping">
                     </div>
                     <br>
                     <div class="input-group flex-nowrap">
-                      <span class="input-group-text" id="crearPrecioVenta">Precio Venta</span>
-                      <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <span class="input-group-text">Precio Venta</span>
+                      <input type="number" id="crearPrecioVenta" min="0" class="form-control" placeholder="$" aria-label="" aria-describedby="addon-wrapping">
                     </div>
                     <br>
                     <div class="input-group flex-nowrap">
-                      <span class="input-group-text" id="crearStock">Stock</span>
-                      <input type="number" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                      <span class="input-group-text">Unidad</span>
+                      <input type="text" id="crearUnidad" class="form-control" placeholder="Opcional" aria-label="" aria-describedby="addon-wrapping">
                     </div>
                     <br>
-                    <div >
-                      Categoria
-                      <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
-                      <option selected value=""></option>
-                    </select>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text">Stock</span>
+                      <input type="number" id="crearStock" min="0" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping">
                     </div>
                     <br>
-                      Proveedor
+                    <div>
+                    Proveedor
                     <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example">
                       <option selected value=""></option>
                     </select>
                   </div>
+                    <div >
+                      Categoria
+                      <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example" onload="selectCategoria();">
+                      <option selected value=""></option>
+                    </select>
+                    </div>
+                  </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects()">Cerrar</button>
                     <button type="button" class="btn btn-primary" onclick="nuevoProducto();">Crear</button>
                   </div>
                 </div>
@@ -113,45 +119,51 @@
                 </div>
                 <div class="modal-body">
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="actualizarCodigo">Codigo</span>
-                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <span class="input-group-text" for="actualizarCodigo">Codigo</span>
+                    <input type="text" id="actualizarCodigo" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" onchange="mostrarDatosProducto(this.value)">
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="actualizarNombre">Nombre</span>
-                    <input type="text" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <span class="input-group-text" for="actualizarNombre">Nombre</span>
+                    <input type="text" id="actualizarNombre" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="actualizarPrecioCompra">Precio Compra</span>
-                    <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <span class="input-group-text" for="actualizarPrecioCompra">Precio Compra</span>
+                    <input type="number" id="actualizarPrecioCompra" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="actualizarPrecioVenta">Precio Venta</span>
-                    <input type="number" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <span class="input-group-text" for="actualizarPrecioVenta">Precio Venta</span>
+                    <input type="number" id="actualizarPrecioVenta" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
                   </div>
                   <br>
                   <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="actualizarStock">Stock</span>
-                    <input type="number" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    <span class="input-group-text" for="actualizarUnidad">Unidad</span>
+                    <input type="text" id="actualizarUnidad" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="actualizarStock">Stock</span>
+                    <input type="number" id="actualizarStock" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
                   </div>
                   <br>
                   <div>
                     Categoria
-                    <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
+                    <select id="actualizarCategoria" class="form-select form-select-sm"  aria-label=".form-select-sm example" disabled>
                     <option selected value=""></option>
                   </select>
                   </div>
                   <br>
                     Proveedor
-                  <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example">
+                  <select id="actualizarProveedor" class="form-select form-select-sm" aria-label=".form-select-sm example" disabled>
                     <option selected value=""></option>
                   </select>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary">Crear</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
+                  <button type="button" class="btn btn-primary" onclick="habilitarCampos();">Editar</button>
+                  <button type="button" class="btn btn-primary" onclick="guardarCambios();">Guardar</button>
                 </div>
               </div>
             </div>
@@ -204,11 +216,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    ...
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text">Nombre</span>
+                      <input type="text" id="newNameCategoria" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text">Descripcion</span>
+                      <input type="text" id="newDescripcionCategoria" class="form-control" placeholder="Opcional" aria-label="Codigo" aria-describedby="addon-wrapping">
+                    </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="nuevaCategoria();">Crear</button>
                   </div>
                 </div>
               </div>
@@ -281,6 +301,7 @@
                 <th class="titulo" scope="col">Precio Compra</th>
                 <th class="titulo" scope="col">Precio Venta</th>
                 <th class="titulo" scope="col">Stock</th>
+                <th class="titulo" scope="col">Unidad</th>
                 <th class="titulo" scope="col">Categoria</th>
                 <th class="titulo" scope="col">Proveedor</th>
               </tr>
@@ -305,6 +326,7 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
     </tr>
   </template>
 
@@ -316,5 +338,7 @@
 <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../js/inventario.js"></script>
+<script src="../js/categoria.js"></script>
+<script src="../js/actProducto.js"></script>
 
 </html>
