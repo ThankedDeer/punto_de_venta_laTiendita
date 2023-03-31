@@ -1,8 +1,8 @@
-function login(){
+function Login(){
     console.log("empieza funcion")
     credenciales = {};
-    credenciales.Nom_Vendedor = document.getElementById("Nom_Vendedor").value;
-    credenciales.Contraseña = document.getElementById("Contraseña").value;
+    credenciales.Nom_Vendedor = document.getElementById("user").value;
+    credenciales.Contraseña = document.getElementById("pass").value;
 
     console.log(credenciales)
 
