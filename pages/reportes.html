@@ -4,26 +4,127 @@
     <title>La Tiendita</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-        <!-- Importa la biblioteca PDFMake utilizando una CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </head>
-  <link rel="stylesheet" href="../css/menuPrincipal.css">
-  <script src="../js/reportes.js"></script>
+  <link rel="stylesheet" href="../css/reporte.css">
   <body> 
     <nav class="navbar" style="background-color: #0099DD;">
         <div class="container-fluid">
           <a class="navbar-brand" href="../pages/menuPrincipal.html">
             <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top"> 
           </a>
-            <h6> Bienvenido <strong>Eduardo</strong></h5>
-            <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="50" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
-            </div>
-      </nav>
+          <h6> Bienvenido <strong>Eduardo</strong></h5>
+          <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="50" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+        </div>
+    </nav>
+    
+    <div id="contenido">
+      <h1>Corte de caja</h1>
+      <p>Numero de ventas al día <strong id="numVentas"></strong></p> 
+      <p>Ventas por cada categoria</p>
+      <div class="table-responsive">
+        <table class="table table-hover ">
+          <thead>
+            <tr class="table titulosDeTabla">
+              <th class="titulo" scope="col">Categoria</th>
+              <th class="titulo" scope="col">Total de ventas al día</th>
+            </tr>
+          </thead>
+          <tbody id="tablaVentas">
+          </tbody>
+        </table>
+      </div>
+      <p>Tipos de movimientos en caja</p>
+      <div class="table-responsive">
+        <table class="table table-hover ">
+          <thead>
+            <tr class="table titulosDeTabla">
+              <th class="titulo" scope="col">Tipo de operacion</th>
+              <th class="titulo" scope="col">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody id="tablaOperacion">
+          </tbody>
+        </table>
+      </div>
+      Productos con menos cantidad en stock
+      <div class="table-responsive">
+        <table class="table table-hover ">
+          <thead>
+            <tr class="table titulosDeTabla">
+              <th class="titulo" scope="col">Codigo</th>
+              <th class="titulo" scope="col">Nom_Producto</th>
+              <th class="titulo" scope="col">Stock</th>
+            </tr>
+          </thead>
+          <tbody id="tablaStock">
+          </tbody>
+        </table>
+      </div>
+      <p>Producto mas vendido</p>
+      <div class="table-responsive">
+        <table class="table table-hover ">
+          <thead>
+            <tr class="table titulosDeTabla">
+              <th class="titulo" scope="col">Nom_Producto</th>
+              <th class="titulo" scope="col">Vendido</th>
+            </tr>
+          </thead>
+          <tbody id="tablaMas">
+          </tbody>
+        </table>
+      </div>
+      <p>Producto menos vendido</p>
+      <div class="table-responsive">
+        <table class="table table-hover ">
+          <thead>
+            <tr class="table titulosDeTabla">
+              <th class="titulo" scope="col">Nom_Producto</th>
+              <th class="titulo" scope="col">Vendido</th>
+            </tr>
+          </thead>
+          <tbody id="tablaMenos">
+          </tbody>
+        </table>
+      </div>
     </div>
-    <h1>Reporte del día</h1>
+
+    <button onclick="generarPDF()">Genera PDF</button>
+    <template id="templateVentass">
+      <tr class="producto">
+        <th scope="row"></th>
+        <td></td>
+      </tr>
+    </template>
+    <template id="templateOperacion">
+      <tr class="producto">
+        <th scope="row"></th>
+        <td></td>
+      </tr>
+    </template>
+    <template id="templateStock">
+      <tr class="producto">
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+    <template id="templateMas">
+      <tr class="producto">
+        <th scope="row"></th>
+        <td></td>
+      </tr>
+    </template>
+    <template id="templateMenos">
+      <tr class="producto">
+        <th scope="row"></th>
+        <td></td>
+      </tr>
+    </template>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../js/reportes.js"></script>
 </body>
 </html>

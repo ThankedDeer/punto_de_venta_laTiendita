@@ -7,17 +7,10 @@ window.addEventListener("load", function () {
 });
 
 
-<<<<<<< HEAD
 
-
-const productos = () => {
-  axios
-    .get("https://https://192.68.43.192/api/productos")
-=======
 const productos = () => {
   axios
     .get("http://localhost:3000/api/productos")
->>>>>>> b44224364812fb7fd3f920351118b8c74632f693
     .then((response) => {
       let lista = response.data
       mostrarProductos(lista)
@@ -37,8 +30,9 @@ const mostrarProductos = (lista) =>{
     templateProductos.querySelectorAll('td')[1].textContent = producto.Precio_Compra
     templateProductos.querySelectorAll('td')[2].textContent = producto.Precio_Venta
     templateProductos.querySelectorAll('td')[3].textContent = producto.Stock
-    templateProductos.querySelectorAll('td')[4].textContent = producto.idCategoria
-    templateProductos.querySelectorAll('td')[5].textContent = producto.idProveedor
+    templateProductos.querySelectorAll('td')[4].textContent = producto.Unidad
+    templateProductos.querySelectorAll('td')[5].textContent = producto.idCategoria
+    templateProductos.querySelectorAll('td')[6].textContent = producto.idProveedor
     const clone  = templateProductos.cloneNode(true);
     fragment.appendChild(clone);
   })
@@ -51,6 +45,12 @@ const selectCategoria = () => {
   const selectCategorias = document.querySelectorAll('#selectCategoria');
   selectCategorias.forEach((selectCategoria) => {
     selectCategoria.innerHTML = " ";
+    
+    // Agregar opción "Categoria"
+    const defaultOption = document.createElement('option');
+    defaultOption.textContent = "Seleccione una categoria";
+    selectCategoria.appendChild(defaultOption);
+
     axios.get('http://localhost:3000/api/categorias')
     .then((response)=>{
       response.data.forEach((categoria)=>{
@@ -69,10 +69,16 @@ const selectCategoria = () => {
 
 
 
+
 const selectProveedor = () => {
-  const selectProveedor = document.querySelectorAll('#selectProveedor');
-  selectProveedor.forEach((selectProveedor) => {
+  const selectProveedores = document.querySelectorAll('#selectProveedor');
+  selectProveedores.forEach((selectProveedor) => {
     selectProveedor.innerHTML = " ";
+    // Agregamos la opción por defecto
+    const defaultOpt = document.createElement('option');
+    defaultOpt.value = "";
+    defaultOpt.textContent = "Seleccione un proveedor";
+    selectProveedor.appendChild(defaultOpt);
     axios.get('http://localhost:3000/api/proveedores')
     .then((response)=>{
       response.data.forEach((proveedor) => {
@@ -90,11 +96,13 @@ const selectProveedor = () => {
 }
 
 
+
 const nuevoProducto = () => {
   const codigo = document.getElementById("crearCodigo").value;
   const nombre = document.getElementById("crearNombre").value;
   const precioCompra = document.getElementById("crearPrecioCompra").value;
   const precioVenta = document.getElementById("crearPrecioVenta").value;
+  const unidad = document.getElementById("crearUnidad").value;
   const stock = document.getElementById("crearStock").value;
   const proveedor = document.getElementById("selectProveedor").value;
   const categoria = document.getElementById("selectCategoria").value;
@@ -104,30 +112,33 @@ const nuevoProducto = () => {
     Nom_Producto: nombre,
     Precio_Compra: precioCompra,
     Precio_Venta: precioVenta,
+    Unidad: unidad,
     Stock: stock,
     idProveedor: proveedor,
     idCategoria: categoria
   })
   .then(function (response) {
-    alert("Producto creado exitosamente");
-    reiniciarInputs();
+    Swal.fire({
+      title: "Correcto",
+      text: "Producto creado correctamente",
+      icon: "success",
+      confirmButtonText: "Cerrar",
+    });
+    console.log(response);
   })
   
   .catch(function (error) {
     console.log(error);
-    alert("Hubo un error al crear el producto. Verifica si el Codigo o Nombre del producto ya existen");
-  });
+    Swal.fire({
+      title: "No se creo el producto",
+      text: "Verifica si el producto ya existe",
+      icon: "warning",
+      confirmButtonText: "Cerrar",
+    });  });
 };
 
-const reiniciarInputs = () => {
-  document.getElementById("crearCodigo").value = "";
-  document.getElementById("crearNombre").value = "";
-  document.getElementById("crearPrecioCompra").value = "";
-  document.getElementById("crearPrecioVenta").value = "";
-  document.getElementById("crearStock").value = "";
-  document.getElementById("selectProveedor").value = "";
-  document.getElementById("selectCategoria").value = "";
-};
+
+
 
 
 

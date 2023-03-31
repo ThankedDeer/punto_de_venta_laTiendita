@@ -2,6 +2,8 @@
     border: solid red 1px;
 } */
 
+
+
 .titulo{
 text-align: center;
   vertical-align: middle;
@@ -51,4 +53,11 @@ text-align: center;
   background-color:rgb(210, 210, 210);  
   border-color: white;
   color: black;
+}
+
+html, body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
