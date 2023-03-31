@@ -1,20 +1,21 @@
-function Login(){
-    console.log("empieza funcion")
+function Login() {
+    console.log("empieza funcion");
     const credenciales = {
-        Nom_Vendedor: document.getElementById("user").value,
-        Contraseña: document.getElementById("pass").value
+      Nom_Vendedor: document.getElementById("user").value,
+      Contraseña: document.getElementById("pass").value,
     };
-
-    console.log(credenciales)
-
+  
+    console.log(credenciales);
+  
     axios
-    .post("http://localhost:3000/api/login",credenciales)
-    .then((response) => {
+      .post("http://localhost:3000/api/login", credenciales)
+      .then((response) => {
         console.log(response.data.token);
-        sessionStorage.setItem("tToken", response.data.token);
+        localStorage.setItem("tToken", response.data.token);
         window.location.href = "./pages/menuPrincipal.html"; // Redirigir a otra página
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
-    });
-}
+      });
+  }
+  
