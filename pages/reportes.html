@@ -2,37 +2,28 @@
 <html>
   <head>
     <title>La Tiendita</title>
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <!-- Importa la biblioteca PDFMake utilizando una CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
   </head>
   <link rel="stylesheet" href="../css/menuPrincipal.css">
-  
-  
-  <body>
+  <script src="../js/reportes.js"></script>
+  <body> 
     <nav class="navbar" style="background-color: #0099DD;">
         <div class="container-fluid">
-            
           <a class="navbar-brand" href="../pages/menuPrincipal.html">
             <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top"> 
-        </a>
+          </a>
             <h6> Bienvenido <strong>Eduardo</strong></h5>
-            <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+            <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="50" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
             </div>
       </nav>
-    
     </div>
-    
-    
-
-
-   </div>
-
-    <!-- Your app content here -->
+    <h1>Reporte del día</h1>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    
 </body>
 </html>
