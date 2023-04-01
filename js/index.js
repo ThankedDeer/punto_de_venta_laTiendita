@@ -12,6 +12,7 @@ function Login() {
       .then((response) => {
         console.log(response.data.token);
         localStorage.setItem("tToken", response.data.token);
+        localStorage.setItem("vendedor", JSON.stringify(response.data.user));
         window.location.href = "./pages/menuPrincipal.html"; // Redirigir a otra página
       })
       .catch((error) => {
