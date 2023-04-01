@@ -273,6 +273,26 @@ document.addEventListener("keydown", function (event) {
 
 
 
+// const crearVenta = () =>{
+  
+//   const venta = {
+//     idVendedor: user.id ,
+//     total : parseFloat(nPrecio)
+//   }
+//   console.log(venta);
+//   axios.post('http://localhost:3000/api/ventas',venta)
+//   .then(response => {
+
+    
+//     console.log("venta creada");
+
+
+   
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+// }
 
 
 
