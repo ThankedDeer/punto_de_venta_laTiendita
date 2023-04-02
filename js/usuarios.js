@@ -2,7 +2,7 @@ data = [];
 
 const fetchData = async () => {
   try {
-    const res = await fetch('http://localhost/api/vendedores')
+    const res = await fetch('http://localhost:3000/api/vendedores')
     const data = await res.json()
     pintarCards(data)
   } catch (error) {
@@ -32,7 +32,3 @@ const pintarCards = data => {
 document.addEventListener('DOMContentLoaded', () => {
   fetchData()
 })
-
-const addCarrito = e => {
-  console.log(e)
-}
