@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
 
 const gActuales = () => {
   axios
-    .get("http://192.168.43.192:3000/api/Actuales")
+    .get("http://localhost:3000/api/Actuales")
     .then((response) => {
         actuales = response.data[0].Ganancias
         console.log(actuales);
@@ -28,7 +28,7 @@ const gActuales = () => {
 
 const gAproximadas = () => {
     axios
-      .get("http://192.168.43.192:3000/api/Aproximadas")
+      .get("http://localhost:3000/api/Aproximadas")
       .then((response) => {
         aproximadas = response.data[0].Ganacias
           console.log(aproximadas);
@@ -44,7 +44,7 @@ const gAproximadas = () => {
 
   const pInventario = () => {
     axios
-      .get("http://192.168.43.192:3000/api/productos")
+      .get("http://localhost:3000/api/productos")
       .then((response) => {
         inventario = response.data
         total = 0
@@ -69,7 +69,7 @@ const gAproximadas = () => {
   
   const inversion = () => {
     axios
-      .get("http://192.168.43.192:3000/api/invercion")
+      .get("http://localhost:3000/api/invercion")
       .then((response) => {
         inversiones = response.data[0].Invercion
           console.log(inversiones);
@@ -81,7 +81,7 @@ const gAproximadas = () => {
   }
 
   axios
-  .get("https://backtiendita-production.up.railway.app/api/invercion")
+  .get("http://localhost:3000/api/invercion")
   .then((response) => {
    console.log(response.data);
   })

@@ -5,6 +5,7 @@ const cantidadInput = document.getElementById("cantidad");
 const precioInput = document.getElementById("importe");
 const btnModal = document.getElementById("aceptar");
 const modal = document.getElementById("modalBascula");
+const totalVenta = document.getElementById("total");
 
 let listenersAgregados = false;
 let carrito = {};
@@ -23,15 +24,25 @@ const buscarProducto = () => {
       icon: "warning",
       confirmButtonText: "Cerrar",
     });
-
+    
     return;
   }
   axios
 
-
     .get("http://localhost:3000/api/producto/" + c)
     .then((response) => {
       this.productoEncontrado = response.data[0];
+
+      if(productoEncontrado.Stock == 0){
+        Swal.fire({
+          title: "Alerta",
+          text: "Ya no hay mas producto en inventario",
+          icon: "warning",
+          confirmButtonText: "Cerrar",
+        });
+        document.getElementById("buscarProducto").value = "";
+        return
+      }
 
       if (productoEncontrado.Unidad == "Kilogramo") {
         $("#modalBascula").modal("show");
@@ -76,7 +87,7 @@ const setCarrito = (objeto) => {
   };
 
   if (carrito.hasOwnProperty(producto.Codigo)) {
-    if (carrito[producto.Codigo].Stock == 1) {
+    if (carrito[producto.Codigo].Stock == 0) {
       Swal.fire({
         title: "Alerta",
         text: "Ya no hay mas producto en inventario",
@@ -103,7 +114,7 @@ const setCarrito = (objeto) => {
 function pintarCarrito() {
   items.innerHTML = "";
   Object.values(carrito).forEach((producto) => {
-    console.log(producto);
+    // console.log(producto);
     templateCarrito.querySelector("th").textContent = producto.Codigo;
     templateCarrito.querySelectorAll("td")[0].textContent = producto.Nombre;
     templateCarrito.querySelectorAll("td")[1].textContent = producto.cantidad;
@@ -230,7 +241,6 @@ const setCarritoBascula = (objeto) => {
 };
 
 function datosModal(producto) {
-  console.log("modal");
   const tituloProducto = document.querySelector("#productoNombre");
 
   const precio = document.querySelector("#precio");
@@ -254,9 +264,10 @@ const limpiarModal = () => {
 };
 
 document.addEventListener("keydown", function (event) {
-  switch (event.ctrlKey && event.code || event.code) {
-    case "Enter":
-      console.log("Enter");
+  switch ((event.ctrlKey && event.code) || event.code) {
+    case "F1":
+      crearVenta();
+      console.log("F1");
       break;
     case "1":
       console.log("1");
@@ -268,13 +279,71 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
+const crearVenta = () => {
+  // Obtener el carrito desde el localStorage
 
+  if (Object.keys(carrito).length === 0) {
+    // Verificar si el carrito está vacío
+    Swal.fire({
+      title: "Alerta",
+      text: "No hay productos en el la lista",
+      icon: "warning",
+      confirmButtonText: "Cerrar",
+    });
+    return; // Detener la ejecución de la función
+  }
 
+  const totalVenta = document.getElementById("total").textContent;
+  const user = JSON.parse(localStorage.getItem("vendedor"));
+  const venta = {
+    idVendedor: user.id,
+    Total: totalVenta,
+  };
 
+  axios
+    .post("http://localhost:3000/api/ventas", venta)
+    .then((response) => {
+      const idVenta = response.data.idVenta;
 
+      // Aquí realizas la segunda llamada a la API para cada elemento en la lista
+      Object.values(carrito).forEach((producto) => {
+        const data = {
+          idVenta: idVenta,
+          Codigo: producto.Codigo,
+          Nom_producto: producto.Nombre,
+          Cantidad: producto.cantidad,
+          Precio_compra: parseFloat(producto.Precio_Compra),
+          Precio_venta: parseFloat(producto.Precio_Venta),
+        };
 
+        axios
+          .post("http://localhost:3000/api/detalleVentas", data)
+          .then((response) => {
+            console.log("producto insertado en la venta  " + idVenta);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
 
+      Swal.fire({
+        title: "Alerta",
+        text: "Venta Exitosa",
+        icon: "success",
+        confirmButtonText: "Cerrar",
+      });
 
-
-
-
+      carrito = {};
+      pintarCarrito();
+      pintarFooter();
+    })
+    .catch((error) => {
+      console.error(error);
+      Swal.fire({
+        title: "Alerta",
+        text: "Error al hacer la venta",
+        icon: "warning",
+        confirmButtonText: "Cerrar",
+      });
+    });
+};
