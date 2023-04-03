@@ -18,6 +18,7 @@ const createWindow = () => {
     },
   });
 
+  app.allowRendererProcessReuse = false;
 
   //quitar despues de conectar todo 
   mainWindow.webContents.openDevTools();
