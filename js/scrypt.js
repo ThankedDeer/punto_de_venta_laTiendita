@@ -347,3 +347,7 @@ const crearVenta = () => {
       });
     });
 };
+
+const consultarInventario = () =>{
+  window.location.href ='./inventario.html'
+}

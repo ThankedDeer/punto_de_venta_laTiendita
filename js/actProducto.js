@@ -1,3 +1,5 @@
+
+
 function obtenerCategorias() {
   axios.get('http://localhost:3000/api/categorias')
     .then(response => {

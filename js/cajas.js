@@ -1,13 +1,32 @@
 
 
-window.addEventListener('load', function() {
+window.addEventListener('DOMContentLoaded', function() {
     gActuales();
     gAproximadas();
     inversion();
     pInventario();
-
+    
 });
   
+const dineroCaja = (actuales) => {
+  axios
+    .get("http://localhost:3000/api/caja")
+    .then((response) => {
+       const  dinero = response.data[0].dineroEnCaja
+        const dineroCaja = parseFloat(dinero);
+        const Ganancias = parseFloat(actuales)
+
+        console.log(dineroCaja);
+        console.log(Ganancias);
+        document.getElementById('dinero').innerHTML = "$" + (dineroCaja + Ganancias)
+
+
+    })
+    .catch((error) => {
+      console.log(error); 
+    });
+}
+
 
 const gActuales = () => {
   axios
@@ -15,7 +34,7 @@ const gActuales = () => {
     .then((response) => {
         actuales = response.data[0].Ganancias
         console.log(actuales);
-
+        dineroCaja(actuales)
         document.getElementById('gActuales').innerHTML = "$" + actuales
 
 
