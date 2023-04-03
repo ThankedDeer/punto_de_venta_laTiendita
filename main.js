@@ -66,6 +66,7 @@ app.commandLine.appendSwitch('no-sandbox');
 
 
 
+app.commandLine.appendSwitch('disable-http-cache');
 
 // app.whenReady().then(() => {
 //   protocol.registerSchemesAsPrivileged([

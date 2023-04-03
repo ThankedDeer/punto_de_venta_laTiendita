@@ -10,17 +10,11 @@ function Login() {
     axios
       .post("http://localhost:3000/api/login", credenciales)
       .then((response) => {
-       
-        console.log(response);
-        // const usuario ={
-        //   id: response.data.id,
-        //   nombre:
-        //   idPermiso:
-        // }
-        const TOKEN = response.data.token
-        localStorage.setItem('token', TOKEN);
-        // localStorage.setItem("vendedor", JSON.stringify(response.data.user));
-        // window.location.href = "./pages/menuPrincipal.html"; // Redirigir a otra página
+        console.log(response.data.token);
+        localStorage.clear();
+        localStorage.setItem("tToken", response.data.token);
+        localStorage.setItem("vendedor", JSON.stringify(response.data.user));
+        window.location.href = "./pages/menuPrincipal.html"; // Redirigir a otra página
       })
       .catch((error) => {
         console.log(error);

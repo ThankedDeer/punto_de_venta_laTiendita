@@ -169,3 +169,7 @@ button {
   -ms-user-select: none;
   user-select: none;
 }
+#ocultar{
+  display: none;
+  
+}
