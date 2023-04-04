@@ -18,6 +18,7 @@ const createWindow = () => {
     },
   });
 
+  app.allowRendererProcessReuse = false;
 
   //quitar despues de conectar todo 
   mainWindow.webContents.openDevTools();
@@ -65,6 +66,7 @@ app.commandLine.appendSwitch('no-sandbox');
 
 
 
+app.commandLine.appendSwitch('disable-http-cache');
 
 // app.whenReady().then(() => {
 //   protocol.registerSchemesAsPrivileged([

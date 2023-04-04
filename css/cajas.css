@@ -163,3 +163,38 @@
    *{
     border: 1px solid red;
    }  */
+
+
+   .caja  {
+    margin-top: 120px;
+    width: 350px;
+    height: 250px;
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    background-image: linear-gradient(144deg,#0c0d0e, #9e9e9e 50%,#000507);
+  }
+  
+  .card__content {
+    background: rgb(222, 218, 218);
+    border-radius: 17px;
+    width: 100%;
+    height: 100%;
+  }
+  .cajaContenedor{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+  }
+  #titulo{
+    padding-top: 50px;
+    font-weight: bold;
+    font-size: 3.5vh;
+  }
+
+  #dinero{
+    
+    font-size: 60px;
+  }
