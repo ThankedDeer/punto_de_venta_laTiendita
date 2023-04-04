@@ -119,7 +119,7 @@ function guardarCambios() {
 
   axios.patch(`http://localhost:3000/api/productos/${codigo}`, productoActualizado)
     .then(response => {
-      console.log(response.data);
+      //console.log(response.data);
       Swal.fire({
         title: "Correcto",
         text: "Producto actualizado correctamente",
@@ -131,8 +131,8 @@ function guardarCambios() {
     .catch(error => {
       console.log(error);
       Swal.fire({
-        title: "Alerta",
-        text: "Hubo un error al guardar los cambios",
+        title: "Hubo un error al guardar los cambios",
+        text: "Verifica bien los datos o seleccionalos correctamente",
         icon: "warning",
         confirmButtonText: "Cerrar",
       });
