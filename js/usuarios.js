@@ -32,3 +32,28 @@ const pintarCards = data => {
 document.addEventListener('DOMContentLoaded', () => {
   fetchData()
 })
+<<<<<<< HEAD
+
+const addCarrito = e => {
+  console.log(e)
+}
+
+// const actualizarRol = ()=>{
+//   const credenciales = {
+//     Nom_Vendedor: document.getElementById("user").,
+//     Contraseña: document.getElementById("pass").value,
+//   };
+  
+//   axios
+//   .patch("http://localhost:3000/api/permisos", credenciales)
+//   .then((response) => {
+//     let lista = response.data
+//     mostrarProductos(lista)
+//   })
+//   .catch((error) =>{
+//     log.error(error);
+//   })
+// }
+
+=======
+>>>>>>> f9ecefe86f2b2ea37b07bb461afd9f1eaa1b6700

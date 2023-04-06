@@ -14,7 +14,7 @@
 
 </head>
 
-<body onload="selectCategoria(); selectProveedor(); obtenerCategorias(); obtenerProveedores();">
+<body onload="selectCategoria(); selectProveedor(); obtenerCategorias(); obtenerProveedores(); mostrarCategorias(); mostrarDatosCategoria()">
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -81,13 +81,13 @@
                     <br>
                     <div>
                     Proveedor
-                    <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example">
+                    <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example" >
                       <option selected value=""></option>
                     </select>
                   </div>
                     <div >
                       Categoria
-                      <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example" onload="selectCategoria();">
+                      <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
                       <option selected value=""></option>
                     </select>
                     </div>
@@ -179,23 +179,64 @@
 
             <!-- Modal -->
             <div class="modal fade" id="eliminarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Producto</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="eliminarCodigo">Codigo</span>
+                    <input type="text" id="eliminarCodigo" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" onchange="mostrarDatosProductos(this.value)">
                   </div>
-                  <div class="modal-body">
-                    ...
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="eliminarNombre">Nombre</span>
+                    <input type="text" id="eliminarNombre" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="eliminarPrecioCompra">Precio Compra</span>
+                    <input type="number" id="eliminarPrecioCompra" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
                   </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="eliminarPrecioVenta">Precio Venta</span>
+                    <input type="number" id="eliminarPrecioVenta" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="eliminarUnidad">Unidad</span>
+                    <input type="text" id="eliminarUnidad" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="actualizarStock">Stock</span>
+                    <input type="number" id="eliminarStock" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
+                  </div>
+                  <br>
+                  <div>
+                    Categoria
+                    <select id="eliminarCategoria" class="form-select form-select-sm"  aria-label=".form-select-sm example" disabled>
+                    <option selected value=""></option>
+                  </select>
+                  </div>
+                  <br>
+                    Proveedor
+                  <select id="eliminarProveedor" class="form-select form-select-sm" aria-label=".form-select-sm example" disabled>
+                    <option selected value=""></option>
+                  </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
+                  <button type="button" class="btn btn-primary" onclick="eliminarProducto();">Eliminar</button>
                 </div>
               </div>
             </div>
+          </div>
+
           </div>
         </div>
         <div class="row">
@@ -236,58 +277,47 @@
           </div>
           <div class="col-4">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#actualizarCategoria">
-              <img class="agregar" src="../public/icons/actualizarIcon.png" alt="">
-              <h6>Actualizar Categoría</h6>
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="actualizarCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Categoría</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#eliminarCategoría">
+            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <img class="agregar" src="../public/icons/eliminarIcon.png" alt="">
-              <h6>Eliminar Categoría</h6>
+              <h6>Actualizar Categoria</h6>
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="eliminarCategoría" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Categoría</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Categoria</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    ...
+                    <div>
+                      <select id="actualizarCat" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <label class="input-group-text" for="actualizarCategoria">Nombre</label>
+                      <input type="text" id="actualizarCategoria" class="form-control" aria-label="Nombre" aria-describedby="addon-wrapping">
+                    </div>
+                    
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text">Descripcion</span>
+                      <input type="text" id="actualizarDescripcion" class="form-control" aria-label="Codigo" aria-describedby="addon-wrapping" readonly>
+                    </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="habilitarCamposCategoria();">Editar</button>
+                    <button type="button" class="btn btn-primary" onclick="editarCategoria();">Actualizar</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          
         </div>
 
       </div>
@@ -340,5 +370,6 @@
 <script src="../js/inventario.js"></script>
 <script src="../js/categoria.js"></script>
 <script src="../js/actProducto.js"></script>
+<script src="../js/eliminarProducto.js"></script>
 
 </html>
