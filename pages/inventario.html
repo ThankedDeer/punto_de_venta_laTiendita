@@ -14,7 +14,7 @@
 
 </head>
 
-<body onload="selectCategoria(); selectProveedor(); obtenerCategorias(); obtenerProveedores();">
+<body onload="selectCategoria(); selectProveedor(); obtenerCategorias(); obtenerProveedores(); mostrarCategorias();">
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -276,7 +276,46 @@
             </div>
           </div>
           <div class="col-4">
-            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <img class="agregar" src="../public/icons/eliminarIcon.png" alt="">
+              <h6>Eliminar Categoria</h6>
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Categoria</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <select id="actualizarCat" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <label class="input-group-text" for="actualizarCategoria">Nombre</label>
+                      <input type="text" id="actualizarCategoria" class="form-control" aria-label="Nombre" aria-describedby="addon-wrapping">
+                    </div>
+                    
+                    <br>
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text">Descripcion</span>
+                      <input type="text" id="actualizarDescripcion" class="form-control" aria-label="Codigo" aria-describedby="addon-wrapping" readonly>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="habilitarCamposCategoria();">Editar</button>
+                    <button type="button" class="btn btn-primary" onclick="editarCategoria();">Actualizar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
         </div>
