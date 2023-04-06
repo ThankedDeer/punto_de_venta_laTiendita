@@ -252,6 +252,7 @@ function datosModal(producto) {
 
 const actualizarPrecio = (producto) => {
   const cantidad = parseFloat(cantidadInput.value);
+
   const precio = parseFloat(producto.Precio_Venta);
   const total = cantidad * precio;
 

@@ -13,12 +13,14 @@ const dineroCaja = (actuales) => {
     .get("http://localhost:3000/api/caja")
     .then((response) => {
        const  dinero = response.data[0].dineroEnCaja
-        const dineroCaja = parseFloat(dinero);
-        const Ganancias = parseFloat(actuales)
+        const dineroCaja = parseFloat(dinero) || 0;
+        const Ganancias = parseFloat(actuales)|| 0;
 
         console.log(dineroCaja);
         console.log(Ganancias);
-        document.getElementById('dinero').innerHTML = "$" + (dineroCaja + Ganancias)
+
+        let resultado = dineroCaja + Ganancias
+        document.getElementById('dinero').innerHTML = "$" +   resultado
 
 
     })
@@ -32,7 +34,7 @@ const gActuales = () => {
   axios
     .get("http://localhost:3000/api/Actuales")
     .then((response) => {
-        actuales = response.data[0].Ganancias
+        let actuales = response.data[0].Ganancias || 0;
         console.log(actuales);
         dineroCaja(actuales)
         document.getElementById('gActuales').innerHTML = "$" + actuales
