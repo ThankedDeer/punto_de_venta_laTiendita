@@ -14,7 +14,7 @@
 
 </head>
 
-<body onload="selectCategoria(); selectProveedor(); obtenerCategorias(); obtenerProveedores(); mostrarCategorias();">
+<body onload="selectCategoria(); selectProveedor(); obtenerCategorias(); obtenerProveedores(); mostrarCategorias(); mostrarDatosCategoria()">
   <nav class="navbar" style="background-color: #0099DD;">
     <div class="container-fluid">
 
@@ -81,13 +81,13 @@
                     <br>
                     <div>
                     Proveedor
-                    <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example">
+                    <select class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example" >
                       <option selected value=""></option>
                     </select>
                   </div>
                     <div >
                       Categoria
-                      <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example" onload="selectCategoria();">
+                      <select class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
                       <option selected value=""></option>
                     </select>
                     </div>

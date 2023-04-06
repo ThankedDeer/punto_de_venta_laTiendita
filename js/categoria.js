@@ -92,40 +92,7 @@ function editarCategoria() {
         });
       }
 
-mostrarCategorias();
 
-
-
-
-
-// function actualizarCategoria() {
-//   const nombreCategoria = document.getElementById("traerNombre").value;
-//   const nombreActualizado = document.getElementById("actualizarNombre").value;
-//   const descripcionActualizada = document.getElementById("actualizarDescripcion").value;
-
-//   axios.put(`http://localhost:3000/api/categoria/${nombreCategoria}`, {
-//     nombre: nombreActualizado,
-//     descripcion: descripcionActualizada
-//   })
-//   .then(response => {
-//     console.log(response.data);
-//     Swal.fire({
-//       title: "Correcto",
-//       text: "Categoria actualizada correctamente",
-//       icon: "success",
-//       confirmButtonText: "Cerrar",
-//     });
-//   })
-//   .catch(error => {
-//     console.error(error);
-//     Swal.fire({
-//       title: "Error al actualizar",
-//       text: "Verifica bien los datos",
-//       icon: "warning",
-//       confirmButtonText: "Cerrar",
-//     });
-//   });
-// }
 
 const habilitarCamposCategoria = function() {
   document.getElementById("actualizarCategoria").removeAttribute("readonly");
