@@ -32,7 +32,6 @@ const pintarCards = data => {
 document.addEventListener('DOMContentLoaded', () => {
   fetchData()
 })
-<<<<<<< HEAD
 
 const addCarrito = e => {
   console.log(e)
@@ -55,5 +54,3 @@ const addCarrito = e => {
 //   })
 // }
 
-=======
->>>>>>> f9ecefe86f2b2ea37b07bb461afd9f1eaa1b6700
