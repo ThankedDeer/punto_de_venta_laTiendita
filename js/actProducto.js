@@ -1,4 +1,7 @@
-
+window.addEventListener("load", function () {
+  obtenerCategorias();
+  obtenerProveedores();
+});
 
 function obtenerCategorias() {
   axios.get('http://localhost:3000/api/categorias')

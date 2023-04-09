@@ -4,6 +4,8 @@ const templateProductos = document.getElementById("templateProductos").content
 
 window.addEventListener("load", function () {
   productos();
+  selectCategoria();
+  selectProveedor();
 });
 
 
