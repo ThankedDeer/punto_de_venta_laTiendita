@@ -3,30 +3,31 @@
   <head>
     <title>La Tiendita</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/reporte.css">
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </head>
-  <link rel="stylesheet" href="../css/reporte.css">
   <body> 
     <nav class="navbar" style="background-color: #0099DD;">
         <div class="container-fluid">
           <a class="navbar-brand" href="../pages/menuPrincipal.html">
             <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top"> 
           </a>
-          <h6> Bienvenido <strong>Eduardo</strong></h5>
+          <h6> Bienvenido <strong>Eduardo</strong></h6>
           <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="50" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
         </div>
     </nav>
     
     <div id="contenido">
-      <h1>Corte de caja</h1>
+      <h2>Abarrotes "La Tiendita"</h2>
+      <h2>Corte de caja</h2>
       <p>Numero de ventas al día <strong id="numVentas"></strong></p> 
-      <p>Ventas por cada categoria</p>
+      <p><strong>Ventas por cada categoria</strong></p>
       <div class="table-responsive">
-        <table class="table table-hover ">
+        <table class="table table-striped table-hover ">
           <thead>
-            <tr class="table titulosDeTabla">
+            <tr class="table-dark titulosDeTabla">
               <th class="titulo" scope="col">Categoria</th>
               <th class="titulo" scope="col">Total de ventas al día</th>
             </tr>
@@ -35,11 +36,11 @@
           </tbody>
         </table>
       </div>
-      <p>Tipos de movimientos en caja</p>
+      <p><strong>Tipos de movimientos en caja</strong></p>
       <div class="table-responsive">
-        <table class="table table-hover ">
+        <table class="table table-striped table-hover ">
           <thead>
-            <tr class="table titulosDeTabla">
+            <tr class="table-dark titulosDeTabla">
               <th class="titulo" scope="col">Tipo de operacion</th>
               <th class="titulo" scope="col">Cantidad</th>
             </tr>
@@ -48,11 +49,11 @@
           </tbody>
         </table>
       </div>
-      Productos con menos cantidad en stock
+      <p><strong>Productos con menos cantidad en stock</strong></p>
       <div class="table-responsive">
-        <table class="table table-hover ">
+        <table class="table table-striped table-hover ">
           <thead>
-            <tr class="table titulosDeTabla">
+            <tr class="table-dark titulosDeTabla">
               <th class="titulo" scope="col">Codigo</th>
               <th class="titulo" scope="col">Nom_Producto</th>
               <th class="titulo" scope="col">Stock</th>
@@ -62,11 +63,11 @@
           </tbody>
         </table>
       </div>
-      <p>Producto mas vendido</p>
+      <p><strong>Producto mas vendido</strong></p>
       <div class="table-responsive">
-        <table class="table table-hover ">
+        <table class="table table-striped table-hover ">
           <thead>
-            <tr class="table titulosDeTabla">
+            <tr class="table-dark titulosDeTabla">
               <th class="titulo" scope="col">Nom_Producto</th>
               <th class="titulo" scope="col">Vendido</th>
             </tr>
@@ -75,11 +76,11 @@
           </tbody>
         </table>
       </div>
-      <p>Producto menos vendido</p>
+      <p><strong>Producto menos vendido</strong></p>
       <div class="table-responsive">
-        <table class="table table-hover ">
+        <table class="table table-striped table-hover ">
           <thead>
-            <tr class="table titulosDeTabla">
+            <tr class="table-dark titulosDeTabla">
               <th class="titulo" scope="col">Nom_Producto</th>
               <th class="titulo" scope="col">Vendido</th>
             </tr>
@@ -126,5 +127,5 @@
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/reportes.js"></script>
-</body>
+  </body>
 </html>

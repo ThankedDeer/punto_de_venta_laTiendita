@@ -4,7 +4,7 @@ data = [];
 
 const fetchData = async () => {
   try {
-    const res = await fetch('http://192.168.43.192:3000/api/vendedores')
+    const res = await fetch('http://localhost:3000/api/vendedores')
     const data = await res.json()
     pintarCards(data)
   } catch (error) {
