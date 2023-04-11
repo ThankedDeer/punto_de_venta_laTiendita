@@ -151,6 +151,8 @@ function limpiarInputsYSelects() {
   
   inputs.forEach(input => input.value = '');
   selects.forEach(select => select.selectedIndex = 0);
+
+  window.location.reload();
 }
 
 const habilitarCampos = function() {
