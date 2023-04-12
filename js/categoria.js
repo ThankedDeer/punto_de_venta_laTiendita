@@ -1,13 +1,17 @@
-window.onload = function() {
+window.addEventListener("load", function () {
   cargarCategorias();
-}
-
+});
 
 function cargarCategorias() {
   axios.get("http://localhost:3000/api/categorias")
     .then(function(response) {
       const categorias = response.data;
       const darCategoria = document.getElementById("darCategoria");
+
+      const opcionVacia = document.createElement("option");
+      opcionVacia.value = "";
+      opcionVacia.text = "";
+      darCategoria.add(opcionVacia);
 
       // Generar una opción por cada categoría en la lista
       categorias.forEach(function(categoria) {
@@ -22,12 +26,13 @@ function cargarCategorias() {
         const idCategoria = darCategoria.value;
         axios.get(`http://localhost:3000/api/categoria/${idCategoria}`)
           .then(function(response) {
+            console.log(idCategoria);
             const categoria = response.data[0];
             console.log(categoria);
-            const newNameCategoria = document.getElementById("newNameCategoria");
-            const newDescripcionCategoria = document.getElementById("newDescripcionCategoria");
-            newNameCategoria.value = categoria.Nom_Categoria;
-            newDescripcionCategoria.value = categoria.Descripcion_Categoria;
+            const actNameCategoria = document.getElementById("actNameCategoria");
+            const actDescripcionCategoria = document.getElementById("actDescripcionCategoria");
+            actNameCategoria.value = categoria.Nom_Categoria;
+            actDescripcionCategoria.value = categoria.Descripcion_Categoria;
           })
           .catch(function(error) {
             console.log(error);
@@ -43,8 +48,8 @@ function cargarCategorias() {
       const btnActualizarCategoria = document.getElementById("btnActualizarCategoria");
       btnActualizarCategoria.addEventListener("click", function() {
         const idCategoria = darCategoria.value;
-        const nombre = document.getElementById("newNameCategoria").value;
-        const descripcion = document.getElementById("newDescripcionCategoria").value;
+        const nombre = document.getElementById("actNameCategoria").value;
+        const descripcion = document.getElementById("actDescripcionCategoria").value;
 
         axios.patch(`http://localhost:3000/api/categoriact/${idCategoria}`, {
           Nom_Categoria: nombre,
