@@ -4,13 +4,15 @@ const templateProductos = document.getElementById("templateProductos").content
 
 window.addEventListener("load", function () {
   productos();
+  selectCategoria();
+  selectProveedor();
 });
 
 
 
 const productos = () => {
   axios
-    .get("http://localhost:3000/api/productos")
+    .get("http://localhost:3000/api/productoss")
     .then((response) => {
       let lista = response.data
       mostrarProductos(lista)
@@ -31,8 +33,8 @@ const mostrarProductos = (lista) =>{
     templateProductos.querySelectorAll('td')[2].textContent = producto.Precio_Venta
     templateProductos.querySelectorAll('td')[3].textContent = producto.Stock
     templateProductos.querySelectorAll('td')[4].textContent = producto.Unidad
-    templateProductos.querySelectorAll('td')[5].textContent = producto.idCategoria
-    templateProductos.querySelectorAll('td')[6].textContent = producto.idProveedor
+    templateProductos.querySelectorAll('td')[5].textContent = producto.Nom_Categoria
+    templateProductos.querySelectorAll('td')[6].textContent = producto.Nom_Proveedor
     const clone  = templateProductos.cloneNode(true);
     fragment.appendChild(clone);
   })
@@ -48,7 +50,7 @@ const selectCategoria = () => {
     
     // Agregar opción "Categoria"
     const defaultOption = document.createElement('option');
-    defaultOption.textContent = "Seleccione una categoria";
+    defaultOption.textContent = "Seleccione una categoría";
     selectCategoria.appendChild(defaultOption);
 
     axios.get('http://localhost:3000/api/categorias')

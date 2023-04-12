@@ -28,7 +28,80 @@
         </div>
   </nav>
 
-    
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-12	col-md-12	col-lg-2	col-xl-2	col-xxl-2">
+        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt maxime temporibus, minima eveniet fugit dolorum accusantium repellendus enim! Blanditiis tempora est quae fugiat cupiditate exercitationem ipsum velit, iste quia debitis. -->
+      </div>
+
+        <br>
+        <h4>Ventas</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="thtabla" scope="col">IdVenta</th>
+              <th class="thtabla" scope="col">IdVendedor</th>
+              <th class="thtabla" scope="col">Nombre</th>
+              <th class="thtabla" scope="col">Fecha</th>
+              <th class="thtabla" scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody id="items"></tbody>
+          <tfoot>
+            <tr id="footer">
+              <th scope="row" colspan="5"></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalBascula" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="productoNombre"></h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                <label class="label" id="precio"></label>
+                <div class="col-6">
+                  <form id="formModal">
+                    <div class="input-group">
+                      <label class="label">Cantidad del producto</label>
+                      <input maxlength="6" autocomplete="off" id="cantidad" class="input" type="text">
+                    </div>
+                  </form>
+                </div>
+                <div class="col-6">
+                  <div class="input-group">
+
+                    <label class="label">Total</label>
+                    <input readonly autocomplete="off" value="0" id="importe" class="input" type="number">
+                  </div>
+                </div>
+
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 
 
 
