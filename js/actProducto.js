@@ -1,4 +1,7 @@
-
+window.addEventListener("load", function () {
+  obtenerCategorias();
+  obtenerProveedores();
+});
 
 function obtenerCategorias() {
   axios.get('http://localhost:3000/api/categorias')
@@ -148,6 +151,8 @@ function limpiarInputsYSelects() {
   
   inputs.forEach(input => input.value = '');
   selects.forEach(select => select.selectedIndex = 0);
+
+  window.location.reload();
 }
 
 const habilitarCampos = function() {

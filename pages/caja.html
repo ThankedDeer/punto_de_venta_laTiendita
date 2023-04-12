@@ -1,19 +1,21 @@
 <!DOCTYPE html>
+<html lang="en"></html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>La Tiendita</title>
     <link
       rel="stylesheet"
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-
   </head>
-  <link rel="stylesheet" href="../css/cajas.css">
-  <script src="../js/cajas.js"></script>
-  
-  
+  <link rel="stylesheet" href="../css/cajas.css" />
+
   <body>
+<<<<<<< HEAD
     <nav class="navbar" style="background-color: #0099DD;">
       <div class="container-fluid">
   
@@ -39,38 +41,235 @@
             <img id="inventarioCaja" src="../public/icons/ProductosInventario.png" alt="">
             <span id="pInventarios" class="quantity">  </span>
             <span class="text text--1"> Productos en inventario </span>
+=======
+    <header>
+      <nav class="navbar" style="background-color: #0099dd">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../pages/menuPrincipal.html">
+            <img
+              src="../public/icons/homeIcon.svg"
+              alt="Logo"
+              width="60"
+              height="24"
+              class="d-inline-block align-text-top"
+            />
+          </a>
+          <h6>Bienvenido a <strong>La Tiendita</strong></h6>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3 col-lg-3 barra">
+          <div class="carta">
+            <div class="item item--1">
+              <img
+                id="inventarioCaja"
+                src="../public/icons/ProductosInventario.png"
+                alt=""
+              />
+              <span id="pInventarios" class="quantity"> </span>
+              <span class="text text--1"> Productos en inventario </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 barra">
+          <div class="carta">
+            <div class="item item--2">
+              <img
+                id="inventarioCaja"
+                src="../public/icons/inverción.png"
+                alt=""
+              />
+              <span id="Inversión" class="quantity"> 150+ </span>
+              <span class="text text--2"> Inversión </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 barra">
+          <div class="carta">
+            <div class="item item--3">
+              <img
+                id="inventarioCaja"
+                src="../public/icons/ganancias.png"
+                alt=""
+              />
+              <span id="gAproximadas" class="quantity"> 150+ </span>
+              <span class="text text--3"> Ganancias Aproximadas </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3 barra">
+          <div class="carta">
+            <div class="item item--4">
+              <img
+                id="inventarioCaja"
+                src="../public/icons/gananciasActuales.png"
+                alt=""
+              />
+              <span id="gActuales" class="quantity"> 30+ </span>
+              <span class="text text--4"> Ganancias Actuales </span>
+            </div>
+>>>>>>> 363199cb1d0d1c27d99546b07ec9cf99b67c18d3
           </div>
         </div>
       </div>
-      <div class="col-3 barra">
-        <div class="carta">
-          
-          <div class="item item--2">
-            <img id="inventarioCaja" src="../public/icons/inverción.png" alt="">
-            <span id="Inversión" class="quantity"> 150+ </span>
-            <span class="text text--2"> Inversión </span>
+      <div class="row dineroEnCaja">
+        <div id="cajaContenedor" class="col-4">
+          <div class="caja">
+            <div class="card__content">
+              <h5 id="titulo">Dinero en caja actual</h5>
+              <span id="dinero">$5000</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-3 barra">
-        <div class="carta">
-          <div class="item item--3">
-            <img id="inventarioCaja" src="../public/icons/ganancias.png" alt="">
-            <span id="gAproximadas" class="quantity"> 150+ </span>
-            <span class="text text--3"> Ganancias Aproximadas </span>
+        <div class="col-5">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr class="table-dark titulosDeTabla">
+                  <th class="titulo" scope="col">Usuario</th>
+                  <th class="titulo" scope="col">Operacion</th>
+                  <th class="titulo" scope="col">Hora</th>
+                  <th class="titulo" scope="col">fecha</th>
+                  <th class="titulo" scope="col">hora</th>
+                </tr>
+              </thead>
+              <tbody id="tablaMoviminetos"></tbody>
+            </table>
           </div>
         </div>
-      </div>
-      <div class="col-3 barra">
-        <div class="carta">
-          <div class="item item--4">            
-            <img id="inventarioCaja" src="../public/icons/gananciasActuales.png" alt="">
-            <span id="gActuales" class="quantity"> 30+ </span>
-            <span class="text text--4"> Ganancias Actuales </span>
+
+        <div id="contenedorMovimientos" class="col-3">
+          <!-- Button trigger modal -->
+          <button
+            id="entrada"
+            type="button"
+            class="btn btn-dark movimientos"
+            data-bs-toggle="modal"
+            data-bs-target="#ingresarDinero"
+          >
+            Ingresar dinero
+          </button>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="ingresarDinero"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Ingresar dinero a caja
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input
+                      id="inputEntrada"
+                      type="number"
+                      class="form-control"
+                      aria-label="Amount (to the nearest dollar)"
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cerrar
+                  </button>
+                  <button
+                    onclick="ingresarCaja()"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Realizar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button trigger modal -->
+          <button
+            id="salida"
+            type="button"
+            class="btn btn-dark movimientos"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Retirar Dinero
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Retirar Dinero de caja
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input
+                      id="inputSalida"
+                      type="number"
+                      class="form-control"
+                      aria-label="Amount (to the nearest dollar)"
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cerrar
+                  </button>
+                  <button
+                    onclick="RetirarCaja()"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Realizar
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+<<<<<<< HEAD
 
     <br>
     <div class="row ">
@@ -140,11 +339,23 @@
 
 
   </div>
+=======
+
+    <template id="templateMovimientos">
+      <tr class="moviminetos">
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+>>>>>>> 363199cb1d0d1c27d99546b07ec9cf99b67c18d3
 
     <!-- Your app content here -->
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-</body>
+    <script src="../js/cajas.js"></script>
+  </body>
 </html>

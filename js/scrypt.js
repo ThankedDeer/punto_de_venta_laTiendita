@@ -87,7 +87,7 @@ const setCarrito = (objeto) => {
   };
 
   if (carrito.hasOwnProperty(producto.Codigo)) {
-    if (carrito[producto.Codigo].Stock == 0) {
+    if (carrito[producto.Codigo].Stock == 1) {
       Swal.fire({
         title: "Alerta",
         text: "Ya no hay mas producto en inventario",
@@ -252,6 +252,7 @@ function datosModal(producto) {
 
 const actualizarPrecio = (producto) => {
   const cantidad = parseFloat(cantidadInput.value);
+
   const precio = parseFloat(producto.Precio_Venta);
   const total = cantidad * precio;
 
