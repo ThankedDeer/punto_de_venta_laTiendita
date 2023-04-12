@@ -39,6 +39,6 @@
     "pdfkit": "^0.13.0",
     "pdfmake": "^0.2.7",
     "popper.js": "^1.14.4",
-    "sweetalert": "^2.1.2"
+    "sweetalert2": "^11.7.3"
   }
 }

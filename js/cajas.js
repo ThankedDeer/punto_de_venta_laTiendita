@@ -19,6 +19,7 @@ const movimientos = () => {
      
       console.log(response.data);
       let movimientos = response.data;
+      tablaMoviminetos.innerHTML = ""
       movimientos.forEach((movimiento) => {
         const fecha = new Date( movimiento.fecha);
         const opciones = { year: "numeric", month: "numeric", day: "numeric" };
@@ -32,7 +33,7 @@ const movimientos = () => {
         templateMovimientos.querySelectorAll("td")[2].textContent =
         fechaFormateada;
         templateMovimientos.querySelectorAll("td")[3].textContent =
-          movimiento.Cantidad;
+          "$" +movimiento.Cantidad;
 
         const clone = templateMovimientos.cloneNode(true);
         fragment.appendChild(clone);
@@ -154,6 +155,7 @@ const ingresarCaja = () => {
     .then((response) => {
       console.log(response.data);
       gActuales();
+      movimientos()
     })
     .catch((error) => {
       console.log(error);
@@ -176,6 +178,7 @@ const RetirarCaja = () => {
     .then((response) => {
       console.log(response.data);
       gActuales();
+      movimientos()
     })
     .catch((error) => {
       console.log(error);

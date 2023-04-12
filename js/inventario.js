@@ -50,7 +50,7 @@ const selectCategoria = () => {
     
     // Agregar opción "Categoria"
     const defaultOption = document.createElement('option');
-    defaultOption.textContent = "Seleccione una categoria";
+    defaultOption.textContent = "Seleccione una categoría";
     selectCategoria.appendChild(defaultOption);
 
     axios.get('http://localhost:3000/api/categorias')
