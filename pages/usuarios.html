@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>La Tiendita</title>
     <link
       rel="stylesheet"
@@ -8,105 +12,273 @@
     />
   </head>
   <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="../css/usuarios.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="../css/usuarios.css" />
   <script src="../js/usuarios.js"></script>
-  
-  
+
   <body>
-  
-    <nav class="navbar" style="background-color: #0099DD;">
+    <nav class="navbar" style="background-color: #0099dd">
       <div class="container-fluid">
-  
         <a class="navbar-brand" href="../pages/menuPrincipal.html">
-          <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
+          <img
+            src="../public/icons/homeIcon.svg"
+            alt="Logo"
+            width="60"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
         </a>
-        <h6> Bienvenido a <strong>La Tiendita</strong></h5>
-  
+        <h6>Bienvenido a <strong>La Tiendita</strong></h6>
       </div>
     </nav>
-    <br>
-      <div class="container" id="usuarios-container">
-        <!-- Las tarjetas de usuario se generan aquí dinámicamente -->
-        <div class="row" id="items"></div>
-      </div>
 
-      <template id="template-card">
-        <div class="col-12 mb-2 col-md-4">
-          <div class="card">
-            <div class="card-body">
-              <img src="../imagenes/usuarios.png">
-              <h5>Nombre</h5>
-              <button  type="button" class="botonPermisos" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@getbootstrap">Cambiar Rol</button><br><br>
-              <button class="botonEliminar">Eliminar Usuario</button>
-            </div>
-          </div>
-        </div>
-      </template>
-          <!--Modal----------------------------------------------------->
-      <button  type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"></button>
-      
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo usuario</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Nombre:</label>
-                  <input type="text" class="form-control" id="recipientname" required>
-                </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                  <input type="text" class="form-control" id="recipientname2" required>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn-sendmessage">Agregar usuario</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <!-- Boton de Crear -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#crear"
+          >
+            Crear Usuario
+          </button>
 
-      <!--Modal 2 ------------------------------------------------------------------>
-      
-      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Cambiar Rol</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div id="checkbox" class="modal-body">
-              
-                <div id="check" class="mb-3" style="display: flexbox;">
-                  <label for="recipient-name" class="col-form-label">Admin:</label>
-                  <input type="checkbox" id="checkbox" name="checkbox">
+          <!-- Modal de Crear -->
+          <div
+            class="modal fade"
+            id="crear"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Crear Usuario
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
                 </div>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Vendedor:</label>
-                  <input type="checkbox" id="checkbox" name="checkbox">
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3"
+                      >Usuario</span
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="usuario"
+                      aria-describedby="basic-addon3"
+                    />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3"
+                      >Contraseña</span
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="contraseña"
+                      aria-describedby="basic-addon3"
+                    />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Rol</span>
+                    <select
+                      id="rol"
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>
+                        Selecciona un Rol para el usuario
+                      </option>
+                      <option value="1">Admin</option>
+                      <option value="2">Vendedor</option>
+                    </select>
+                  </div>
                 </div>
-              
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    onclick="postUsuarios()"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Confirmar
+                  </button>
+                </div>
+              </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button onclick="mostrarAlerta()" type="button" class="btn-sendmessage">Agregar usuario</button>
+          </div>
+
+          <!-- Boton de Eliminar -->
+          <button
+            onclick="selectUsuarios()"
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#eliminar"
+          >
+            Eliminar Usuario
+          </button>
+
+          <!-- Modal de Eliminar -->
+          <div
+            class="modal fade"
+            id="eliminar"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Eliminar Usuario
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <label for="basic-url" class="form-label"
+                    >Selecciona el usuario que desas eliminar</label
+                  >
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3"
+                      >Usuario</span
+                    >
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                    ></select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cerrar
+                  </button>
+                  <button
+                    onclick="eliminarUsario()"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Confirmar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Boton de actualizar -->
+          <button
+            onclick="selectUsuarios2()"
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#actualizar"
+          >
+            Actualizar Usuario
+          </button>
+
+          <!-- Modal de actualizar -->
+          <div
+            class="modal fade"
+            id="actualizar"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Actualizar Usuario
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <label for="basic-url" class="form-label"
+                    >Selecciona el usuario que desas actualizar</label
+                  >
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="updateUsuario"
+                      >Usuario</span
+                    >
+                    <select
+                    onchange="updateshow()"
+                      id="usuarioSelect"
+                      class="form-select"
+                      aria-label="Default select example"
+                    ></select>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Rol</span>
+                    <select
+                      
+                      id="updateRol"
+                      class="form-select"
+                      aria-label="Default select example"
+                    >
+                      <option selected>
+                        Selecciona un Rol para el usuario
+                      </option>
+                      <option value="1">Admin</option>
+                      <option value="2">Vendedor</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                  Cerrar
+                  </button>
+                  <button onclick="updateUsuarios()" type="button" class="btn btn-primary">
+                    Confirmar
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="col-3"></div>
+        <div class="col-6"></div>
       </div>
-    </body>
-    </html>
+    </div>
 
     <!-- Your app content here -->
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-</body>
+  </body>
 </html>
