@@ -1,5 +1,3 @@
-const templateCard = document.getElementById('template-card');
-const fragment = document.createDocumentFragment();
 data = [];
 
 const fetchData = async () => {
@@ -36,5 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 const addCarrito = e => {
-  console.log(e.target)
+  console.log(e)
 }
+
+// const actualizarRol = ()=>{
+//   const credenciales = {
+//     Nom_Vendedor: document.getElementById("user").,
+//     Contraseña: document.getElementById("pass").value,
+//   };
+  
+//   axios
+//   .patch("http://localhost:3000/api/permisos", credenciales)
+//   .then((response) => {
+//     let lista = response.data
+//     mostrarProductos(lista)
+//   })
+//   .catch((error) =>{
+//     log.error(error);
+//   })
+// }
+

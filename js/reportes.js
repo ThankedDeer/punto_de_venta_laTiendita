@@ -143,10 +143,11 @@ function generarPDF() {
   html2pdf()
     .set({
       margin: 1,
+      padding: 1,
       filename: 'reporte.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { dpi: 192, letterRendering: true },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait', margin: [0.5, 1] }
     })
     .from(contenido)
     .save();
