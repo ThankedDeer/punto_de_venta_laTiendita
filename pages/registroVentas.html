@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8">
-  
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="../js/registroVentas.js"></script>
-  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 
-</head>
+    <script src="../js/registroVentas.js"></script>
+  </head>
 
-<body>
- 
-  <nav class="navbar" style="background-color: #0099DD;">
-    <div class="container-fluid">
-        
-      <a class="navbar-brand" href="../pages/menuPrincipal.html">
-        <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top"> 
-    </a>
-        <h6> Bienvenido <strong>Eduardo</strong></h5>
-        <button class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
-        </div>
-  </nav>
-
-  <div class="container">
-    <div class="row">
-
-      <div class="col-sm-12	col-md-12	col-lg-2	col-xl-2	col-xxl-2">
-        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt maxime temporibus, minima eveniet fugit dolorum accusantium repellendus enim! Blanditiis tempora est quae fugiat cupiditate exercitationem ipsum velit, iste quia debitis. -->
+  <body>
+    <nav class="navbar" style="background-color: #0099dd">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../pages/menuPrincipal.html">
+          <img
+            src="../public/icons/homeIcon.svg"
+            alt="Logo"
+            width="60"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <h6>Bienvenido <strong>Eduardo</strong></h6>
+        <button class="noselect">
+          <span class="text">Cerrar Sesión</span
+          ><span class="icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+              ></path></svg
+          ></span>
+        </button>
       </div>
+    </nav>
 
-        <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-2 col-xl-2 col-xxl-2">
+          <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt maxime temporibus, minima eveniet fugit dolorum accusantium repellendus enim! Blanditiis tempora est quae fugiat cupiditate exercitationem ipsum velit, iste quia debitis. -->
+        </div>
+
+        <br />
         <h4>Ventas</h4>
         <table class="table">
           <thead>
@@ -56,62 +73,78 @@
         </table>
       </div>
 
-
-
-
       <!-- Modal -->
-      <div class="modal fade" id="modalBascula" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div
+        class="modal fade"
+        id="modalBascula"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="productoNombre"></h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
             <div class="modal-body">
-
               <div class="row">
                 <label class="label" id="precio"></label>
                 <div class="col-6">
                   <form id="formModal">
                     <div class="input-group">
                       <label class="label">Cantidad del producto</label>
-                      <input maxlength="6" autocomplete="off" id="cantidad" class="input" type="text">
+                      <input
+                        maxlength="6"
+                        autocomplete="off"
+                        id="cantidad"
+                        class="input"
+                        type="text"
+                      />
                     </div>
                   </form>
                 </div>
                 <div class="col-6">
                   <div class="input-group">
-
                     <label class="label">Total</label>
-                    <input readonly autocomplete="off" value="0" id="importe" class="input" type="number">
+                    <input
+                      readonly
+                      autocomplete="off"
+                      value="0"
+                      id="importe"
+                      class="input"
+                      type="number"
+                    />
                   </div>
                 </div>
-
               </div>
 
-
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+                <button type="button" id="aceptar" class="btn btn-primary">
+                  Aceptar
+                </button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
-
-
-
-
-
-</body>
-<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-
+  </body>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </html>
