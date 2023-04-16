@@ -2,6 +2,7 @@
   "name": "latiendita",
   "version": "1.0.0",
   "description": "La tiendida",
+  "type": "module",
   "main": "main.js",
   "scripts": {
     "create-installer:win": "electron-builder --win",
