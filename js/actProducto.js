@@ -56,29 +56,9 @@ function mostrarDatosProducto(codigo) {
       unidadInput.value = producto.Unidad;
       stockInput.value = producto.Stock;
 
-      // Insertar nombre de la categoría en el select correspondiente
-      axios.get(`http://localhost:3000/api/categoria/${producto.idCategoria}`)
-        .then(response => {
-          const categoria = response.data[0];
-          const categoriaOption = document.createElement('option');
-          categoriaOption.value = categoria.Nom_Categoria;
-          categoriaOption.text = categoria.Nom_Categoria;
-          categoriaOption.selected = true;
-          categoriaSelect.appendChild(categoriaOption);
-        })
-        .catch(error => console.error(error));
-
-      // Insertar nombre del proveedor en el select correspondiente
-      axios.get(`http://localhost:3000/api/proveedor/${producto.idProveedor}`)
-        .then(response => {
-          const proveedor = response.data[0];
-          const proveedorOption = document.createElement('option');
-          proveedorOption.value = proveedor.Nom_Proveedor;
-          proveedorOption.text = proveedor.Nom_Proveedor;
-          proveedorOption.selected = true;
-          proveedorSelect.appendChild(proveedorOption);
-        })
-        .catch(error => console.error(error));
+      // Establecer la categoría y proveedor en los selects correspondientes
+      categoriaSelect.value = producto.idCategoria;
+      proveedorSelect.value = producto.idProveedor;
 
       nombreInput.disabled = true;
       precioCompraInput.disabled = true;
@@ -98,6 +78,7 @@ function mostrarDatosProducto(codigo) {
       });
     });
 }
+
 
 
 function guardarCambios() {
