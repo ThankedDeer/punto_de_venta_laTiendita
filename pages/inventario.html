@@ -126,15 +126,13 @@
                       </div>
                       <br />
                       <div class="input-group flex-nowrap">
-                        <span class="input-group-text">Unidad</span>
-                        <input
-                          type="text"
-                          id="crearUnidad"
-                          class="form-control"
-                          placeholder="Opcional"
-                          aria-label=""
-                          aria-describedby="addon-wrapping"
-                        />
+                        <span class="input-group-text" for="crearUnidad">Unidad</span>
+                        <select id="crearUnidad" class="form-control" aria-label="Unidad" aria-describedby="addon-wrapping">
+                          <option value="">Selecciona una opción</option>
+                          <option value="pieza">Pieza</option>
+                          <option value="paquete">Paquete</option>
+                          <option value="kilogramo">Kilogramo</option>
+                        </select>
                       </div>
                       <br />
                       <div class="input-group flex-nowrap">
@@ -304,18 +302,13 @@
                       </div>
                       <br />
                       <div class="input-group flex-nowrap">
-                        <span class="input-group-text" for="actualizarUnidad"
-                          >Unidad</span
-                        >
-                        <input
-                          type="text"
-                          id="actualizarUnidad"
-                          class="form-control"
-                          placeholder=""
-                          aria-label="Codigo"
-                          aria-describedby="addon-wrapping"
-                          disabled
-                        />
+                        <span class="input-group-text" for="actualizarUnidad">Unidad</span>
+                        <select id="actualizarUnidad" class="form-control" aria-label="Unidad" aria-describedby="addon-wrapping" disabled>
+                          <option value="">Selecciona una opción</option>
+                          <option value="pieza">Pieza</option>
+                          <option value="paquete">Paquete</option>
+                          <option value="kilogramo">Kilogramo</option>
+                        </select>
                       </div>
                       <br />
                       <div class="input-group flex-nowrap">

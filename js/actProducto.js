@@ -44,7 +44,7 @@ function mostrarDatosProducto(codigo) {
       const nombreInput = document.getElementById('actualizarNombre');
       const precioCompraInput = document.getElementById('actualizarPrecioCompra');
       const precioVentaInput = document.getElementById('actualizarPrecioVenta');
-      const unidadInput = document.getElementById('actualizarUnidad');
+      const unidadSelect = document.getElementById('actualizarUnidad');
       const stockInput = document.getElementById('actualizarStock');
       const categoriaSelect = document.getElementById('actualizarCategoria');
       const proveedorSelect = document.getElementById('actualizarProveedor');
@@ -53,7 +53,7 @@ function mostrarDatosProducto(codigo) {
       nombreInput.value = producto.Nom_Producto;
       precioCompraInput.value = producto.Precio_Compra;
       precioVentaInput.value = producto.Precio_Venta;
-      unidadInput.value = producto.Unidad;
+      unidadSelect.value = producto.Unidad;
       stockInput.value = producto.Stock;
 
       // Establecer la categoría y proveedor en los selects correspondientes
@@ -63,7 +63,7 @@ function mostrarDatosProducto(codigo) {
       nombreInput.disabled = true;
       precioCompraInput.disabled = true;
       precioVentaInput.disabled = true;
-      unidadInput.disabled = true;
+      unidadSelect.disabled = true;
       stockInput.disabled = true;
       categoriaSelect.disabled = true;
       proveedorSelect.disabled = true;
