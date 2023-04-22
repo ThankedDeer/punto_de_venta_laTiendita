@@ -6,19 +6,32 @@ body {
 .row{
   padding-top: 50px;
 }
-.contenedorFormulario{
-  padding: 40px;
-  width: 40vw;
-  background-color: white;
-  border: solid 1px;
-  border-radius: 20px;
-  height: 70vh;
-}
 
-button{
+
+.botones > button{
   width: 20vw;
   margin: 20px;
   height: 23vh;
   background-color: black !important;
   font-size: 1.4rem !important;
+  border: black;
 }
+.botones{
+  background-size: cover;
+  background-position: top;
+  height: 30vh;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  
+}
+.imgUsuarios{
+ margin-right: 10px;
+  background-color: white;
+  border-radius: 50%;
+  width: 20%;
+}
+
+
+
+

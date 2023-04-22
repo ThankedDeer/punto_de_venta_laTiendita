@@ -37,6 +37,7 @@
       
       <div class="col-sm-12	col-md-12	col-lg-10	col-xl-10 col-xxl-10">
         <div class="input-group mb-3">
+         
           <input id="buscarProducto" onchange="buscarProducto()" type="text" class="form-control"
             placeholder="Ingrese el código de producto">
 
@@ -64,9 +65,8 @@
         </table>
       </div>
       <div class="col-sm-12	col-md-12	col-lg-2	col-xl-2	col-xxl-2">
-        <button onclick="crearVenta()" type="button" class="btn btn-success btn-lg">Finalizar compra</button>
-        <button  type="button" class="btn btn-primary btn-lg">Buscar Producto</button>
-        <button onclick="consultarInventario()" type="button" class="btn btn-secondary btn-lg">Consultar Inventario</button>
+        <button onclick="crearVenta()" type="button" class="btn btn-success btn-lg">Finalizar compra (F1)</button>
+        <button onclick="consultarInventario()" type="button" class="btn btn-secondary btn-lg">Consultar Inventario (F3)</button>
       </div>
 
 
@@ -89,7 +89,7 @@
                   <form id="formModal">
                     <div class="input-group">
                       <label class="label">Cantidad del producto</label>
-                      <input maxlength="6" autocomplete="off" id="cantidad" class="input" type="text">
+                      <input min="0" max="" autocomplete="off" id="cantidad" class="input" type="number">
                     </div>
                   </form>
                 </div>
@@ -105,7 +105,7 @@
 
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button onclick="limpiarModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
               </div>
             </div>

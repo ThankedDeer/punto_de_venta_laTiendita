@@ -21,13 +21,7 @@ const createWindow = () => {
   app.allowRendererProcessReuse = false;
 
   //quitar despues de conectar todo 
-  mainWindow.webContents.openDevTools();
-  mainWindow.webContents.on('devtools-opened', () => {
-    setImmediate(() => {
-        // do whatever you want to do after dev tool completely opened here
-        mainWindow.focus();
-    });
-});
+
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')

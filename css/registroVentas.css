@@ -1,0 +1,16 @@
+.contenedorBTN{
+    display: grid;
+    position: fixed;
+   
+    align-items: center;
+    height: 50vh;
+}
+.btn-dark{
+    height: 60px;
+}
+.row{
+    padding-top: 50px;
+}
+.titulo{
+    text-align: start;
+}

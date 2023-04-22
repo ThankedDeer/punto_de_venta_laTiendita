@@ -45,6 +45,7 @@ const buscarProducto = () => {
       }
 
       if (productoEncontrado.Unidad == "Kilogramo") {
+         
         $("#modalBascula").modal("show");
         if (!listenersAgregados) {
           $("#modalBascula").on("shown.bs.modal", () => {
@@ -248,30 +249,46 @@ function datosModal(producto) {
   // Modifica el contenido de los elementos h1
   tituloProducto.textContent = producto.Nom_Producto;
   precio.textContent = "$" + producto.Precio_Venta + " por " + producto.Unidad;
+
+  
+  
 }
 
 const actualizarPrecio = (producto) => {
   const cantidad = parseFloat(cantidadInput.value);
-
   const precio = parseFloat(producto.Precio_Venta);
+  const stock = parseFloat(producto.Stock);
   const total = cantidad * precio;
 
-  precioInput.value = total;
+  if (cantidad > stock) {
+    swal.fire({
+      title: "Error",
+      text: `La cantidad ingresada excede el stock disponible (${stock})`,
+      icon: "error",
+      button: "Aceptar",
+    }).then(() => {
+      cantidadInput.value = stock; // Restablecer la cantidad al stock disponible
+    });
+  } else {
+    precioInput.value = total;
+  }
 };
+
 
 const limpiarModal = () => {
   modal.querySelector("form").reset();
   $("#modalBascula").modal("toggle");
+  document.getElementById("buscarProducto").value = "";
 };
 
 document.addEventListener("keydown", function (event) {
   switch ((event.ctrlKey && event.code) || event.code) {
     case "F1":
       crearVenta();
-      console.log("F1");
+      
       break;
-    case "1":
-      console.log("1");
+    case "F3":
+      consultarInventario()
       break;
 
     default:

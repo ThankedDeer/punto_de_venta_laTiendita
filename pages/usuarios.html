@@ -14,7 +14,10 @@
   <script src="../node_modules/axios/dist/axios.min.js"></script>
   <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="../css/usuarios.css" />
-  <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css" />
+  <link
+    rel="stylesheet"
+    href="../node_modules/sweetalert2/dist/sweetalert2.min.css"
+  />
   <script src="../js/usuarios.js"></script>
 
   <body>
@@ -34,8 +37,9 @@
     </nav>
 
     <div class="container">
-      <div class="row ">
-        <div class="col-3">
+      <div class="row">
+        <div class="botones col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+          
           <!-- Boton de Crear -->
           <button
             type="button"
@@ -43,6 +47,7 @@
             data-bs-toggle="modal"
             data-bs-target="#crear"
           >
+          <img class="imgUsuarios" src="../imagenes/usuario.png" alt="">
             Crear Usuario
           </button>
 
@@ -111,7 +116,7 @@
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
-                    Cancelar
+                    Cerrar
                   </button>
                   <button
                     onclick="postUsuarios()"
@@ -124,7 +129,9 @@
               </div>
             </div>
           </div>
+        </div>
 
+        <div class="botones col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
           <!-- Boton de Eliminar -->
           <button
             onclick="selectUsuarios()"
@@ -133,6 +140,7 @@
             data-bs-toggle="modal"
             data-bs-target="#eliminar"
           >
+          <img class="imgUsuarios" src="../imagenes/usuario.png" alt="">
             Eliminar Usuario
           </button>
 
@@ -190,7 +198,8 @@
               </div>
             </div>
           </div>
-
+        </div>
+        <div class="botones col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
           <!-- Boton de actualizar -->
           <button
             onclick="selectUsuarios2()"
@@ -199,6 +208,7 @@
             data-bs-toggle="modal"
             data-bs-target="#actualizar"
           >
+          <img class="imgUsuarios" src="../imagenes/usuario.png" alt="">
             Actualizar Usuario
           </button>
 
@@ -232,7 +242,7 @@
                       >Usuario</span
                     >
                     <select
-                    onchange="updateshow()"
+                      onchange="updateshow()"
                       id="usuarioSelect"
                       class="form-select"
                       aria-label="Default select example"
@@ -242,7 +252,6 @@
                   <div class="input-group mb-3">
                     <span class="input-group-text">Rol</span>
                     <select
-                      
                       id="updateRol"
                       class="form-select"
                       aria-label="Default select example"
@@ -261,9 +270,13 @@
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
                   >
-                  Cerrar
+                    Cerrar
                   </button>
-                  <button onclick="updateUsuarios()" type="button" class="btn btn-primary">
+                  <button
+                    onclick="updateUsuarios()"
+                    type="button"
+                    class="btn btn-primary"
+                  >
                     Confirmar
                   </button>
                 </div>
@@ -271,9 +284,6 @@
             </div>
           </div>
         </div>
-
-        <div class="col-3"></div>
-        <div class="col-6"></div>
       </div>
     </div>
 

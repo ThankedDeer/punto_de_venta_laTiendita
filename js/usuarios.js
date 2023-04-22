@@ -32,6 +32,9 @@ const postUsuarios = () => {
 
 const selectUsuarios = () => {
   const select = document.querySelector("#eliminar select");
+  const objeto = localStorage.getItem("vendedor");
+  const vendedor = JSON.parse(objeto);
+  
   axios
     .get("http://localhost:3000/api/vendedores") // Reemplaza la URL con la URL de tu API
     .then((response) => {
@@ -43,6 +46,14 @@ const selectUsuarios = () => {
         option.textContent = usuario.Nom_Vendedor;
         select.appendChild(option);
       });
+      const options = select.querySelectorAll("option");
+      options.forEach((option) => {
+        if (option.value == vendedor.id) {
+          option.disabled = true;
+          option.style.color = "red";
+
+        }
+      });
     })
     .catch((error) => {
       console.error(error);
@@ -52,6 +63,7 @@ const selectUsuarios = () => {
 const eliminarUsario = () => {
   const usuarioEliminar = document.querySelector("#eliminar select").value;
   console.log(usuarioEliminar);
+  
 
   axios
     .delete("http://localhost:3000/api/vendedores/" + usuarioEliminar)
@@ -72,22 +84,26 @@ const eliminarUsario = () => {
 
 const selectUsuarios2 = () => {
   const select = document.querySelector("#actualizar select");
+ 
   axios
-    .get("http://localhost:3000/api/vendedores") // Reemplaza la URL con la URL de tu API
+    .get("http://localhost:3000/api/vendedores")
     .then((response) => {
       const usuarios = response.data;
-      select.innerHTML = "<option selected>Usuarios</option>"; // Agregar la opción seleccionada
+      select.innerHTML = "<option selected>Usuarios</option>";
       usuarios.forEach((usuario) => {
         const option = document.createElement("option");
         option.value = usuario.idVendedor;
         option.textContent = usuario.Nom_Vendedor;
         select.appendChild(option);
       });
+
+     
     })
     .catch((error) => {
       console.error(error);
     });
 };
+
 
 const updateshow = () => {
   const usuario = document.getElementById("usuarioSelect").value;
