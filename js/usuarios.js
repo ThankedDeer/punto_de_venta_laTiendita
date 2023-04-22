@@ -135,7 +135,7 @@ const updateUsuarios = () => {
     idVendedor_Permisos: rol2.value,
     idVendedor: usuario.value,
   };
-
+  console.log(updateUsuario);
   axios
     .patch("http://localhost:3000/api/permisos", updateUsuario)
     .then((response) => {
