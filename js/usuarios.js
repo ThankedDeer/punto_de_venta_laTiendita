@@ -7,14 +7,13 @@ const postUsuarios = () => {
     Nom_Vendedor: usuario.value,
     Contraseña: contraseña.value,
   };
-  console.log(newUsuario);
 
   axios
     .post("http://localhost:3000/api/vendedores", newUsuario)
     .then((response) => {
       let usuarioCreado = response.data.Nom_Vendedor;
       Swal.fire({
-        title: "Alerta",
+        title: "Creado",
         html:
           "Usuario <strong>" + usuarioCreado + "</strong> creado exitosamente",
         icon: "success",
@@ -36,10 +35,10 @@ const selectUsuarios = () => {
   const vendedor = JSON.parse(objeto);
   
   axios
-    .get("http://localhost:3000/api/vendedores") // Reemplaza la URL con la URL de tu API
+    .get("http://localhost:3000/api/vendedores") 
     .then((response) => {
       const usuarios = response.data;
-      select.innerHTML = "<option selected>Usuarios</option>"; // Agregar la opción seleccionada
+      select.innerHTML = "<option selected>Usuarios</option>"; 
       usuarios.forEach((usuario) => {
         const option = document.createElement("option");
         option.value = usuario.idVendedor;
@@ -61,16 +60,12 @@ const selectUsuarios = () => {
 };
 
 const eliminarUsario = () => {
-  const usuarioEliminar = document.querySelector("#eliminar select").value;
-  console.log(usuarioEliminar);
-  
-
+  const usuarioEliminar = document.querySelector("#eliminar select").value;  
   axios
     .delete("http://localhost:3000/api/vendedores/" + usuarioEliminar)
     .then((response) => {
-      console.log(response);
       Swal.fire({
-        title: "Alerta",
+        title: "Eliminado",
         html: "Usuario eliminado exitosamente",
         icon: "success",
         confirmButtonText: "Aceptar",
@@ -84,7 +79,6 @@ const eliminarUsario = () => {
 
 const selectUsuarios2 = () => {
   const select = document.querySelector("#actualizar select");
- 
   axios
     .get("http://localhost:3000/api/vendedores")
     .then((response) => {
@@ -96,8 +90,6 @@ const selectUsuarios2 = () => {
         option.textContent = usuario.Nom_Vendedor;
         select.appendChild(option);
       });
-
-     
     })
     .catch((error) => {
       console.error(error);
@@ -107,12 +99,10 @@ const selectUsuarios2 = () => {
 
 const updateshow = () => {
   const usuario = document.getElementById("usuarioSelect").value;
-
   axios
-    .get("http://localhost:3000/api/vendedor/" + usuario) // Reemplaza la URL con la URL de tu API
+    .get("http://localhost:3000/api/vendedor/" + usuario)
     .then((response) => {
       let idPermiso = response.data[0].idVendedor_Permisos;
-      console.log(idPermiso);
       const selectRol = document.getElementById("updateRol");
 
       for (let i = 0; i < selectRol.options.length; i++) {
@@ -130,17 +120,15 @@ const updateshow = () => {
 const updateUsuarios = () => {
   const usuario = document.getElementById("usuarioSelect");
   const rol2 = document.getElementById("updateRol");
-  
   const updateUsuario = {
     idVendedor_Permisos: rol2.value,
     idVendedor: usuario.value,
   };
-  console.log(updateUsuario);
   axios
     .patch("http://localhost:3000/api/permisos", updateUsuario)
     .then((response) => {
       Swal.fire({
-        title: "Alerta",
+        title: "Actualizado",
         html: "Usuario actualizado exitosamente",
         icon: "success",
         confirmButtonText: "Aceptar",
@@ -153,3 +141,13 @@ const updateUsuarios = () => {
       console.log(error);
     });
 };
+
+function limpiarInputsYSelects() {
+  const inputs = document.querySelectorAll('input[type=text], input[type=number]');
+  const selects = document.querySelectorAll('select');
+  
+  inputs.forEach(input => input.value = '');
+  selects.forEach(select => select.selectedIndex = 0);
+
+  window.location.reload();
+}

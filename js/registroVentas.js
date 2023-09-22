@@ -1,101 +1,48 @@
 const tablaVentas = document.getElementById("tablaVentas");
 const fragment = document.createDocumentFragment();
 const templateVentas = document.getElementById("templateVentas").content;
+const templateVentasVentasAxl = document.getElementById("templateVentasVentas").content;
+const templateVentasSemana = document.getElementById("templateVentasSemana").content;
 
 window.addEventListener("DOMContentLoaded", function () {
   ventas();
 });
 
 const ventas = () => {
-  axios
-    .get("http://localhost:3000/api/allventas")
+  axios.get("http://localhost:3000/api/allventas")
     .then((response) => {
       let ventas = response.data;
-      tablaVentas.innerHTML = "";
-      ventas.forEach((venta) => {
-        const fecha = new Date(venta.fecha);
-        const opciones = { year: "numeric", month: "numeric", day: "numeric" };
-        const fechaFormateada = fecha.toLocaleDateString("es-ES", opciones);
-        templateVentas.querySelector("th").textContent = venta.idVenta;
-        templateVentas.querySelectorAll("td")[0].textContent = fechaFormateada;
-        templateVentas.querySelectorAll("td")[1].textContent =
-          venta.Total_Venta;
-        templateVentas.querySelectorAll("td")[2].innerHTML =
-          "<ul>" +
-          venta.Productos.map(
-            (producto) =>
-              `<li>${producto.Nom_producto} (Cantidad: ${producto.Cantidad})</li>`
-          ).join("") +
-          "</ul>";
 
-        const clone = templateVentas.cloneNode(true);
-        fragment.appendChild(clone);
+      ventas.sort((a, b) => {
+        return b.idVenta - a.idVenta;
       });
-      tablaVentas.appendChild(fragment);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-const semana = () => {
-  axios
-    .get("http://localhost:3000/api/sventas")
-    .then((response) => {
-      let ventas = response.data;
 
       tablaVentas.innerHTML = "";
       ventas.forEach((venta) => {
-        const fecha = new Date(venta.fecha);
+        const fecha = new Date(venta.Fecha);
+
+        const offset = fecha.getTimezoneOffset();
+        fecha.setMinutes(fecha.getMinutes() + offset);
+
         const opciones = { year: "numeric", month: "numeric", day: "numeric" };
         const fechaFormateada = fecha.toLocaleDateString("es-ES", opciones);
-        templateVentas.querySelector("th").textContent = venta.idVenta;
-        templateVentas.querySelectorAll("td")[0].textContent = fechaFormateada;
-        templateVentas.querySelectorAll("td")[1].textContent =
-          venta.Total_Venta;
-        templateVentas.querySelectorAll("td")[2].innerHTML =
-          "<ul>" +
-          venta.Productos.map(
-            (producto) =>
-              `<li>${producto.Nom_producto} (Cantidad: ${producto.Cantidad})</li>`
-          ).join("") +
-          "</ul>";
 
-        const clone = templateVentas.cloneNode(true);
-        fragment.appendChild(clone);
-      });
-      tablaVentas.appendChild(fragment);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+        const templateVentasClone = templateVentasVentasAxl.cloneNode(true);
+        templateVentasClone.querySelector("th").textContent = venta.idVenta;
+        templateVentasClone.querySelectorAll("td")[2].textContent = fechaFormateada;
+        templateVentasClone.querySelectorAll("td")[5].textContent = venta.Total_Venta;
 
-const dia = () => {
-  axios
-    .get("http://localhost:3000/api/dventas")
-    .then((response) => {
-      let ventas = response.data;
+        let productosHTML = "<ul>";
+        venta.Productos.forEach((producto) => {
+          productosHTML += `<li>${producto.Nom_Producto} (Cantidad: ${producto.Cantidad_Producto})</li>`;
+        });
+        productosHTML += "</ul>";
+        templateVentasClone.querySelectorAll("td")[4].innerHTML = productosHTML;
 
-      tablaVentas.innerHTML = "";
-      ventas.forEach((venta) => {
-        const fecha = new Date(venta.fecha);
-        const opciones = { year: "numeric", month: "numeric", day: "numeric" };
-        const fechaFormateada = fecha.toLocaleDateString("es-ES", opciones);
-        templateVentas.querySelector("th").textContent = venta.idVenta;
-        templateVentas.querySelectorAll("td")[0].textContent = fechaFormateada;
-        templateVentas.querySelectorAll("td")[1].textContent =
-          venta.Total_Venta;
-        templateVentas.querySelectorAll("td")[2].innerHTML =
-          "<ul>" +
-          venta.Productos.map(
-            (producto) =>
-              `<li>${producto.Nom_producto} (Cantidad: ${producto.Cantidad})</li>`
-          ).join("") +
-          "</ul>";
-
-        const clone = templateVentas.cloneNode(true);
-        fragment.appendChild(clone);
+        templateVentasClone.querySelectorAll("td")[1].textContent = venta.Nom_Vendedor; 
+        templateVentasClone.querySelectorAll("td")[0].textContent = venta.idCaja;
+        templateVentasClone.querySelectorAll("td")[3].textContent = venta.Hora;
+        fragment.appendChild(templateVentasClone);
       });
       tablaVentas.appendChild(fragment);
     })

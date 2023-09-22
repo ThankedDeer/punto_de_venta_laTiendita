@@ -1,4 +1,11 @@
-  
+
+html, body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
    .carta .item {
     
     border-radius: 10px;
@@ -147,7 +154,28 @@
     width: 100%;
     
   }
-  
+
+  #span{
+    background-color: black;
+    color: white;
+  }
+
+  .form-control{
+    background-color: white;  
+    border-color: black;
+  }
+
+  .texto{
+    font-size: 15px;
+  }
+
+  .btn{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 5px;
+    padding: 20px;
+
+  }
 
   /* *{
     border: solid red 1px;

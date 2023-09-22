@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>La Tiendita</title>
+    <title>Punto de Venta</title>
     <link
       rel="stylesheet"
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -14,25 +14,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </head>
   <body>
-    <nav class="navbar" style="background-color: #0099dd">
+    <nav class="navbar" style="background-color: rgb(255, 238, 168);">
       <div class="container-fluid">
         <a class="navbar-brand" href="../pages/menuPrincipal.html">
           <img
-            src="../public/icons/homeIcon.svg"
+            src="../public/icons/home-icon.svg"
             alt="Logo"
             width="60"
             height="24"
             class="d-inline-block align-text-top"
           />
         </a>
-        <h6>Bienvenido a <strong>La Tiendita</strong></h6>
+        <h6><strong>Reportes</strong></h6>
       </div>
     </nav>
     <br />
 
     <div id="contenido">
-      <h2>Abarrotes "La Tiendita"</h2>
-      <p>Número de ventas al día <strong id="numVentas"></strong></p>
+      <h2 id="Nom_Sucursal"></h2>
+      <p>Número de ventas del día <strong id="numVentas"></strong></p>
       <p><strong>Tipos de movimientos en caja</strong></p>
       <div class="table-responsive">
         <table class="table table-striped table-hover">
@@ -50,9 +50,9 @@
         <table class="table table-striped table-hover">
           <thead>
             <tr class="table-dark titulosDeTabla">
-              <th class="titulo" scope="col">Código</th>
               <th class="titulo" scope="col">Nom_Producto</th>
               <th class="titulo" scope="col">Stock</th>
+              <th class="titulo" scope="col"></th>
             </tr>
           </thead>
           <tbody id="tablaStock"></tbody>
@@ -84,7 +84,7 @@
       </div>
     </div>
 
-    <button onclick="generarPDF()">Genera PDF</button>
+    <button onclick="generarPDF(); window.print()">Genera PDF</button>
     <template id="templateVentass">
       <tr class="producto">
         <th scope="row"></th>
@@ -120,5 +120,10 @@
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../js/reportes.js"></script>
+    <script>
+      var sucursal = localStorage.getItem("Nom_Sucursal");
+            var textoCompleto = sucursal;
+            document.getElementById("Nom_Sucursal").textContent = textoCompleto;
+    </script>
   </body>
 </html>

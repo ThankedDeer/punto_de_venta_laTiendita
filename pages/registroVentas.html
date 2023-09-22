@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>La Tiendita</title>
+    <title>Punto de Venta</title>
     <link
       rel="stylesheet"
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -22,18 +22,18 @@
 
   <body>
    <header>
-    <nav class="navbar" style="background-color: #0099dd">
+    <nav class="navbar" style="background-color: rgb(255, 238, 168);">
       <div class="container-fluid">
         <a class="navbar-brand" href="../pages/menuPrincipal.html">
           <img
-            src="../public/icons/homeIcon.svg"
+            src="../public/icons/home-icon.svg"
             alt="Logo"
             width="60"
             height="24"
             class="d-inline-block align-text-top"
           />
         </a>
-        <h6>Bienvenido a <strong>La Tiendita</strong></h6>
+        <h6><strong>Registro de Ventas</strong></h6>
       </div>
     </nav>
    </header>
@@ -44,35 +44,51 @@
         <div class="table-responsive">
           <table class="table table-striped table-hover">
             <thead>
-              <tr class="table-dark titulosDeTabla">
-                <th class="titulo" scope="col">id Venta</th>
-                <th class="titulo" scope="col">Fecha</th>
-                <th class="titulo" scope="col">Total de la Venta</th>
-                <th class="titulo" scope="col">Productos</th>
-                
+              <tr class="table titulosDeTabla">
+                <th class="titulo" scope="col">No. Venta</td>
+                <td class="titulo" scope="col">No. Caja</td>
+                <td class="titulo" scope="col">Vendedor</td>
+                <td class="titulo" scope="col">Fecha</td>
+                <td class="titulo" scope="col">Hora</td>
+                <td class="titulo" scope="col">Productos</td>
+                <td class="titulo" scope="col">Total Venta</td>
               </tr>
             </thead>
-            <tbody id="tablaVentas"></tbody>
+            <tbody id="tablaVentas">
+              <template id="templateVentasVentas">
+                <tr class="movimientos">
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </template>
+              
+              <template id="templateVentasSemana">
+                <tr class="movimientos">
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </template>
+              
+            </tbody>
           </table>
+          
         </div>
-      </div>
-      <div class="col-2">
-       <div class="contenedorBTN">
-        <button onclick="ventas()" class="btn btn-dark">Ventas por mes</button>
-        <button onclick="semana()" class="btn btn-dark">Ventas por semana</button>
-        <button onclick="dia()" class="btn btn-dark">Ventas por día</button>
-       </div>
-        
       </div>
     </div>
    </div>
 
-
-
-
-
-
-   <template id="templateVentas">
+  <template id="templateVentas">
     <tr class="moviminetos">
       <th scope="row"></th>
       <td></td>
@@ -80,11 +96,6 @@
       <td></td>
     </tr>
   </template>
-
-    
-
-  
-
     <!-- Your app content here -->
     <script src="../js/registroVentas.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>

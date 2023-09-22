@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Número de Caja</title>
+    <!-- Head section -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./css/inventario.css" />
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css" />
+  </head>
+  <body>
+    <form id="numeroCajaForm">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="numeroCaja">Número de Caja</span>
+        <input type="number" id="numeroCaja" name="numeroCaja" min="1" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="numeroComputadora">Número de Computadora</span>
+        <input type="number" id="numeroComputadora" placeholder="Coloca el numero de computadora de la pantalla anterior" name="numeroComputadora" min="1" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <button type="submit" id="guardarCajaBtn" class="btn btn-primary">Crear</button>
+    </form>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const numeroCajaForm = document.getElementById('numeroCajaForm');
+
+        numeroCajaForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const numeroCajaInput = document.getElementById('numeroCaja');
+          const numeroComputadoraInput = document.getElementById('numeroComputadora');
+
+          const numeroCaja = numeroCajaInput.value;
+          const numeroComputadora = numeroComputadoraInput.value;
+
+          await guardarCajaEnBaseDeDatosYLocalStorage(numeroCaja, numeroComputadora);
+        });
+      });
+
+    const guardarCajaEnBaseDeDatosYLocalStorage = async (idCaja, idCompu) => {
+        try {
+          const response = await axios.post('http://localhost:3000/api/caja', {
+            idCaja: idCaja,
+            idCompu: idCompu
+          });
+          localStorage.setItem('idCaja', idCaja);
+          return response.compu;
+        } catch (error) {
+          console.error(error);
+          throw error;
+        }
+      };
+    </script>
+    
+  </body>
+</html>

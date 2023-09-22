@@ -6,24 +6,35 @@
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Punto de Venta</title>
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/ventas.css">
   <script src="../node_modules/axios/dist/axios.min.js"></script>
   <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css" />
-
-
 </head>
 
 <body>
-  <nav class="navbar" style="background-color: #0099DD;">
+  <nav class="navbar" style="background-color: rgb(255, 238, 168);">
     <div class="container-fluid">
 
       <a class="navbar-brand" href="../pages/menuPrincipal.html">
-        <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
+        <img src="../public/icons/home-icon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
       </a>
-      <h6> Bienvenido a <strong>La Tiendita</strong></h5>
+      <h5 id="numero"><strong></strong></h5>
+      <script>
+        var numero = localStorage.getItem("idCaja");
+        var textoCompleto = "Caja: " + numero;
+        document.getElementById("numero").textContent = textoCompleto;
+      </script>
+      <h5 id="vendedor"></h5>
+      <script>
+        var vendedor = localStorage.getItem('vendedor');
+        var vendedorObjeto = JSON.parse(vendedor);
+        var username = vendedorObjeto.username;
+        document.getElementById("vendedor").textContent = "Lo atiende: " + username;
+      </script>
+      <h6><strong>Ventas</strong></h6>
 
     </div>
   </nav>
@@ -37,19 +48,18 @@
       
       <div class="col-sm-12	col-md-12	col-lg-10	col-xl-10 col-xxl-10">
         <div class="input-group mb-3">
-         
-          <input id="buscarProducto" onchange="buscarProducto()" type="text" class="form-control"
-            placeholder="Ingrese el código de producto">
+        
+          <input id="buscarProducto" onchange="buscarProducto();" type="text" class="form-control"
+            placeholder="Ingrese el código del producto">
 
         </div>
 
         <br>
-        <h4>Lista de articulos</h4>
         <table class="table">
           <thead>
             <tr>
               <th class="thtabla" scope="col"># Codigo</th>
-              <th class="thtabla" scope="col">Nombre</th>
+              <th class="thtabla" scope="col">Producto</th>
               <th class="thtabla" scope="col">Cantidad</th>
               <th class="thtabla" scope="col">Acción</th>
               <th class="thtabla" scope="col">Precio Unitario</th>
@@ -65,8 +75,70 @@
         </table>
       </div>
       <div class="col-sm-12	col-md-12	col-lg-2	col-xl-2	col-xxl-2">
-        <button onclick="crearVenta()" type="button" class="btn btn-success btn-lg">Finalizar compra (F1)</button>
-        <button onclick="consultarInventario()" type="button" class="btn btn-secondary btn-lg">Consultar Inventario (F3)</button>
+        <button onclick="crearVenta()" id="btnPrint" type="button" class="btn btn-success btn-lg">Subtotal (F1)</button>
+
+
+
+
+        <div class="col-4">       
+        <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#crear">
+          Consultar Producto
+        </button>
+
+          <!-- Modal de Crear -->
+          <div
+          class="modal fade"
+          id="crear"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="staticBackdropLabel"
+          aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                    Consultar Producto
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    onclick=""></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group flex-nowrap">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="filtrarProducto"
+                      aria-describedby="basic-addon3"
+                      oninput="filtrarProductos()"
+                    />
+                  </div>
+                  <select id="opcionesFiltradas" class="form-control2" onchange=""></select> <!-- Select para mostrar las opciones -->
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onclick=""
+                  >
+                    Cerrar
+                  </button>
+                  <button
+                    onclick="insertarProducto()"
+                    type="button"
+                    class="btn btn-success"
+                  >
+                    Insertar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
 
 
@@ -106,7 +178,7 @@
 
               <div class="modal-footer">
                 <button onclick="limpiarModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" id="aceptar" class="btn btn-primary">Aceptar</button>
+                <button type="button" id="aceptar" class="btn btn-success">Aceptar</button>
               </div>
             </div>
           </div>
@@ -114,31 +186,6 @@
 
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <template id="templateLista">
       <tr id="trTabla">
@@ -177,5 +224,8 @@
 <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../js/scrypt.js"></script>
+<script>
+
+</script>
 
 </html>
