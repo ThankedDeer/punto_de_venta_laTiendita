@@ -1,0 +1,31 @@
+html, body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+.contenedorBTN{
+    display: grid;
+    position: fixed;
+   
+    align-items: center;
+    height: 50vh;
+}
+.btn-dark{
+    height: 60px;
+}
+.row{
+    padding-top: 50px;
+}
+.titulo{
+    text-align: start;
+}
+
+.titulosDeTabla{
+    background-color: rgb(0, 0, 82);
+  }
+  
+  .titulo{
+    color: white;
+  }

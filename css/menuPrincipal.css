@@ -3,6 +3,7 @@
     --hover-bg: #ff9933;
     --hover-text: #000;
     max-width: 23ch;
+    max-height: 23ch;
     text-align: center;
     background: var(--bg);
     padding: 1.5em;

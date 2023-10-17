@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>La Tiendita</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/index.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  </head>
-
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Punto de Venta</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/index.css" />
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+  <script src="./node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css" />
+</head>
 
 <body>
-  <br><br><br><br>
-  <div class="register-form"><br>
-    <h2 style="text-align: center;">Inicio de Sesión</h2><br>
-    <input type="text" id="user" placeholder="Usuario" required>
-    <input type="password"  id="pass" placeholder="Contraseña" required><br><br>
-    <button class="btn-login" onclick="Login()">Iniciar sesión</button> 
-  </div><br>
+  <div class="contenedor">
+    <div class="form">
+      <span class="title">Bienvenido</span>
+      <input id="file" type="file">
+      <div class="imagenContenedor">
+        <img src="imagenes/tienda.png" alt="">
+      </div>
+      <input class="input" type="text" id="user" placeholder="Usuario" required>
+      <input class="input" type="password"  id="pass" placeholder="Contraseña" required onchange="Login()"><br><br>
+      <button class="btn-login" onclick="Login()">Iniciar sesión</button> 
 
-  <!-- <a href="pages/menuPrincipal.html">segunapagina</a> -->
-
-
-
-  <!-- Script de Axios -->
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-
+      
+      <!-- <a href="./pages/menuPrincipal.html">Menu</a> -->
+    </div>
+  </div>
 
   <!-- Scripts adicionales -->
-  <script src="./js/index.js"></script>
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="./js/index.js"></script>
 </body>
 </html>

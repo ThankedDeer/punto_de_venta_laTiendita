@@ -1,101 +1,106 @@
-body{
-  font-family: 'PT Sans' !important;  
-  margin: auto;
-  text-align: center;
-  background-image: url(../public/icons/login.avif);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Login form */
-.login-form, .contenedor {
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 300px;
-  margin: 0 auto;
-}
-.login-form h1 {
-  text-align: center;
-  color:midnightblue ;
-  font-size: 28px;
-  padding: 70px 0 10px 0;
-}
-.login-form input[type="password"],
-.login-form input[type="text"] {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #ced4da;
-  margin-bottom: 10px;
-  box-sizing:border-box;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 100px 100px 80px rgba(0, 0, 0, 0.03);
 }
 
-/* Estilos boton LOGIN*/
-.btn-login{
-  width: 100%;
-  padding: 15px;
-  background-color: #0099DD;
-  border: 0;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: large;
-  color: #ffffff;
-  transition: transform 0.2s ease-out;
-}
-.btn-login:hover,.btn-login:active{
-  color:#fff;
-  background-color:#026E81;
-  border-color: black;
-  transform: scale(0.95);
-}
-.btn-login:focus{
-  box-shadow:0 0 0 3px rgba(121,82,179,0.25)
-}
-
-
-/* Estilos de link para realizar el LOGOUT*/
-.a-logout:link, .a-logout:visited {
-  background-color: red;
+.title {
   color: black;
-  border: 2px solid black;
-  padding: 10px 20px;
+  font-weight: bold;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  width: 200px;
+  font-size: 20px;
+  margin-bottom: 4px;
 }
 
-.a-logout:hover, .a-logout:active {
-  background-color: red;
-  color: black ;
-  font-size: 15px;
-}
-
-
-
-/* form User Registration */
-.register-form{
-  width: 400px;
-  margin: 0 auto;
-  padding: 0px 20px 60px 20px;
-  margin-top: 35px;
-  font-family: "PT Sans";  
-  text-align: left !important;
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); 
-  background-color: #ffffff;
-  border-radius: 30px;
-}
-
-.register-form h1 {
-  text-align: left;
-  color:midnightblue ;
-  font-size: 22px;
-  padding: 70px 0 10px 0;
-}
-.register-form input[type="password"],
-.register-form input[type="text"] {
+.sub {
+  text-align: center;
+  color: black;
+  font-size: 14px;
   width: 100%;
-  padding: 15px;
-  border: 1px solid #ced4da;
-  margin-bottom: 10px;
-  box-sizing:border-box;
 }
 
+.sub.mb {
+  margin-bottom: 1px;
+}
+
+.sub a {
+  color: rgb(23, 111, 211);
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(23, 111, 211);
+  border-radius: 50%;
+  align-self: center;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.015),
+    100px 100px 80px rgba(0, 0, 0, 0.03);
+}
+
+.form button {
+  align-self: flex-end;
+}
+
+.input,
+button {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 16px 10px;
+  background-color: rgb(247, 243, 243);
+  border-radius: 10px;
+  box-shadow: 12.5px 12.5px 10px rgba(0, 0, 0, 0.015),
+    100px 100px 80px rgba(0, 0, 0, 0.03);
+}
+
+button {
+  margin-top: 12px;
+  background-color: rgb(0, 0, 82);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.input:focus {
+  border: 1px solid rgb(0, 0, 82);
+}
+
+#file {
+  display: none;
+}
+
+.contenedor {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  background: rgb(6, 86, 255);
+  background: linear-gradient(
+    158deg,
+    rgb(253, 231, 145) 7%,
+    rgb(248, 239, 160) 34%,
+    rgb(247, 247, 198) 56%,
+    rgba(233, 241, 255, 1) 78%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+img {
+  width: 80px;
+}
+
+.imagenContenedor {
+  width: 100%;
+  text-align: center;
+}

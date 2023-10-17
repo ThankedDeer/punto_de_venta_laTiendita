@@ -70,9 +70,11 @@
    button:active .icon svg {
     transform: scale(0.8);
    }
-  #contenido{
-    display: grid;
-    justify-content: start;
-    align-items: center;
+   
+  p{
+  text-align: center;
+  }
 
+  h2{
+  text-align: center;
   }

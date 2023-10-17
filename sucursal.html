@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Datos de Sucursal</title>
+    <!-- Head section -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./css/inventario.css" />
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css" />
+  </head>
+  <body>
+    <form id="sucursalForm">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="idSucursal">ID de Sucursal</span>
+        <input type="text" id="idSucursal" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="nombreSucursal">Nombre de Sucursal</span>
+        <input type="text" id="nombreSucursal" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="direccionSucursal">Dirección de Sucursal</span>
+        <input type="text" id="direccionSucursal" placeholder="" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="contactoSucursal">Contacto de Sucursal</span>
+        <input type="text" id="contactoSucursal" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <button type="submit" id="guardarSucursalBtn" class="btn btn-primary">Guardar</button>
+    </form>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const sucursalForm = document.getElementById('sucursalForm');
+
+      sucursalForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const idSucursalInput = document.getElementById('idSucursal');
+        const nombreSucursalInput = document.getElementById('nombreSucursal');
+        const direccionSucursalInput = document.getElementById('direccionSucursal');
+        const contactoSucursalInput = document.getElementById('contactoSucursal');
+
+        const idSucursal = idSucursalInput.value;
+        const nombreSucursal = nombreSucursalInput.value;
+        const direccionSucursal = direccionSucursalInput.value;
+        const contactoSucursal = contactoSucursalInput.value;
+
+        await guardarSucursalEnBaseDeDatosYLocalStorage(idSucursal, nombreSucursal, direccionSucursal, contactoSucursal);
+      });
+    });
+
+    const guardarSucursalEnBaseDeDatosYLocalStorage = async (idSucursal, Nom_Sucursal, Direccion_Sucursal, Contacto_Sucursal) => {
+        try {
+          const response = await axios.post('http://localhost:3000/api/crearSucursal', {
+            idSucursal: idSucursal, 
+            Nom_Sucursal: Nom_Sucursal, 
+            Direccion_Sucursal: Direccion_Sucursal, 
+            Contacto_Sucursal: Contacto_Sucursal
+          });
+          localStorage.setItem('idSucursal', idSucursal);
+          localStorage.setItem('Nom_Sucursal', Nom_Sucursal);
+          localStorage.setItem('Direccion_Sucursal', Direccion_Sucursal);
+          localStorage.setItem('Contacto_Sucursal', Contacto_Sucursal);
+          return response.compu;
+        } catch (error) {
+          console.error(error);
+          throw error;
+        }
+      };
+    </script>
+    
+  </body>
+</html>

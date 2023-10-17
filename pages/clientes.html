@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punto de Venta</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../css/inventario.css" />
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css" />
+  </head>
+
+  <body>
+    <nav class="navbar" style="background-color: rgb(255, 238, 168);">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../pages/menuPrincipal.html">
+          <img
+            src="../public/icons/home-icon.svg"
+            alt="Logo"
+            width="60"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <h6><strong>Clientes</strong></h6>
+      </div>
+    </nav>
+
+    <br />
+
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn botones" data-bs-toggle="modal" data-bs-target="#nuevoProducto">
+                <img class="agregar" src="../public/icons/nuevoCliente.png" alt="" />
+                <h6 class="text"><strong>Nuevo Cliente</strong></h6>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="nuevoProducto"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Nuevo Cliente
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Nombre</span>
+                        <input
+                          type="text"
+                          id="crearNombreCliente"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required/>
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Dirección</span>
+                        <input
+                          type="text"
+                          id="crearDireccionCliente"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required/>
+                      </div>
+                      <br>
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Contacto</span>
+                        <input
+                          type="text"
+                          id="crearContactoCliente"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required/>
+                      </div>                      
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects()"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="nuevoCliente()"
+                      >
+                        Crear
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#actualizarProducto"
+              >
+                <img
+                  class="agregar"
+                  src="../public/icons/nuevoCredito.png"
+                  alt=""
+                />
+                <h6 class="text"><strong>Añadir saldo pendiente a cliente</strong></h6>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="actualizarProducto"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Añadir saldo pendiente a cliente
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="cliente"
+                          >Cliente</span
+                        >
+                        <select
+                          onload="clientes();"
+                          id="cliente"
+                          class="form-select form-select-sm"
+                          aria-label=".form-select-sm example"
+                          required
+                        >
+                          <option selected value=""></option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span
+                          class="input-group-text"
+                          for="credito"
+                          >Saldo a deber</span
+                        >
+                        <input
+                          type="number"
+                          id="credito"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="crearCredito();"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#eliminarProducto"
+              >
+                <img
+                  class="agregar"
+                  src="../public/icons/actualizarCliente.png"
+                  alt=""
+                />
+                <h6 class="text"><strong>Actualizar saldo pendiente a cliente</strong></h6>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="eliminarProducto"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Actualizar saldo pendiente a cliente
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actcliente"
+                          >Cliente</span
+                        >
+                        <select
+                          onchange="cargarClientes()"
+                          id="actcliente"
+                          class="form-select form-select-sm"
+                          aria-label=".form-select-sm example"
+                          required
+                        >
+                          <option selected value=""></option>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="creditos"
+                          >Saldos pendientes</span
+                        >
+                        <select
+                          onload=""
+                          id="creditos"
+                          class="form-select form-select-sm"
+                          aria-label=".form-select-sm example"
+                          required
+                        >
+                          <option selected value=""></option>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actualizarCredito"
+                          >Cantidad abonada</span
+                        >
+                        <input
+                          type="number"
+                          id="actualizarCredito"
+                          class="form-control"
+                          min="0"
+                          placeholder="$ Precio a descontar"
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="actualizarCredito();"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+      <div class="row">
+        <div class="col-4">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn botones"
+            data-bs-toggle="modal"
+            data-bs-target="#nuevaCategoria"
+          >
+            <img class="agregar" src="../public/icons/actualizarProducto.png" alt="" />
+            <h6 class="text"><strong>Actualizar/Consultar datos de cliente</strong></h6>
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="nuevaCategoria"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                    Actualizar/Consultar datos de cliente
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    onclick="limpiarInputsYSelects()"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="actcliente"
+                      >Cliente</span
+                    >
+                    <select
+                      onload=""
+                      id="actcliente"
+                      class="form-select form-select-sm"
+                      aria-label=".form-select-sm example"
+                      onchange="cargarDatosCliente(this.value)"
+                    >
+                      <option selected value=""></option>
+                    </select>
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Nuevo Nombre</span>
+                    <input
+                      type="text"
+                      id="nuevoNombre"
+                      class="form-control"
+                      placeholder=""
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
+                      disabled
+                    />
+                  </div>
+                  <br />
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Nueva Dirección</span>
+                    <input
+                      type="text"
+                      id="nuevaDireccion"
+                      class="form-control"
+                      placeholder=""
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
+                      disabled
+                    />
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Nuevo Contacto</span>
+                    <input
+                      type="text"
+                      id="nuevoContacto"
+                      class="form-control"
+                      placeholder=""
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onclick="limpiarInputsYSelects();"
+                  >
+                    Cerrar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="habilitarCampos();"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    onclick="actualizarCliente();"
+                  >
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-6">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn botones"
+            data-bs-toggle="modal"
+            data-bs-target="#eliminarCliente"
+          >
+            <img class="agregar" src="../public/icons/eliminarProducto.png" alt="" />
+            <h6 class="text"><strong>Eliminar Cliente</strong></h6>
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="eliminarCliente"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                    Eliminar Cliente
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    onclick="limpiarInputsYSelects()"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" for="actcliente"
+                      >Cliente</span
+                    >
+                    <select
+                      onload=""
+                      id="actcliente"
+                      class="form-select form-select-sm"
+                      aria-label=".form-select-sm example"
+                      onchange="cargarDatosCliente(this.value)"
+                    >
+                      <option selected value=""></option>
+                    </select>
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Nombre</span>
+                    <input
+                      type="text"
+                      id="nuevoNombre"
+                      class="form-control"
+                      placeholder=""
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
+                      disabled
+                    />
+                  </div>
+                  <br />
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Dirección</span>
+                    <input
+                      type="text"
+                      id="nuevaDireccion"
+                      class="form-control"
+                      placeholder=""
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
+                      disabled
+                    />
+                  </div>
+                  <br>
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text">Contacto</span>
+                    <input
+                      type="text"
+                      id="nuevoContacto"
+                      class="form-control"
+                      placeholder=""
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
+                      disabled
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onclick="limpiarInputsYSelects();"
+                  >
+                    Cerrar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onclick="eliminarCliente();"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="col-6">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="table titulosDeTabla">
+            <th class="titulo" scope="col">Cliente</th>
+            <th class="titulo" scope="col">Saldo pendiente</th>
+          </tr>
+        </thead>
+        <tbody id="tablaCredito"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+  
+
+    <template id="templateCredito">
+      <tr class="credito">
+        <th scope="row"></th>
+        <td></td>
+      </tr>
+    </template>
+  </body>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../js/cliente.js"></script>
+</html>

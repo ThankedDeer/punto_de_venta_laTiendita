@@ -1,446 +1,1098 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Punto de Venta</title>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../css/inventario.css" />
+    <script src="../node_modules/axios/dist/axios.min.js"></script>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css" />
+  </head>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Tiendita</title>
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="../css/inventario.css" />
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <body>
+    <nav class="navbar" style="background-color: rgb(255, 238, 168);">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../pages/menuPrincipal.html">
+          <img
+            src="../public/icons/home-icon.svg"
+            alt="Logo home-icon"
+            width="60"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <h6><strong>Inventario</strong></h6>
+      </div>
+    </nav>
 
-</head>
+    <br />
 
-<body>
-  <nav class="navbar" style="background-color: #0099DD;">
-    <div class="container-fluid">
-
-      <a class="navbar-brand" href="../pages/menuPrincipal.html">
-        <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
-      </a>
-      <h6> Bienvenido a <strong>La Tiendita</strong></h5>
-    </div>
-  </nav>
-
-  <br>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-6">
-        <div class="row">
-
-          <div class="col-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark botones " data-bs-toggle="modal" data-bs-target="#nuevoProducto">
-              <img class="agregar" src="../public/icons/agregar.png" alt="">
-              <h6>Nuevo Producto</h6>
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="nuevoProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarInputsYSelects()"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Codigo</span>
-                      <input type="text" id="crearCodigo" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping">
-                    </div>
-                    <br>
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Nombre</span>
-                      <input type="text" id="crearNombre" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping">
-                    </div>
-                    <br>
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Precio Compra</span>
-                      <input type="number" id="crearPrecioCompra" min="0" class="form-control" placeholder="$" aria-label="" aria-describedby="addon-wrapping">
-                    </div>
-                    <br>
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Precio Venta</span>
-                      <input type="number" id="crearPrecioVenta" min="0" class="form-control" placeholder="$" aria-label="" aria-describedby="addon-wrapping">
-                    </div>
-                    <br>
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Unidad</span>
-                      <input type="text" id="crearUnidad" class="form-control" placeholder="Opcional" aria-label="" aria-describedby="addon-wrapping">
-                    </div>
-                    <br>
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Stock</span>
-                      <input type="number" id="crearStock" min="0" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping">
-                    </div>
-                    <br>
-                    <div >
-                      Categoria
-                      <select onload="selectCategoria();" class="form-select form-select-sm" id="selectCategoria" aria-label=".form-select-sm example">
-                      <option selected value=""></option>
-                    </select>
-                    </div>
-                    <br>
-                    <div>
-                      Proveedor
-                      <select onload="selectProveedor();" class="form-select form-select-sm" id="selectProveedor" aria-label=".form-select-sm example" >
-                        <option selected value=""></option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects()">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="nuevoProducto();">Crear</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#actualizarProducto">
-              <img class="agregar" src="../public/icons/actualizarIcon.png" alt="">
-              <h6>Actualizar Producto</h6>
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="actualizarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Actualizar Producto</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarInputsYSelects()"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="actualizarCodigo">Codigo</span>
-                    <input type="text" id="actualizarCodigo" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" onchange="mostrarDatosProducto(this.value)">
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="actualizarNombre">Nombre</span>
-                    <input type="text" id="actualizarNombre" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="actualizarPrecioCompra">Precio Compra</span>
-                    <input type="number" id="actualizarPrecioCompra" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="actualizarPrecioVenta">Precio Venta</span>
-                    <input type="number" id="actualizarPrecioVenta" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="actualizarUnidad">Unidad</span>
-                    <input type="text" id="actualizarUnidad" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="actualizarStock">Stock</span>
-                    <input type="number" id="actualizarStock" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div>
-                    Categoria
-                    <select onload="obtenerCategorias();" id="actualizarCategoria" class="form-select form-select-sm"  aria-label=".form-select-sm example" disabled>
-                    <option selected value=""></option>
-                  </select>
-                  </div>
-                  <br>
-                    Proveedor
-                  <select onload="obtenerProveedores();" id="actualizarProveedor" class="form-select form-select-sm" aria-label=".form-select-sm example" disabled>
-                    <option selected value=""></option>
-                  </select>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
-                  <button type="button" class="btn btn-primary" onclick="habilitarCampos();">Editar</button>
-                  <button type="button" class="btn btn-primary" onclick="guardarCambios();">Guardar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-          
-          <div class="col-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#eliminarProducto">
-              <img class="agregar" src="../public/icons/eliminarIcon.png" alt="">
-              <h6>Eliminar Producto</h6>
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="eliminarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar Producto</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarInputsYSelects()"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="eliminarCodigo">Código</span>
-                    <input type="text" id="eliminarCodigo" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" onchange="mostrarDatosProductos(this.value)">
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="eliminarNombre">Nombre</span>
-                    <input type="text" id="eliminarNombre" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="eliminarPrecioCompra">Precio Compra</span>
-                    <input type="number" id="eliminarPrecioCompra" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="eliminarPrecioVenta">Precio Venta</span>
-                    <input type="number" id="eliminarPrecioVenta" min="0" class="form-control" placeholder="$" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="eliminarUnidad">Unidad</span>
-                    <input type="text" id="eliminarUnidad" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div class="input-group flex-nowrap">
-                    <span class="input-group-text" for="actualizarStock">Stock</span>
-                    <input type="number" id="eliminarStock" min="0" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping" disabled>
-                  </div>
-                  <br>
-                  <div>
-                    Categoría
-                    <select id="eliminarCategoria" class="form-select form-select-sm"  aria-label=".form-select-sm example" disabled>
-                    <option selected value=""></option>
-                  </select>
-                  </div>
-                  <br>
-                    Proveedor
-                  <select id="eliminarProveedor" class="form-select form-select-sm" aria-label=".form-select-sm example" disabled>
-                    <option selected value=""></option>
-                  </select>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
-                  <button type="button" class="btn btn-primary" onclick="eliminarProducto();">Eliminar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#nuevaCategoria">
-              <img class="agregar" src="../public/icons/agregar.png" alt="">
-              <h6>Nueva Categoría</h6>
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="nuevaCategoria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-              aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Categoría</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarInputsYSelects()"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Nombre</span>
-                      <input type="text" id="newNameCategoria" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
-                    </div>
-                    <br>
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text">Descripción</span>
-                      <input type="text" id="newDescripcionCategoria" class="form-control" placeholder="Opcional" aria-label="Codigo" aria-describedby="addon-wrapping">
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="nuevaCategoria();">Crear</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <!-- Button trigger modal -->
-              <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <img class="agregar" src="../public/icons/actualizarIcon.png">
-                <h6>Actualizar Categoría</h6>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#nuevoProducto"
+              >
+                <img class="agregar" src="../public/icons/masProducto.png" alt="" />
+                <h6 class="text"><strong>Nuevo Producto</strong></h6>
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div
+                class="modal fade"
+                id="nuevoProducto"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Categoría</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarInputsYSelects()"></button>
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Nuevo Producto
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
                     </div>
                     <div class="modal-body">
-                      <label for="darCategoria">Selecciona una categoría:</label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="darCategoria" name="darCategoria">
-                      </select>
-                      <br>
                       <div class="input-group flex-nowrap">
-                        <span class="input-group-text" for="actNameCategoria">Nuevo nombre</span>
-                        <input class="form-control" type="text" id="actNameCategoria" name="actNameCategoria">
+                        <span class="input-group-text">Código</span>
+                        <input
+                          type="text"
+                          id="crearCodigoProducto"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Nombre</span>
+                        <input
+                          type="text"
+                          id="crearNombre"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Precio Compra</span>
+                        <input
+                          type="number"
+                          id="crearPrecioCompra"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Precio Venta</span>
+                        <input
+                          type="number"
+                          id="crearPrecioVenta"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Precio Promocion</span>
+                        <input
+                          type="number"
+                          id="crearPrecioPromocion"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                        />
                       </div>
                       <br>
                       <div class="input-group flex-nowrap">
-                        <span class="input-group-text" for="actDescripcionCategoria">Nueva descripción</span>
-                        <input class="form-control" type="text" id="actDescripcionCategoria" name="actDescripcionCategoria">
+                        <span class="input-group-text">Stock</span>
+                        <input
+                          type="number"
+                          id="crearStock"
+                          min="0"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="crearUnidad">Unidad</span>
+                        <select id="crearUnidad" class="form-control" aria-label="Unidad" aria-describedby="addon-wrapping" required>
+                          <option disabled selected value="">Selecciona una opción</option>
+                          <option value="Pieza">Pieza</option>
+                          <option value="Kilogramo">Kilogramo</option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="crearDisponible">Disponible</span>
+                        <select id="crearDisponible" class="form-control" aria-label="Disponible" aria-describedby="addon-wrapping" required>
+                          <option disabled selected value="">Selecciona una opción</option>
+                          <option value="1">Disponible</option>
+                          <option value="0">No disponible</option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="crearDisponible">Categoría</span>
+                        <select
+                        onload="selectCategoria();"
+                        class="form-select form-select-sm"
+                        id="selectCategoria"
+                        aria-label=".form-select-sm example"
+                        required
+                      >
+                        <option selected value=""></option>
+                      </select>
+                      </div>
+                      <br>
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="crearDisponible">Proveedor</span>
+                        <select
+                          onload="selectProveedor();"
+                          class="form-select form-select-sm"
+                          id="selectProveedor"
+                          aria-label=".form-select-sm example"
+                          required
+                        >
+                          <option selected value=""></option>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="Sucursal">Sucursal</span>
+                        <select
+                          onload="fillSucursalOptions()"
+                          class="form-select form-select-sm"
+                          id="Sucursal"
+                          aria-label=".form-select-sm example"
+                          disabled
+                        >
+                          <!-- <option selected value=""></option> -->
+                        </select>
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
-                      <button id="btnActualizarCategoria" type="button" class="btn btn-primary">Actualizar</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects()"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="nuevoProducto()"
+                      >
+                        Crear
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-4">
-            <!-- Button trigger modal -->
-              <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <img class="agregar" src="../public/icons/agregar.png" alt="">
-                <h6>Nuevo Proveedor</h6>
+            </div>
+
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#actualizarProducto"
+              >
+                <img
+                  class="agregar"
+                  src="../public/icons/actualizarProducto.png"
+                  alt=""
+                />
+                <h6 class="text"><strong>Actualizar Producto</strong></h6>
               </button>
 
               <!-- Modal -->
-              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div
+                class="modal fade"
+                id="actualizarProducto"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo Proveedor</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarInputsYSelects()"></button>
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Actualizar Producto
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actualizarCodigo"
+                          >Código</span
+                        >
+                        <input
+                          type="text"
+                          id="actualizarCodigo"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          onchange="mostrarDatosProducto(this.value)"
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actualizarNombre"
+                          >Nombre</span
+                        >
+                        <input
+                          type="text"
+                          id="actualizarNombre"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span
+                          class="input-group-text"
+                          for="actualizarPrecioCompra"
+                          >Precio Compra</span
+                        >
+                        <input
+                          type="number"
+                          id="actualizarPrecioCompra"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span
+                          class="input-group-text"
+                          for="actualizarPrecioVenta"
+                          >Precio Venta</span
+                        >
+                        <input
+                          type="number"
+                          id="actualizarPrecioVenta"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Precio Promocion</span>
+                        <input
+                          type="number"
+                          id="actualizarPrecioPromocion"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actualizarStock"
+                          >Stock</span
+                        >
+                        <input
+                          type="number"
+                          id="actualizarStock"
+                          min="0"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actualizarUnidad">Unidad</span>
+                        <select id="actualizarUnidad" class="form-control" aria-label="Unidad" aria-describedby="addon-wrapping" disabled required>
+                          <option disabled selected value="">Selecciona una opción</option>
+                          <option value="Pieza">Pieza</option>
+                          <option value="Kilogramo">Kilogramo</option>
+                        </select>
+                      </div>
+                      <br>
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actualizarDisponible">Disponible</span>
+                        <select id="actualizarDisponible" class="form-control" aria-label="Disponible" aria-describedby="addon-wrapping" disabled required>
+                          <option disabled selected value="">Selecciona una opción</option>
+                          <option value="1">Disponible</option>
+                          <option value="0">No disponible</option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarCategoria"
+                          >Categoria</span
+                        >
+                        <select
+                          onload="obtenerCategorias();"
+                          id="actualizarCategoria"
+                          class="form-select form-select-sm"
+                          aria-label=".form-select-sm example"
+                          disabled
+                          required
+                        >
+                          <option selected value=""></option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                      <span class="input-group-text" for="eliminarProveedor"
+                          >Proveedor</span
+                        >
+                      <select
+                        onload="obtenerProveedores();"
+                        id="actualizarProveedor"
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        disabled
+                        required
+                      >
+                        <option selected value=""></option>
+                      </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="habilitarCampos();"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="guardarCambios();"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#eliminarProducto"
+              >
+                <img
+                  class="agregar"
+                  src="../public/icons/eliminarProducto.png"
+                  alt=""
+                />
+                <h6 class="text"><strong>Eliminar Producto</strong></h6>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="eliminarProducto"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Eliminar Producto
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarCodigo"
+                          >Código</span
+                        >
+                        <input
+                          type="text"
+                          id="eliminarCodigo"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          onchange="mostrarDatosProductos(this.value)"
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarNombre"
+                          >Nombre</span
+                        >
+                        <input
+                          type="text"
+                          id="eliminarNombre"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span
+                          class="input-group-text"
+                          for="eliminarPrecioCompra"
+                          >Precio Compra</span
+                        >
+                        <input
+                          type="number"
+                          id="eliminarPrecioCompra"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarPrecioVenta"
+                          >Precio Venta</span
+                        >
+                        <input
+                          type="number"
+                          id="eliminarPrecioVenta"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Precio Promocion</span>
+                        <input
+                          type="number"
+                          id="eliminarPrecioPromocion"
+                          min="0"
+                          class="form-control"
+                          placeholder="$"
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarStock"
+                          >Stock</span
+                        >
+                        <input
+                          type="number"
+                          id="eliminarStock"
+                          min="0"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarUnidad"
+                          >Unidad</span
+                        >
+                        <input
+                          type="text"
+                          id="eliminarUnidad"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarDisponible">
+                          Disponible
+                        </span>
+                        <input
+                          type="text"
+                          id="eliminarDisponible"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarCategoria"
+                          >Categoria</span
+                        >
+                        <input
+                          type="text"
+                          id="eliminarCategoria"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                      <br>
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="eliminarProveedor"
+                          >Proveedor</span
+                        >
+                        <input
+                          type="text"
+                          id="eliminarProveedor"
+                          class="form-control"
+                          placeholder=""
+                          aria-label=""
+                          aria-describedby="addon-wrapping"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        onclick="eliminarProducto();"
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#nuevaCategoria"
+              >
+                <img class="agregar" src="../public/icons/masProducto.png" alt="" />
+                <h6 class="text"><strong>Nueva Categoría</strong></h6>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="nuevaCategoria"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Nueva Categoría
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
                     </div>
                     <div class="modal-body">
                       <div class="input-group flex-nowrap">
                         <span class="input-group-text">Nombre</span>
-                        <input type="text" id="newProveedor" class="form-control" placeholder="" aria-label="Codigo" aria-describedby="addon-wrapping">
+                        <input
+                          type="text"
+                          id="newNameCategoria"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
                       </div>
-                      <br>
+                      <br />
                       <div class="input-group flex-nowrap">
                         <span class="input-group-text">Descripción</span>
-                        <input type="text" id="newDescripcionProveedor" class="form-control" placeholder="Opcional" aria-label="Codigo" aria-describedby="addon-wrapping">
+                        <input
+                          type="text"
+                          id="newDescripcionCategoria"
+                          class="form-control"
+                          placeholder="Opcional"
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                        />
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
-                      <button type="button" class="btn btn-primary" onclick="nuevoProveedor();">Crear</button>
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="nuevaCategoria();"
+                      >
+                        Crear
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-          </div>
+            </div>
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <img class="agregar" src="../public/icons/actualizarProducto.png" />
+                <h6 class="text"><strong>Actualizar/Consultar Categoría</strong></h6>
+              </button>
 
-          <div class="col-4">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-dark botones" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              <img class="agregar" src="../public/icons/actualizarIcon.png">
-              <h6>Actualizar Proveedor</h6>
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Actualizar Proveedor</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="limpiarInputsYSelects()"></button>
-                  </div>
-                  <div class="modal-body">
-                    <label for="darProveedor">Selecciona un proveedor:</label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="darProveedor" name="darProveedor">
-                      </select>
-                      <br>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Actualizar/Consultar Categoría
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
                       <div class="input-group flex-nowrap">
-                        <span class="input-group-text" for="actNameProveedor">Nuevo nombre</span>
-                        <input class="form-control" type="text" id="actNameProveedor" name="actNameProveedor">
-                      </div>
-                      <br>
+                      <span class="input-group-text" for="darCategoria"
+                        >Categoría</span
+                      >
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        id="darCategoria"
+                        name="darCategoria"
+                      ></select>
+                    </div>
+                      <br />
                       <div class="input-group flex-nowrap">
-                        <span class="input-group-text" for="actContactoProveedor">Nuevo Contacto</span>
-                        <input class="form-control" type="text" id="actContactoProveedor" name="actContactoProveedor">
+                        <span class="input-group-text" for="actNameCategoria"
+                          >Nombre</span
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="actNameCategoria"
+                          name="actNameCategoria"
+                          disabled
+                        />
                       </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span
+                          class="input-group-text"
+                          for="actDescripcionCategoria"
+                          >Descripción</span
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="actDescripcionCategoria"
+                          name="actDescripcionCategoria"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        id="btnActualizarCategoria"
+                        type="button"
+                        class="btn btn-success"
+                      >
+                        Actualizar
+                      </button>
+                    </div>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarInputsYSelects();">Cerrar</button>
-                    <button id="btnActualizarProveedor" type="button" class="btn btn-primary">Actualizar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+              >
+                <img class="agregar" src="../public/icons/masProducto.png" alt="" />
+                <h6 class="text"><strong>Nuevo Proveedor</strong></h6>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                        Nuevo Proveedor
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Nombre</span>
+                        <input
+                          type="text"
+                          id="newProveedor"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text">Contacto</span>
+                        <input
+                          type="text"
+                          id="newDescripcionProveedor"
+                          class="form-control"
+                          placeholder=""
+                          aria-label="Codigo"
+                          aria-describedby="addon-wrapping"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="nuevoProveedor();"
+                      >
+                        Crear
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn botones"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal1"
+              >
+                <img class="agregar" src="../public/icons/actualizarProducto.png" />
+                <h6 class="text"><strong>Actualizar/Consultar Proveedor</strong></h6>
+              </button>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal1"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Actualizar/Consultar Proveedor
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        onclick="limpiarInputsYSelects()"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="input-group flex-nowrap">
+                      <span class="input-group-text" for="darProveedor">Proveedor</span>
+                      <select
+                        class="form-select form-select-sm"
+                        aria-label=".form-select-sm example"
+                        id="darProveedor"
+                        name="darProveedor"
+                      ></select>
+                    </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span class="input-group-text" for="actNameProveedor"
+                          >Nombre</span
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="actNameProveedor"
+                          name="actNameProveedor"
+                          disabled
+                        />
+                      </div>
+                      <br />
+                      <div class="input-group flex-nowrap">
+                        <span
+                          class="input-group-text"
+                          for="actContactoProveedor"
+                          >Contacto</span
+                        >
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="actContactoProveedor"
+                          name="actContactoProveedor"
+                          disabled
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                        onclick="limpiarInputsYSelects();"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onclick="habilitarCamposProveedor();"
+                      >
+                        Editar
+                      </button>
+                      <button
+                        id="btnActualizarProveedor"
+                        type="button"
+                        class="btn btn-success"
+                      >
+                        Actualizar
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
-      <div class="col-6">
-        <div class="table-responsive">
-          <table class="table table-striped table-hover ">
-            <thead>
-              <tr class="table-dark titulosDeTabla">
-                <th class="titulo" scope="col">Codigo</th>
-                <th class="titulo" scope="col">Nombre</th>
-                <th class="titulo" scope="col">Precio Compra</th>
-                <th class="titulo" scope="col">Precio Venta</th>
-                <th class="titulo" scope="col">Stock</th>
-                <th class="titulo" scope="col">Unidad</th>
-                <th class="titulo" scope="col">Categoria</th>
-                <th class="titulo" scope="col">Proveedor</th>
-              </tr>
-            </thead>
-            <tbody id="tablaProductos">
-
-            </tbody>
-          </table>
+        <div class="col-6">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr class="table titulosDeTabla">
+                  <th class="titulo" scope="col">Codigo</th>
+                  <th class="titulo" scope="col">Nombre</th>
+                  <th class="titulo" scope="col">Precio Compra</th>
+                  <th class="titulo" scope="col">Precio Venta</th>
+                  <th class="titulo" scope="col">Precio Promocion</th>
+                  <th class="titulo" scope="col">Stock</th>
+                  <th class="titulo" scope="col">Unidad</th>
+                  <th class="titulo" scope="col">Disponible</th>
+                  <th class="titulo" scope="col">Categoria</th>
+                  <th class="titulo" scope="col">Proveedor</th>
+                </tr>
+              </thead>
+              <tbody id="tablaProductos"></tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-
-
-  <template id="templateProductos">
-    <tr class="producto">
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </template>
-
-
-
-
-</body>
-<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-<script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../js/inventario.js"></script>
-<script src="../js/categoria.js"></script>
-<script src="../js/actProducto.js"></script>
-<script src="../js/eliminarProducto.js"></script>
-<script src="../js/proveedor.js"></script>
-
+    <template id="templateProductos">
+      <tr class="producto">
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </template>
+  </body>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../js/inventario.js"></script>
+  <script src="../js/categoria.js"></script>
+  <script src="../js/actProducto.js"></script>
+  <script src="../js/eliminarProducto.js"></script>
+  <script src="../js/proveedor.js"></script>
 </html>

@@ -2,21 +2,34 @@
 <html>
 
 <head>
-    <title>La Tiendita</title>
+    <title>Punto de Venta</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <link rel="stylesheet" href="../css/menuPrincipal.css">
-
+<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.min.css" />
 
 <body>
-    <nav class="navbar" style="background-color: #0099DD;">
+    <nav class="navbar" style="background-color: rgb(255, 238, 168);">
         <div class="container-fluid">
 
             <a class="navbar-brand" href="../pages/menuPrincipal.html">
-                <img src="../public/icons/homeIcon.svg" alt="Logo" width="60" height="24"
+                <img src="../public/icons/home-icon.svg" alt="Logo" width="60" height="24"
                     class="d-inline-block align-text-top">
             </a>
-            <h6> Bienvenido a <strong>La Tiendita</strong></h5>
+            <h5 id="numero"><strong></strong></h5>
+      <script>
+        var numero = localStorage.getItem("idCaja");
+        var textoCompleto = "Caja: " + numero;
+        document.getElementById("numero").textContent = textoCompleto;
+      </script>
+      <h5 id="vendedor"></h5>
+      <script>
+        var vendedor = localStorage.getItem('vendedor');
+        var vendedorObjeto = JSON.parse(vendedor);
+        var username = vendedorObjeto.username;
+        document.getElementById("vendedor").textContent = "Lo atiende: " + username;
+      </script>
+            <h6><strong>Menú Principal</strong></h5>
                 <button onclick="cerrarSesion()" class="noselect"><span class="text">Cerrar Sesión</span><span class="icon"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path
@@ -39,13 +52,13 @@
                         <strong> Crear Ventas
                         </strong>
 
-                        <span>Ir a Ventas</span>
+                        <span>Ir a Crear Ventas</span>
                     </div>
                 </a>
             </div>
             <div class="col-4 contenedorOpciones">
                 <a href="../pages/inventario.html">
-                    <div class="card">
+                    <div id="ocultar" class="card">
                         <div class="icon">
                             <img class="inventarioIcon" src="../public/icons/inventarioIcon.png" alt="">
                         </div>
@@ -57,6 +70,22 @@
                 </a>
             </div>
             <div class="col-4 contenedorOpciones">
+                <a href="../pages/paquete.html">
+                    <div id="ocultar" class="card">
+                        <div class="icon">
+                            <img class="cajasIcon" src="../public/icons/paquete.png" alt="">
+                        </div>
+                        <strong> Paquetes
+                        </strong>
+
+                        <span>Ir a Paquetes</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br>
+        <div id="ocultar" class="row">
+            <div class="col-4 contenedorOpciones">
                 <a href="../pages/caja.html">
                     <div class="card">
                         <div class="icon">
@@ -66,22 +95,6 @@
                         </strong>
 
                         <span>Ir a Caja</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <br>
-        <div id="ocultar" class="row">
-            <div  class="col-4 contenedorOpciones">
-                <a id="ventas" href="../pages/usuarios.html">
-                    <div class="card">
-                        <div class="icon">
-                            <img class="usuariosIcon" src="../public/icons/usuarisIcon.png" alt="">
-                        </div>
-                        <strong> Usuarios
-                        </strong>
-
-                        <span>Ir a Usuarios</span>
                     </div>
                 </a>
             </div>
@@ -107,10 +120,52 @@
                         <strong> Ventas
                         </strong>
 
-                        <span>Ir a Caja</span>
+                        <span>Ir a Ventas</span>
                     </div>
                 </a>
             </div>
+        </div>
+        <br>
+        <div id="ocultar" class="row">
+            <div  class="col-4 contenedorOpciones">
+                <a id="ventas" href="../pages/clientes.html">
+                    <div  class="card">
+                        <div class="icon">
+                            <img class="usuariosIcon" src="../public/icons/clientesIcon.png" alt="">
+                        </div>
+                        <strong> Clientes
+                        </strong>
+
+                        <span>Ir a Clientes</span>
+                    </div>
+                </a>
+            </div>
+            <div  class="col-4 contenedorOpciones">
+                <a id="ventas" href="../pages/usuarios.html">
+                    <div class="card">
+                        <div class="icon">
+                            <img class="usuariosIcon" src="../public/icons/usuarisIcon.png" alt="">
+                        </div>
+                        <strong> Usuarios
+                        </strong>
+
+                        <span>Ir a Usuarios</span>
+                    </div>
+                </a>
+            </div>
+            <!-- <div  class="col-4 contenedorOpciones">
+                <a id="ventas" href="../pages/almacen.html">
+                    <div  class="card">
+                        <div class="icon">
+                            <img class="usuariosIcon" src="../public/icons/almacen.png" alt="">
+                        </div>
+                        <strong> Almacen
+                        </strong>
+
+                        <span>Ir a Almacen</span>
+                    </div>
+                </a>
+            </div> -->
         </div>
     </div>
     <!-- Your app content here -->

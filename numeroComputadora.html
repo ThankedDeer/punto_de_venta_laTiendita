@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Número de Computadora</title>
+    <!-- Head section -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./css/inventario.css" />
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.min.css" />
+  </head>
+  <body>
+    <form id="numeroComputadoraForm">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="numeroComputadora">Número de Computadora</span>
+        <input type="number" id="numeroComputadora" name="numeroComputadora" min="1" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" for="nombreComputadora">Nombre de Computadora</span>
+        <input type="text" id="nombreComputadora" name="nombreComputadora" min="1" class="form-control" placeholder="" aria-label="" aria-describedby="addon-wrapping" required />
+      </div>
+      <br>
+      <button type="submit" id="guardarBtn" class="btn btn-primary">Crear</button>
+      <button onclick="localStorage.clear();">LocalStorage clean</button>
+    </form>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const numeroComputadoraForm = document.getElementById('numeroComputadoraForm');
+
+        numeroComputadoraForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const numeroComputadoraInput = document.getElementById('numeroComputadora');
+          const nombreComputadoraInput = document.getElementById('nombreComputadora');
+
+          const numeroComputadora = numeroComputadoraInput.value;
+          const nombreComputadora = nombreComputadoraInput.value;
+
+          await guardarEnBaseDeDatosYLocalStorage(numeroComputadora, nombreComputadora);
+        });
+      });
+
+      const guardarEnBaseDeDatosYLocalStorage = async (idCompu, Nom_Compu) => {
+        try {
+          const response = await axios.post('http://localhost:3000/api/computadora', {
+            idCompu: idCompu,
+            Nom_Compu: Nom_Compu
+          });
+          localStorage.setItem('idCompu', idCompu);
+          localStorage.setItem('Nom_Compu', Nom_Compu);
+          return response.compu;
+        } catch (error) {
+          console.error(error);
+          throw error;
+        }
+      };
+    </script>
+  </body>
+</html>

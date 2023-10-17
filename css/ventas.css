@@ -11,8 +11,18 @@
     padding: 0 1rem;
     border: 2px solid transparent;
     font-size: 1rem;
-    transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+    transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s, background .2s cubic-bezier(.25,.01,.25,1) 0s;
   }
+  
+  .form-control{
+    background-color: rgb(203, 203, 203);  
+  }
+
+  .form-control2{
+    background-color: rgb(255, 255, 255);  
+  }
+
+
   
   .label {
     display: block;
@@ -62,3 +72,62 @@
     -ms-user-select: none;
     user-select: none;
   }
+
+
+  
+
+
+  /* * {
+    font-size: 12px;
+    font-family: 'Times New Roman';
+} */
+
+td,
+th,
+tr,
+table {
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}
+
+td.description,
+th.description {
+    width: 400px;
+    max-width: 4px;
+}
+
+td.quantity,
+th.quantity {
+    width: 400px;
+    max-width: 400px;
+    word-break: break-all;
+}
+
+td.price,
+th.price {
+    width: 4000px;
+    max-width: 4000px;
+    word-break: break-all;
+}
+
+.centered {
+    text-align: center;
+    align-content: center;
+}
+
+.ticket {
+    width: 450px;
+    max-width: 450px;
+}
+
+img {
+    max-width: inherit;
+    width: inherit;
+}
+
+@media print {
+    .hidden-print,
+    .hidden-print * {
+        display: none !important;
+    }
+}
